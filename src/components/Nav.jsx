@@ -1,7 +1,14 @@
 import { ASSET, Pill } from './ui';
 
-export function Nav({ onHome, onLink, onCharacter }) {
-  const links = [['about', 'About'], ['work', 'Work'], ['services', 'Services'], ['contact', 'Contact']];
+const NAV_LINKS = [
+  { id: 'about',    label: 'About' },
+  { id: 'work',     label: 'Work' },
+  { id: 'services', label: 'Services' },
+  { id: 'socials',  label: 'Socials' },
+  { id: 'contact',  label: 'Contact' },
+];
+
+export function Nav({ onHome, onLink, onCharacter, onResume }) {
   return (
     <nav style={{
       position: 'sticky', top: 0, zIndex: 60,
@@ -15,14 +22,19 @@ export function Nav({ onHome, onLink, onCharacter }) {
           Quindal Williams
         </span>
       </a>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-        <div style={{ display: 'flex', gap: 26 }} className="ed-navlinks">
-          {links.map(([id, label]) => (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+        <div style={{ display: 'flex', gap: 22 }} className="ed-navlinks">
+          {NAV_LINKS.map(({ id, label }) => (
             <a key={id} onClick={() => onLink(id)} style={{
               cursor: 'pointer', fontFamily: 'var(--font-mono)',
               fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--ink)',
             }}>{label}</a>
           ))}
+          <a onClick={onResume} style={{
+            cursor: 'pointer', fontFamily: 'var(--font-mono)',
+            fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase',
+            color: 'var(--teal-700)',
+          }}>Résumé</a>
         </div>
         <Pill onClick={onCharacter}>Work with me</Pill>
       </div>

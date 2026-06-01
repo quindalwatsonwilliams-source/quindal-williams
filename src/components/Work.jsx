@@ -1,16 +1,19 @@
-import { ASSET, Marquee, Lab } from './ui';
+import { ASSET, Lab } from './ui';
 
 const WORK = [
   {
-    cat: 'Spatial · Circle', title: 'Teton Ridge', sub: 'Cowboy Christmas 2026',
+    cat: 'Spatial · Circle', catColor: 'var(--amber-700)',
+    title: 'Teton Ridge', sub: 'Cowboy Christmas 2026',
     tex: 'leopard', accent: 'var(--amber-900)',
   },
   {
-    cat: 'Brand Identity', title: 'SEICon III', sub: 'Conference branding system',
+    cat: 'Brand Identity', catColor: 'var(--magenta-500)',
+    title: 'SEICon III', sub: 'Conference branding system',
     tex: null, accent: 'var(--teal-900)',
   },
   {
-    cat: 'Spatial · Circle', title: 'Sanmina', sub: 'Trade-show booth',
+    cat: 'Spatial · Circle', catColor: 'var(--teal-700)',
+    title: 'Sanmina', sub: 'Trade-show booth',
     tex: 'zebra', accent: 'var(--azure-700)',
   },
 ];
@@ -38,7 +41,7 @@ function WorkCard({ p }) {
             color: 'var(--fg2)', marginTop: 3,
           }}>{p.sub}</div>
         </div>
-        <Lab color="var(--crimson-500)" style={{ whiteSpace: 'nowrap', textAlign: 'right' }}>{p.cat}</Lab>
+        <Lab color={p.catColor} style={{ whiteSpace: 'nowrap', textAlign: 'right' }}>{p.cat}</Lab>
       </div>
     </div>
   );
@@ -46,10 +49,22 @@ function WorkCard({ p }) {
 
 export function Work() {
   return (
-    <section id="work" style={{ background: 'var(--cream)', paddingTop: 40, paddingBottom: 20, scrollMarginTop: 64 }}>
-      <Marquee text="SELECTED WORK" />
+    <section id="work" style={{ background: 'var(--cream)', scrollMarginTop: 64 }}>
+      {/* Section header */}
+      <div style={{ padding: '60px 28px 0', maxWidth: 1040, margin: '0 auto' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, flexWrap: 'wrap' }}>
+          <h2 style={{
+            fontFamily: 'var(--font-serif-display)', fontWeight: 500,
+            fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0,
+          }}>Selected Work</h2>
+          <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17, color: 'var(--fg2)' }}>
+            — real projects, spec dreams, &amp; everything I've talked my way into
+          </span>
+        </div>
+      </div>
+
       <div style={{
-        maxWidth: 1040, margin: '0 auto', padding: '34px 28px 40px',
+        maxWidth: 1040, margin: '0 auto', padding: '30px 28px 56px',
         display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 24,
       }} className="ed-work-grid">
         {WORK.map(p => <WorkCard key={p.title} p={p} />)}

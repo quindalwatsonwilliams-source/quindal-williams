@@ -5,14 +5,14 @@ export function About() {
     <section id="about" style={{ background: '#FBF7EC', padding: '78px 28px', scrollMarginTop: 64 }}>
       <div style={{ maxWidth: 1040, margin: '0 auto' }}>
 
-        <Note size={30} rot={-4} style={{ marginLeft: 4 }}>Hey, I'm Quindal —</Note>
+        <Note size={30} rot={-4} color="var(--amber-700)" style={{ marginLeft: 4 }}>Hey, I'm Quindal —</Note>
         <h2 style={{
           fontFamily: 'var(--font-serif-display)', fontWeight: 500,
           fontSize: 'clamp(28px,4vw,50px)', lineHeight: 1.04,
           letterSpacing: '-.01em', color: 'var(--ink)', margin: '10px 0 0', maxWidth: 760,
         }}>
           Creative director, experiential designer,<br />
-          and your <span style={{ fontStyle: 'italic', color: 'var(--crimson-500)' }}>creative partner.</span>
+          and your <span style={{ fontStyle: 'italic', color: 'var(--magenta-500)' }}>creative partner.</span>
         </h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: 44, marginTop: 38, alignItems: 'start' }} className="ed-intro-grid">
@@ -32,7 +32,10 @@ export function About() {
                   I remember the moment I decided to stop making things that were merely fine. Now I build brands and spaces with taste, warmth, and a little bit of mischief.
                 </p>
                 <div style={{ marginTop: 20 }}>
-                  <Pill onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <Pill
+                    style={{ background: 'var(--teal-700)' }}
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
                     Work with me
                   </Pill>
                 </div>

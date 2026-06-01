@@ -5,8 +5,10 @@ import { About } from './components/About';
 import { Values } from './components/Values';
 import { Work } from './components/Work';
 import { Services } from './components/Services';
+import { Socials } from './components/Socials';
 import { CharacterCreator } from './components/CharacterCreator';
 import { Contact } from './components/Contact';
+import { Resume } from './components/Resume';
 
 function scrollToId(id) {
   const el = document.getElementById(id);
@@ -22,7 +24,8 @@ export default function App() {
   useEffect(() => {
     const h = (window.location.hash || '').replace('#', '');
     if (h === 'character') { setRoute('character'); return; }
-    if (['work', 'about', 'services', 'contact'].includes(h)) {
+    if (h === 'resume') { setRoute('resume'); return; }
+    if (['work', 'about', 'services', 'socials', 'contact'].includes(h)) {
       setRoute('home');
       const t = setTimeout(() => {
         const el = document.getElementById(h);
@@ -34,6 +37,7 @@ export default function App() {
 
   const goHome      = () => { setRoute('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); };
   const goCharacter = () => { setRoute('character'); window.scrollTo({ top: 0 }); };
+  const goResume    = () => { setRoute('resume'); window.scrollTo({ top: 0 }); };
   const onLink      = (id) => {
     if (route !== 'home') { setRoute('home'); setTimeout(() => scrollToId(id), 60); }
     else scrollToId(id);
@@ -41,20 +45,21 @@ export default function App() {
 
   return (
     <div>
-      <Nav onHome={goHome} onLink={onLink} onCharacter={goCharacter} route={route} />
+      <Nav onHome={goHome} onLink={onLink} onCharacter={goCharacter} onResume={goResume} route={route} />
 
-      {route === 'home' ? (
+      {route === 'home' && (
         <main>
           <Hero onCharacter={goCharacter} onWork={() => onLink('work')} />
           <About />
           <Values />
           <Work />
           <Services />
+          <Socials />
           <Contact />
         </main>
-      ) : (
-        <CharacterCreator onExit={goHome} />
       )}
+      {route === 'character' && <CharacterCreator onExit={goHome} />}
+      {route === 'resume' && <Resume onBack={goHome} />}
     </div>
   );
 }

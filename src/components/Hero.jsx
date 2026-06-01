@@ -64,9 +64,11 @@ export function Hero({ onCharacter, onWork }) {
           padding: '20px 4px 36px', gap: 16, flexWrap: 'wrap',
         }}>
           <div style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 19, color: 'var(--fg2)', maxWidth: 420 }}>
-            Maximalist taste, editorial warmth, and a little bit of whimsy.
+            Maximalist taste,{' '}
+            <span style={{ color: 'var(--teal-700)' }}>editorial warmth,</span>
+            {' '}and a little bit of whimsy.
           </div>
-          <Pill big onClick={onCharacter}>✦ Build your character</Pill>
+          <Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: 'var(--ink)' }}>✦ Build your character</Pill>
         </div>
       </div>
     </header>
