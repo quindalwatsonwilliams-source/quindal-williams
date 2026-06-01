@@ -1,29 +1,30 @@
-import { ASSET, Btn } from './ui';
+import { ASSET, Pill } from './ui';
 
 export function Nav({ onHome, onLink, onCharacter }) {
-  const links = [['work', 'Work'], ['about', 'About'], ['services', 'Services'], ['contact', 'Contact']];
+  const links = [['about', 'About'], ['work', 'Work'], ['services', 'Services'], ['contact', 'Contact']];
   return (
     <nav style={{
-      position: 'sticky', top: 0, zIndex: 50,
+      position: 'sticky', top: 0, zIndex: 60,
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      padding: '16px 30px', background: 'rgba(247,243,239,.82)',
-      backdropFilter: 'blur(12px)', borderBottom: '1px solid var(--line)',
+      padding: '13px 28px', background: 'rgba(247,243,239,.9)',
+      backdropFilter: 'blur(10px)', borderBottom: '1px solid var(--line)',
     }}>
-      <a onClick={onHome} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-        <img src={`${ASSET}/logos/logo-horizontal.png`} style={{ height: 30 }} alt="Quindal Williams" />
+      <a onClick={onHome} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10 }}>
+        <img src={`${ASSET}/logos/monogram-red.png`} style={{ height: 26 }} alt="" />
+        <span style={{ fontFamily: 'var(--font-serif-display)', fontSize: 17, letterSpacing: '.04em', color: 'var(--ink)' }}>
+          Quindal Williams
+        </span>
       </a>
       <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-        <div style={{ display: 'flex', gap: 24 }} className="navlinks">
+        <div style={{ display: 'flex', gap: 26 }} className="ed-navlinks">
           {links.map(([id, label]) => (
             <a key={id} onClick={() => onLink(id)} style={{
-              cursor: 'pointer', fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 15,
-              color: 'var(--ink)', letterSpacing: '.01em',
+              cursor: 'pointer', fontFamily: 'var(--font-mono)',
+              fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--ink)',
             }}>{label}</a>
           ))}
         </div>
-        <Btn variant="sticker" onClick={onCharacter} style={{ fontSize: 14, padding: '11px 20px' }}>
-          ✦ Build your character
-        </Btn>
+        <Pill onClick={onCharacter}>Work with me</Pill>
       </div>
     </nav>
   );

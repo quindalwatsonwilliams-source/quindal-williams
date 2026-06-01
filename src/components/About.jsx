@@ -1,107 +1,73 @@
-import { ASSET, Eyebrow, Tag, Sticker, MascotSlot } from './ui';
-
-function StatRow({ k, v }) {
-  return (
-    <div style={{
-      display: 'flex', justifyContent: 'space-between', gap: 12,
-      padding: '9px 0', borderBottom: '1px dashed rgba(247,243,239,.22)',
-    }}>
-      <span style={{ fontFamily: 'var(--font-sans)', fontSize: 12, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--amber-700)' }}>{k}</span>
-      <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 14, color: 'var(--cream)', textAlign: 'right' }}>{v}</span>
-    </div>
-  );
-}
+import { MascotSlot, Lab, Note, Pill } from './ui';
 
 export function About() {
   return (
-    <section id="about" style={{ scrollMarginTop: 70, position: 'relative', overflow: 'hidden' }}>
+    <section id="about" style={{ background: '#FBF7EC', padding: '78px 28px', scrollMarginTop: 64 }}>
+      <div style={{ maxWidth: 1040, margin: '0 auto' }}>
 
-      {/* ── Zebra side rail (left) ── */}
-      <div style={{
-        position: 'absolute', left: 0, top: 0, bottom: 0, width: 22,
-        backgroundImage: `url(${ASSET}/textures/zebra-sm.jpg)`,
-        backgroundSize: '120px',
-        borderRight: '2.5px solid var(--ink)',
-        zIndex: 2,
-        opacity: 0.85,
-      }} />
-      {/* ── Zebra side rail (right) ── */}
-      <div style={{
-        position: 'absolute', right: 0, top: 0, bottom: 0, width: 22,
-        backgroundImage: `url(${ASSET}/textures/zebra-sm.jpg)`,
-        backgroundSize: '120px',
-        borderLeft: '2.5px solid var(--ink)',
-        zIndex: 2,
-        opacity: 0.85,
-      }} />
+        <Note size={30} rot={-4} style={{ marginLeft: 4 }}>Hey, I'm Quindal —</Note>
+        <h2 style={{
+          fontFamily: 'var(--font-serif-display)', fontWeight: 500,
+          fontSize: 'clamp(28px,4vw,50px)', lineHeight: 1.04,
+          letterSpacing: '-.01em', color: 'var(--ink)', margin: '10px 0 0', maxWidth: 760,
+        }}>
+          Creative director, experiential designer,<br />
+          and your <span style={{ fontStyle: 'italic', color: 'var(--crimson-500)' }}>creative partner.</span>
+        </h2>
 
-      {/* ── Main content ── */}
-      <div style={{ padding: '80px 60px', background: 'var(--ink)', color: 'var(--cream)' }}>
-        <div style={{
-          maxWidth: 1100, margin: '0 auto',
-          display: 'grid', gridTemplateColumns: '.85fr 1.15fr',
-          gap: 50, alignItems: 'start',
-        }} className="about-grid">
+        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: 44, marginTop: 38, alignItems: 'start' }} className="ed-intro-grid">
 
-          {/* Player card */}
-          <div style={{
-            background: 'var(--magenta-900)', borderRadius: 26, padding: 22,
-            border: '2.5px solid var(--cream)', boxShadow: '8px 8px 0 var(--crimson-500)',
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-              <Eyebrow color="var(--amber-900)">Player Card</Eyebrow>
-              <Sticker size={40} bg="var(--amber-900)" rot={8}>★</Sticker>
-            </div>
-            <MascotSlot w="100%" h={300} label="Quindal" style={{ background: 'var(--cream)', border: '2px solid var(--cream)' }} />
-            <div style={{ marginTop: 16 }}>
-              <StatRow k="Class"     v="Creative Director"  />
-              <StatRow k="Guild"     v="Circle · Las Vegas"  />
-              <StatRow k="Training"  v="SCAD BFA"            />
-              <StatRow k="Signature" v="Maximalist warmth"   />
-              <StatRow k="Quest"     v="Found her own studio"/>
+          {/* Left: portrait + body */}
+          <div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
+              <MascotSlot
+                label="Portrait"
+                style={{ width: '100%', height: 300, borderRadius: 4, flex: 'none' }}
+              />
+              <div style={{ alignSelf: 'center' }}>
+                <p style={{
+                  fontFamily: 'var(--font-mono)', fontSize: 12.5, lineHeight: 1.85,
+                  color: 'var(--ink)', margin: 0, textTransform: 'uppercase', letterSpacing: '.02em',
+                }}>
+                  I remember the moment I decided to stop making things that were merely fine. Now I build brands and spaces with taste, warmth, and a little bit of mischief.
+                </p>
+                <div style={{ marginTop: 20 }}>
+                  <Pill onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                    Work with me
+                  </Pill>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Bio */}
-          <div>
-            <Eyebrow>About</Eyebrow>
-            <h2 style={{
-              fontFamily: 'var(--font-serif-display)', fontWeight: 500,
-              fontSize: 'clamp(34px,4.6vw,58px)', lineHeight: 1.02,
-              letterSpacing: '-.015em', margin: '14px 0 0', color: 'var(--cream)',
+          {/* Right: typewriter copy + polaroid */}
+          <div style={{ position: 'relative' }}>
+            <p style={{
+              fontFamily: 'var(--font-mono)', fontSize: 12.5, lineHeight: 1.85,
+              color: 'var(--ink)', margin: 0, textTransform: 'uppercase', letterSpacing: '.02em',
             }}>
-              Hi, I'm Quindal.
-            </h2>
-            <p style={{ fontFamily: 'var(--font-serif)', fontSize: 20, lineHeight: 1.6, color: 'rgba(247,243,239,.86)', marginTop: 22 }}>
-              I make brands that feel like the adulthood you were promised as a kid — the Saturday-morning saturation,
-              the freedom to be a little unhinged, the conviction that taste and play belong in the same room.
+              I help service brands, founders, and culture-makers look as good as the work they do — identity, campaigns, packaging, and environments you can walk through.
             </p>
-            <blockquote style={{
-              fontFamily: 'var(--font-serif-alt)', fontStyle: 'italic', fontWeight: 400,
-              fontSize: 'clamp(26px,3.2vw,38px)', lineHeight: 1.25, color: 'var(--amber-900)',
-              margin: '30px 0', padding: 0,
+            <p style={{
+              fontFamily: 'var(--font-mono)', fontSize: 12.5, lineHeight: 1.85,
+              color: 'var(--fg2)', margin: '16px 0 0', textTransform: 'uppercase', letterSpacing: '.02em',
             }}>
-              "Feminine but not soft. Editorial with warmth. Playful, never childish."
-            </blockquote>
-            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 16, lineHeight: 1.7, color: 'rgba(247,243,239,.78)' }}>
-              By day I direct experiential work at <strong style={{ color: 'var(--cream)' }}>Circle</strong> in Las Vegas —
-              booths, conferences, and brand worlds you can walk through. I'm a <strong style={{ color: 'var(--cream)' }}>SCAD</strong> BFA
-              student building toward my own studio over the next five years.
+              If you've ever felt like your brand was playing it too safe — I've been there. Let's make the loud, warm, unmistakable version instead.
             </p>
 
-            {/* Leopard-print accent bar */}
-            <div style={{
-              marginTop: 28, padding: '14px 20px',
-              backgroundImage: `url(${ASSET}/textures/leopard-sm.jpg)`,
-              backgroundSize: '280px',
-              border: '2.5px solid var(--cream)',
-              borderRadius: 14,
-              position: 'relative', overflow: 'hidden',
-            }}>
-              <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,26,46,0.55)' }} />
-              <div style={{ position: 'relative', display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                <Tag bg="var(--crimson-500)" fg="#fff">● Available 2026</Tag>
-                <Tag bg="transparent" fg="var(--cream)" style={{ border: '2px solid var(--cream)' }}>Las Vegas / remote</Tag>
+            {/* Polaroid */}
+            <div style={{ marginTop: 26, width: 180, marginLeft: 'auto', position: 'relative', transform: 'rotate(3deg)' }}>
+              <div style={{
+                position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%) rotate(-4deg)',
+                width: 70, height: 24,
+                background: 'rgba(231,35,136,.28)', border: '1px solid rgba(231,35,136,.4)',
+              }} />
+              <div style={{ background: '#fff', padding: '10px 10px 34px', boxShadow: '0 12px 26px rgba(26,26,46,.16)' }}>
+                <MascotSlot
+                  label="Polaroid"
+                  style={{ width: '100%', height: 160, borderRadius: 2, flex: 'none' }}
+                />
+                <Note size={18} rot={-3} style={{ textAlign: 'center', marginTop: 8 }}>at play, always</Note>
               </div>
             </div>
           </div>

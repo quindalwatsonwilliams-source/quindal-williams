@@ -62,16 +62,81 @@ export function Btn({ children, variant = 'primary', onClick, style, type, big }
     dark: { background: 'var(--ink)', color: 'var(--cream)' },
   };
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      onMouseDown={() => setPress(true)}
-      onMouseUp={() => setPress(false)}
-      onMouseLeave={() => setPress(false)}
-      style={{ ...base, ...variants[variant], ...style }}
-    >
+    <button type={type} onClick={onClick}
+      onMouseDown={() => setPress(true)} onMouseUp={() => setPress(false)} onMouseLeave={() => setPress(false)}
+      style={{ ...base, ...variants[variant], ...style }}>
       {children}
     </button>
+  );
+}
+
+/* Crimson pill CTA — editorial style */
+export function Pill({ children, dark, onClick, big, style }) {
+  const [p, setP] = useState(false);
+  return (
+    <button onClick={onClick}
+      onMouseDown={() => setP(true)} onMouseUp={() => setP(false)} onMouseLeave={() => setP(false)}
+      style={{
+        fontFamily: 'var(--font-sans)', fontWeight: 600,
+        fontSize: big ? 13 : 11, letterSpacing: '.16em', textTransform: 'uppercase',
+        cursor: 'pointer', color: dark ? 'var(--cream)' : '#fff',
+        background: dark ? 'var(--ink)' : 'var(--crimson-500)',
+        border: 'none', borderRadius: 999, padding: big ? '16px 30px' : '12px 22px',
+        transform: p ? 'scale(.96)' : 'scale(1)', transition: 'transform .12s ease',
+        ...style,
+      }}>
+      {children}
+    </button>
+  );
+}
+
+/* Tracked uppercase mono label */
+export function Lab({ children, color = 'var(--ink)', style }) {
+  return (
+    <div style={{
+      fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.14em',
+      textTransform: 'uppercase', color, lineHeight: 1.7, ...style,
+    }}>
+      {children}
+    </div>
+  );
+}
+
+/* Handwritten Caveat annotation */
+export function Note({ children, color = 'var(--crimson-500)', size = 26, rot = -6, style }) {
+  return (
+    <div style={{
+      fontFamily: "'Caveat', cursive", fontSize: size, color, lineHeight: 1.05,
+      transform: `rotate(${rot}deg)`, ...style,
+    }}>
+      {children}
+    </div>
+  );
+}
+
+/* Freehand curved arrow doodle */
+export function Arrow({ flip, w = 76, h = 52, color = 'var(--ink)', style }) {
+  return (
+    <svg width={w} height={h} viewBox="0 0 76 52" fill="none"
+      style={{ transform: flip ? 'scaleX(-1)' : 'none', overflow: 'visible', ...style }}>
+      <path d="M4 6 C 30 2, 64 12, 70 40" stroke={color} strokeWidth="2.4" strokeLinecap="round" fill="none" />
+      <path d="M60 33 L71 41 L62 47" stroke={color} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+
+/* Oversized scrolling marquee */
+export function Marquee({ text, color = 'var(--ink)' }) {
+  const run = `${text}  •  ${text}  •  ${text}  •  `;
+  return (
+    <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', padding: '10px 0' }}>
+      <div className="ed-marquee">
+        <span style={{
+          fontFamily: 'var(--font-serif-display)', fontWeight: 600,
+          fontSize: 'clamp(48px,9vw,128px)', letterSpacing: '-.02em', color, lineHeight: 1,
+        }}>{run}{run}</span>
+      </div>
+    </div>
   );
 }
 
@@ -79,15 +144,14 @@ export function MascotSlot({ w = 280, h = 360, label = "Quindal's cartoon charac
   return (
     <div style={{
       width: w, height: h, flex: 'none', position: 'relative',
-      borderRadius: 24, border: '2.5px dashed var(--crimson-300)',
-      background: 'repeating-linear-gradient(45deg, #fff, #fff 14px, var(--magenta-100) 14px, var(--magenta-100) 28px)',
+      borderRadius: 8, border: '1.5px dashed rgba(26,26,46,.22)',
+      background: 'var(--cream)',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
       textAlign: 'center', padding: 22, ...style,
     }}>
-      <img src={`${ASSET}/logos/monogram-red.png`} style={{ width: '42%', opacity: .85, marginBottom: 16 }} alt="" />
-      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 18, color: 'var(--crimson-700)' }}>{label}</div>
-      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg3)', marginTop: 8, maxWidth: 200, lineHeight: 1.5 }}>
-        Awaiting the hand-sketched alter-ego art
+      <img src={`${ASSET}/logos/monogram-red.png`} style={{ width: '38%', opacity: .7, marginBottom: 14 }} alt="" />
+      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--fg3)', lineHeight: 1.6, maxWidth: 180 }}>
+        {label}
       </div>
     </div>
   );
