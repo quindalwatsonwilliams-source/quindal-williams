@@ -1,77 +1,113 @@
 import { useState } from 'react';
-import { ASSET, Eyebrow, Tag, Sticker, Btn } from './ui';
+import { ASSET, Lab, Note, Pill, Marquee } from './ui';
 
 const CC_VIBES = [
-  { id: 'maximal', label: 'Maximalist & loud', emoji: '✦', c: 'var(--crimson-500)' },
-  { id: 'dreamy', label: 'Soft & dreamy', emoji: '★', c: 'var(--magenta-300)' },
-  { id: 'sharp', label: 'Sharp & strategic', emoji: '◆', c: 'var(--azure-700)' },
-  { id: 'nostalgic', label: 'Warm & nostalgic', emoji: '❤', c: 'var(--amber-900)' },
-  { id: 'future', label: 'Future-glam', emoji: '✶', c: 'var(--teal-900)' },
-  { id: 'chaos', label: 'Chaotic good', emoji: '✸', c: 'var(--olive-700)' },
+  { id: 'maximal',   label: 'Maximalist & loud',  dot: 'var(--crimson-500)' },
+  { id: 'dreamy',    label: 'Soft & dreamy',       dot: 'var(--magenta-300)' },
+  { id: 'sharp',     label: 'Sharp & strategic',   dot: 'var(--azure-700)'   },
+  { id: 'nostalgic', label: 'Warm & nostalgic',    dot: 'var(--amber-900)'   },
+  { id: 'future',    label: 'Future-glam',          dot: 'var(--teal-700)'    },
+  { id: 'chaos',     label: 'Chaotic good',         dot: 'var(--olive-700)'   },
 ];
 
 const CC_MOVES = [
-  { id: 'art', label: 'I make it gorgeous', arche: 'art' },
-  { id: 'hype', label: 'I hype the whole room', arche: 'hype' },
-  { id: 'lore', label: 'I name everything & build the canon', arche: 'lore' },
-  { id: 'vision', label: 'I see it before it exists', arche: 'vision' },
-  { id: 'produce', label: 'I make it actually happen', arche: 'produce' },
-  { id: 'wild', label: 'I break every rule', arche: 'wild' },
-  { id: 'strat', label: 'I find the through-line', arche: 'strat' },
-  { id: 'world', label: 'I build whole worlds', arche: 'world' },
+  { id: 'art',     label: 'I make it gorgeous',              arche: 'art'     },
+  { id: 'hype',    label: 'I hype the whole room',           arche: 'hype'    },
+  { id: 'lore',    label: 'I name everything & build the canon', arche: 'lore' },
+  { id: 'vision',  label: 'I see it before it exists',       arche: 'vision'  },
+  { id: 'produce', label: 'I make it actually happen',       arche: 'produce' },
+  { id: 'wild',    label: 'I break every rule',              arche: 'wild'    },
+  { id: 'strat',   label: 'I find the through-line',         arche: 'strat'   },
+  { id: 'world',   label: 'I build whole worlds',            arche: 'world'   },
 ];
 
 const CC_FUELS = [
-  { id: 'coffee', label: 'Iced coffee, always' },
-  { id: 'playlist', label: 'A perfect playlist' },
-  { id: 'deadline', label: 'Deadline adrenaline' },
-  { id: 'nostalgia', label: 'Pure nostalgia' },
-  { id: 'groupchat', label: 'Group-chat chaos' },
-  { id: 'figma', label: 'A spotless Figma file' },
+  { id: 'coffee',    label: 'Iced coffee, always'   },
+  { id: 'playlist',  label: 'A perfect playlist'    },
+  { id: 'deadline',  label: 'Deadline adrenaline'   },
+  { id: 'nostalgia', label: 'Pure nostalgia'        },
+  { id: 'groupchat', label: 'Group-chat chaos'      },
+  { id: 'figma',     label: 'A spotless Figma file' },
 ];
 
 const ARCHETYPES = {
-  art:     { name: 'The Art Director', tagline: 'Taste is the whole strategy.', c: 'var(--crimson-500)', fg: '#fff', sticker: '✦',
-    desc: 'You can feel when a kerning is off from across the room. Beauty isn\'t decoration to you — it\'s the argument.' },
-  hype:    { name: 'The Hype Machine', tagline: 'Energy is a deliverable.', c: 'var(--amber-900)', fg: 'var(--ink)', sticker: '★',
-    desc: 'You make people believe. The room is warmer, louder, and braver because you walked in with the idea.' },
-  lore:    { name: 'The Lore Master', tagline: 'Every brand needs a canon.', c: 'var(--magenta-700)', fg: '#fff', sticker: '❤',
-    desc: 'Names, origin stories, inside jokes, the bible. You build the mythology people want to live inside.' },
-  vision:  { name: 'The Visionary', tagline: 'Already living in next year.', c: 'var(--teal-900)', fg: '#fff', sticker: '✶',
-    desc: 'You see the finished thing before anyone\'s opened a file. The rest is just everyone catching up.' },
-  produce: { name: 'The Producer', tagline: 'Dreams, but on time and on budget.', c: 'var(--azure-700)', fg: '#fff', sticker: '◆',
-    desc: 'Chaos walks in, a plan walks out. You\'re the reason the gorgeous idea actually shipped.' },
-  wild:    { name: 'The Wild Card', tagline: 'The rules were a suggestion.', c: 'var(--olive-700)', fg: '#fff', sticker: '✸',
-    desc: 'Unpredictable in the best way. The idea nobody asked for is the one that ends up on the wall.' },
-  strat:   { name: 'The Strategist', tagline: 'The through-line is everything.', c: 'var(--ink)', fg: 'var(--cream)', sticker: '◆',
-    desc: 'You find the one true thread and pull it through every touchpoint until the whole thing clicks.' },
-  world:   { name: 'The World Builder', tagline: 'Brands you can walk through.', c: 'var(--magenta-500)', fg: '#fff', sticker: '✦',
-    desc: 'You don\'t make logos, you make places. Spaces, systems, and worlds people don\'t want to leave.' },
+  art:     { name: 'The Art Director',  tagline: 'Taste is the whole strategy.',        accent: 'var(--crimson-500)', fg: '#fff',           glyph: '✦' },
+  hype:    { name: 'The Hype Machine',  tagline: 'Energy is a deliverable.',            accent: 'var(--amber-900)',   fg: 'var(--ink)',      glyph: '★' },
+  lore:    { name: 'The Lore Master',   tagline: 'Every brand needs a canon.',          accent: 'var(--magenta-700)', fg: '#fff',            glyph: '❤' },
+  vision:  { name: 'The Visionary',     tagline: 'Already living in next year.',        accent: 'var(--teal-900)',    fg: '#fff',            glyph: '✶' },
+  produce: { name: 'The Producer',      tagline: 'Dreams, but on time and on budget.',  accent: 'var(--azure-700)',   fg: '#fff',            glyph: '◆' },
+  wild:    { name: 'The Wild Card',     tagline: 'The rules were a suggestion.',        accent: 'var(--olive-700)',   fg: '#fff',            glyph: '✸' },
+  strat:   { name: 'The Strategist',    tagline: 'The through-line is everything.',     accent: 'var(--ink)',         fg: 'var(--cream)',    glyph: '◆' },
+  world:   { name: 'The World Builder', tagline: 'Brands you can walk through.',        accent: 'var(--magenta-500)', fg: '#fff',            glyph: '✦' },
 };
 
-function OptionGrid({ options, value, onPick, cols = 2 }) {
+const ARCHETYPE_DESC = {
+  art:     "You can feel when a kerning is off from across the room. Beauty isn't decoration to you — it's the argument.",
+  hype:    "You make people believe. The room is warmer, louder, and braver because you walked in with the idea.",
+  lore:    "Names, origin stories, inside jokes, the bible. You build the mythology people want to live inside.",
+  vision:  "You see the finished thing before anyone's opened a file. The rest is just everyone catching up.",
+  produce: "Chaos walks in, a plan walks out. You're the reason the gorgeous idea actually shipped.",
+  wild:    "Unpredictable in the best way. The idea nobody asked for is the one that ends up on the wall.",
+  strat:   "You find the one true thread and pull it through every touchpoint until the whole thing clicks.",
+  world:   "You don't make logos, you make places. Spaces, systems, and worlds people don't want to leave.",
+};
+
+/* ── Step progress bar ── */
+function Progress({ step }) {
+  const steps = ['Vibe', 'Signature Move', 'Fuel'];
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols},1fr)`, gap: 12 }}>
-      {options.map(o => {
+    <div style={{ display: 'flex', gap: 0, marginBottom: 36 }}>
+      {steps.map((label, i) => {
+        const active = i === step;
+        const done   = i < step;
+        return (
+          <div key={label} style={{ flex: 1, position: 'relative' }}>
+            <div style={{
+              height: 2,
+              background: done ? 'var(--crimson-500)' : active ? 'var(--crimson-500)' : 'var(--line)',
+              transition: 'background .3s',
+            }} />
+            <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{
+                width: 20, height: 20, borderRadius: 999, flex: 'none',
+                background: done || active ? 'var(--crimson-500)' : 'var(--line)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: 'var(--font-mono)', fontSize: 10, color: done || active ? '#fff' : 'var(--fg3)',
+                transition: 'background .3s',
+              }}>{done ? '✓' : i + 1}</span>
+              <Lab color={active ? 'var(--crimson-500)' : done ? 'var(--ink)' : 'var(--fg3)'}
+                style={{ fontSize: 10 }}>{label}</Lab>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ── Vibe grid (step 0) ── */
+function VibeGrid({ value, onPick }) {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+      {CC_VIBES.map(o => {
         const sel = value === o.id;
         return (
           <button key={o.id} onClick={() => onPick(o.id)} style={{
-            cursor: 'pointer', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 12,
-            fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 16, color: 'var(--ink)',
-            background: sel ? 'var(--cream)' : '#fff', padding: '16px 18px', borderRadius: 16,
-            border: '2.5px solid var(--ink)', transition: 'transform .1s, box-shadow .1s',
-            boxShadow: sel ? '4px 4px 0 var(--crimson-500)' : '4px 4px 0 var(--ink)',
-            transform: sel ? 'translate(-1px,-1px)' : 'none',
+            cursor: 'pointer', textAlign: 'left', padding: '16px 18px',
+            background: sel ? o.dot : 'transparent',
+            border: `1.5px solid ${sel ? o.dot : 'var(--line)'}`,
+            borderRadius: 4, transition: 'all .15s ease',
+            display: 'flex', alignItems: 'center', gap: 10,
           }}>
-            {o.emoji && (
-              <span style={{
-                width: 34, height: 34, flex: 'none', borderRadius: 999,
-                background: o.c || 'var(--amber-900)', border: '2px solid var(--ink)',
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                color: 'var(--ink)', fontSize: 16,
-              }}>{o.emoji}</span>
-            )}
-            {o.label}
+            <span style={{
+              width: 8, height: 8, borderRadius: 999, flex: 'none',
+              background: sel ? '#fff' : o.dot,
+              transition: 'background .15s',
+            }} />
+            <span style={{
+              fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 15,
+              color: sel ? '#fff' : 'var(--ink)', lineHeight: 1.2,
+            }}>{o.label}</span>
           </button>
         );
       })}
@@ -79,64 +115,152 @@ function OptionGrid({ options, value, onPick, cols = 2 }) {
   );
 }
 
-function Stepper({ step }) {
-  const labels = ['Vibe', 'Signature move', 'Fuel'];
+/* ── Move list (step 1) ── */
+function MoveList({ value, onPick }) {
   return (
-    <div style={{ display: 'flex', gap: 8, marginBottom: 22 }}>
-      {labels.map((l, i) => (
-        <div key={l} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{
-            fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700,
-            color: i <= step ? 'var(--crimson-500)' : 'var(--fg3)',
-          }}>{String(i + 1).padStart(2, '0')} {l}</span>
-          {i < 2 && <span style={{ color: 'var(--fg3)' }}>·</span>}
-        </div>
-      ))}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 0, borderTop: '1px solid var(--line)' }}>
+      {CC_MOVES.map((o, i) => {
+        const sel = value === o.id;
+        return (
+          <button key={o.id} onClick={() => onPick(o.id)} style={{
+            cursor: 'pointer', textAlign: 'left',
+            padding: '16px 6px',
+            background: 'transparent',
+            border: 'none', borderBottom: '1px solid var(--line)',
+            display: 'flex', alignItems: 'center', gap: 16,
+            transition: 'background .12s',
+          }}>
+            <Lab color={sel ? 'var(--crimson-500)' : 'var(--fg3)'}
+              style={{ fontSize: 10, minWidth: 24, transition: 'color .15s' }}>
+              {String(i + 1).padStart(2, '0')}
+            </Lab>
+            <span style={{
+              fontFamily: 'var(--font-serif-display)', fontWeight: 500,
+              fontSize: 'clamp(18px,2.2vw,22px)', lineHeight: 1.1,
+              color: sel ? 'var(--crimson-500)' : 'var(--ink)',
+              transition: 'color .15s',
+            }}>{o.label}</span>
+            {sel && <span style={{ marginLeft: 'auto', color: 'var(--crimson-500)', fontSize: 18 }}>✦</span>}
+          </button>
+        );
+      })}
     </div>
   );
 }
 
+/* ── Fuel grid (step 2) ── */
+function FuelGrid({ value, onPick }) {
+  const COLORS = ['var(--amber-900)', 'var(--teal-700)', 'var(--magenta-500)', 'var(--azure-700)', 'var(--olive-700)', 'var(--crimson-500)'];
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+      {CC_FUELS.map((o, i) => {
+        const sel = value === o.id;
+        const col = COLORS[i];
+        return (
+          <button key={o.id} onClick={() => onPick(o.id)} style={{
+            cursor: 'pointer', textAlign: 'left', padding: '18px 16px',
+            background: sel ? col : 'transparent',
+            border: `1.5px solid ${sel ? col : 'var(--line)'}`,
+            borderRadius: 4, transition: 'all .15s ease',
+          }}>
+            <span style={{
+              fontFamily: 'var(--font-sans)', fontWeight: 500, fontSize: 15,
+              color: sel ? '#fff' : 'var(--ink)',
+              display: 'block', lineHeight: 1.3,
+            }}>{o.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ── Result card ── */
 function ResultCard({ arche, vibe, fuel, onRestart }) {
-  const a = ARCHETYPES[arche];
-  const v = CC_VIBES.find(x => x.id === vibe);
-  const f = CC_FUELS.find(x => x.id === fuel);
+  const a  = ARCHETYPES[arche];
+  const v  = CC_VIBES.find(x => x.id === vibe);
+  const f  = CC_FUELS.find(x => x.id === fuel);
   const [email, setEmail] = useState('');
   const [saved, setSaved] = useState(false);
+
   return (
     <div>
+      {/* Colored archetype header */}
       <div style={{
-        background: a.c, color: a.fg, borderRadius: 26, border: '3px solid var(--ink)',
-        boxShadow: '10px 10px 0 var(--ink)', padding: 30, position: 'relative', overflow: 'hidden',
+        background: a.accent,
+        padding: '36px 30px 32px',
+        position: 'relative', overflow: 'hidden',
+        borderRadius: '4px 4px 0 0',
       }}>
-        <div style={{ position: 'absolute', top: -10, right: -10, opacity: .9 }}>
-          <Sticker size={88} bg="var(--cream)" rot={12}>{a.sticker}</Sticker>
-        </div>
-        <Eyebrow color={a.fg} style={{ opacity: .85 }}>Your creative archetype</Eyebrow>
+        <div style={{
+          position: 'absolute', top: 20, right: 24,
+          fontFamily: 'var(--font-serif-display)', fontSize: 72,
+          color: 'rgba(255,255,255,.12)', lineHeight: 1, userSelect: 'none',
+        }}>{a.glyph}</div>
+
+        <Lab color={a.fg === 'var(--ink)' ? 'rgba(26,26,46,.55)' : 'rgba(255,255,255,.65)'}
+          style={{ marginBottom: 14 }}>
+          Your creative archetype
+        </Lab>
         <h2 style={{
-          fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 'clamp(40px,6vw,64px)',
-          lineHeight: .95, margin: '10px 0 6px', maxWidth: '80%',
+          fontFamily: 'var(--font-serif-display)', fontWeight: 500,
+          fontSize: 'clamp(36px,6vw,60px)', lineHeight: .92,
+          letterSpacing: '-.02em', margin: '0 0 10px', color: a.fg,
         }}>{a.name}</h2>
-        <div style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 22, opacity: .95 }}>{a.tagline}</div>
-        <p style={{ fontFamily: 'var(--font-sans)', fontSize: 16, lineHeight: 1.6, marginTop: 16, maxWidth: 460, opacity: .95 }}>{a.desc}</p>
-        <div style={{ display: 'flex', gap: 8, marginTop: 20, flexWrap: 'wrap' }}>
-          <Tag bg="rgba(247,243,239,.18)" fg={a.fg} style={{ border: `1.5px solid ${a.fg}` }}>{v?.emoji} {v?.label}</Tag>
-          <Tag bg="rgba(247,243,239,.18)" fg={a.fg} style={{ border: `1.5px solid ${a.fg}` }}>⚡ {f?.label}</Tag>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 24, opacity: .9 }}>
-          <img
-            src={`${ASSET}/logos/monogram-red.png`}
-            style={{ height: 34, filter: a.fg === '#fff' || a.fg === 'var(--cream)' ? 'brightness(0) invert(1)' : 'none' }}
-            alt=""
-          />
-          <span style={{ fontFamily: 'var(--font-sans)', fontSize: 13, letterSpacing: '.08em' }}>quindalwilliams.com/build-your-character</span>
+        <div style={{
+          fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 20,
+          color: a.fg, opacity: .9,
+        }}>{a.tagline}</div>
+
+        {/* URL watermark */}
+        <div style={{
+          position: 'absolute', bottom: 14, right: 20,
+          fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.1em',
+          textTransform: 'uppercase', opacity: .35,
+          color: a.fg === 'var(--ink)' ? 'var(--ink)' : '#fff',
+        }}>quindal.art</div>
+      </div>
+
+      {/* Description + tags */}
+      <div style={{
+        background: '#fff', padding: '24px 30px 28px',
+        borderLeft: '1px solid var(--line)', borderRight: '1px solid var(--line)',
+      }}>
+        <p style={{
+          fontFamily: 'var(--font-mono)', fontSize: 12.5, lineHeight: 1.8,
+          color: 'var(--ink)', margin: '0 0 18px',
+          textTransform: 'uppercase', letterSpacing: '.02em',
+        }}>{ARCHETYPE_DESC[arche]}</p>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <span style={{
+            fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.1em',
+            textTransform: 'uppercase', color: a.accent,
+            border: `1.5px solid ${a.accent}`, borderRadius: 2, padding: '5px 10px',
+          }}>{v?.label}</span>
+          <span style={{
+            fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.1em',
+            textTransform: 'uppercase', color: 'var(--fg2)',
+            border: '1.5px solid var(--line)', borderRadius: 2, padding: '5px 10px',
+          }}>{f?.label}</span>
         </div>
       </div>
 
-      <div style={{ background: '#fff', border: '2.5px solid var(--ink)', borderRadius: 20, padding: 22, marginTop: 18 }}>
+      {/* Email capture */}
+      <div style={{
+        background: 'var(--cream)', padding: '22px 30px 26px',
+        border: '1px solid var(--line)', borderRadius: '0 0 4px 4px',
+        borderTop: 'none',
+      }}>
         {!saved ? (
-          <div>
-            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 20, marginBottom: 4 }}>Save your character ✦</div>
-            <p style={{ fontFamily: 'var(--font-sans)', fontSize: 14, color: 'var(--fg2)', margin: '0 0 14px' }}>
+          <>
+            <div style={{
+              fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 20,
+              color: 'var(--ink)', marginBottom: 4,
+            }}>Save your character</div>
+            <p style={{
+              fontFamily: 'var(--font-mono)', fontSize: 11, textTransform: 'uppercase',
+              letterSpacing: '.05em', color: 'var(--fg3)', margin: '0 0 14px', lineHeight: 1.6,
+            }}>
               Drop your email and I'll send the card + the occasional note from the studio.
             </p>
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
@@ -145,103 +269,121 @@ function ResultCard({ arche, vibe, fuel, onRestart }) {
                 onChange={e => setEmail(e.target.value)}
                 placeholder="you@email.com"
                 style={{
-                  flex: '1 1 200px', fontFamily: 'var(--font-sans)', fontSize: 16,
-                  padding: '13px 16px', border: '2px solid var(--ink)', borderRadius: 14, outline: 'none',
+                  flex: '1 1 200px', fontFamily: 'var(--font-sans)', fontSize: 15,
+                  padding: '12px 14px', border: '1px solid var(--line)', borderRadius: 3,
+                  outline: 'none', background: '#fff',
                 }}
               />
-              <Btn variant="primary" onClick={() => email.includes('@') && setSaved(true)}>Save & share →</Btn>
+              <Pill onClick={() => email.includes('@') && setSaved(true)}>Save →</Pill>
             </div>
-          </div>
+          </>
         ) : (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <Sticker bg="var(--teal-900)" fg="#fff" size={48}>✓</Sticker>
-            <div>
-              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 18 }}>Saved! Check your inbox.</div>
-              <div style={{ fontFamily: 'var(--font-sans)', fontSize: 14, color: 'var(--fg2)' }}>Screenshot the card above and tag <strong>@quindalwilliams</strong>.</div>
-            </div>
+          <div>
+            <Note size={22} rot={-3} color="var(--teal-700)">saved! check your inbox ✦</Note>
+            <p style={{
+              fontFamily: 'var(--font-mono)', fontSize: 11, textTransform: 'uppercase',
+              letterSpacing: '.05em', color: 'var(--fg3)', margin: '10px 0 0', lineHeight: 1.6,
+            }}>
+              Screenshot the card and tag <strong style={{ color: 'var(--ink)' }}>@quindalwilliams</strong> — I reshare every one.
+            </p>
           </div>
         )}
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: 18 }}>
-        <Btn variant="ghost" onClick={onRestart}>↺ Build another</Btn>
+      <div style={{ marginTop: 20, display: 'flex', justifyContent: 'center' }}>
+        <button onClick={onRestart} style={{
+          background: 'none', border: 'none', cursor: 'pointer',
+          fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.14em',
+          textTransform: 'uppercase', color: 'var(--fg3)',
+        }}>↺ Build another</button>
       </div>
     </div>
   );
 }
 
+/* ── Main component ── */
 export function CharacterCreator({ onExit }) {
-  const [step, setStep] = useState(0);
-  const [vibe, setVibe] = useState(null);
-  const [move, setMove] = useState(null);
-  const [fuel, setFuel] = useState(null);
+  const [step, setStep]   = useState(0);
+  const [vibe, setVibe]   = useState(null);
+  const [move, setMove]   = useState(null);
+  const [fuel, setFuel]   = useState(null);
 
   const reset = () => { setStep(0); setVibe(null); setMove(null); setFuel(null); };
   const arche = move ? CC_MOVES.find(m => m.id === move).arche : null;
-  const done = step === 3;
+  const done  = step === 3;
+
+  const canAdvance = (step === 0 && vibe) || (step === 1 && move) || (step === 2 && fuel);
+
+  const QUESTIONS = ['Pick your vibe.', 'Your signature move?', 'What fuels you?'];
 
   return (
-    <section style={{
-      minHeight: 'calc(100vh - 63px)', padding: '44px 24px 80px',
-      background: 'radial-gradient(circle at 20% 0%, var(--magenta-100), var(--cream) 55%)',
-    }}>
-      <div style={{ maxWidth: 620, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 28 }}>
-          <Eyebrow style={{ justifyContent: 'center' }}>quindalwilliams.com/build-your-character</Eyebrow>
-          <h1 style={{
-            fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 'clamp(36px,6vw,58px)',
-            lineHeight: .98, margin: '10px 0 0', color: 'var(--ink)',
-          }}>
-            What kind of creative<br /><span style={{ color: 'var(--crimson-500)' }}>are you?</span>
-          </h1>
-        </div>
+    <div style={{ background: 'var(--cream)', minHeight: 'calc(100vh - 54px)' }}>
 
-        <div style={{
-          background: 'rgba(255,255,255,.7)', backdropFilter: 'blur(6px)', borderRadius: 24,
-          border: '2.5px solid var(--ink)', padding: 26, boxShadow: '6px 6px 0 var(--ink)',
-        }}>
-          {!done && <Stepper step={step} />}
+      {/* Page header */}
+      <div style={{
+        borderBottom: '1px solid var(--line)',
+        padding: '48px 28px 40px',
+        background: '#FBF7EC',
+      }}>
+        <div style={{ maxWidth: 660, margin: '0 auto' }}>
+          <button onClick={onExit} style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.14em',
+            textTransform: 'uppercase', color: 'var(--fg3)', padding: 0, marginBottom: 20,
+            display: 'flex', alignItems: 'center', gap: 6,
+          }}>← Back to site</button>
 
-          {step === 0 && (
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap' }}>
             <div>
-              <h3 style={{ fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 26, margin: '0 0 16px' }}>Pick your vibe.</h3>
-              <OptionGrid options={CC_VIBES} value={vibe} onPick={v => setVibe(v)} cols={2} />
+              <Lab color="var(--crimson-500)" style={{ marginBottom: 10 }}>quindal.art / build-your-character</Lab>
+              <h1 style={{
+                fontFamily: 'var(--font-serif-display)', fontWeight: 500,
+                fontSize: 'clamp(34px,5.5vw,58px)', lineHeight: .96,
+                letterSpacing: '-.02em', margin: 0, color: 'var(--ink)',
+              }}>
+                What kind of creative<br />
+                <span style={{ fontStyle: 'italic', color: 'var(--crimson-500)' }}>are you?</span>
+              </h1>
             </div>
-          )}
-
-          {step === 1 && (
-            <div>
-              <h3 style={{ fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 26, margin: '0 0 16px' }}>Your signature move?</h3>
-              <OptionGrid options={CC_MOVES} value={move} onPick={v => setMove(v)} cols={1} />
-            </div>
-          )}
-
-          {step === 2 && (
-            <div>
-              <h3 style={{ fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 26, margin: '0 0 16px' }}>What fuels you?</h3>
-              <OptionGrid options={CC_FUELS} value={fuel} onPick={v => setFuel(v)} cols={2} />
-            </div>
-          )}
-
-          {done && <ResultCard arche={arche} vibe={vibe} fuel={fuel} onRestart={reset} />}
-
-          {!done && (
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 24 }}>
-              <Btn variant="ghost" onClick={() => step === 0 ? onExit() : setStep(step - 1)}>← Back</Btn>
-              <Btn
-                variant="dark"
-                onClick={() => {
-                  const ok = (step === 0 && vibe) || (step === 1 && move) || (step === 2 && fuel);
-                  if (ok) setStep(step + 1);
-                }}
-                style={{ opacity: ((step === 0 && vibe) || (step === 1 && move) || (step === 2 && fuel)) ? 1 : .4 }}
-              >
-                {step === 2 ? 'Reveal my character ✦' : 'Next →'}
-              </Btn>
-            </div>
-          )}
+            <Note size={22} rot={4} color="var(--fg2)" style={{ marginTop: 8 }}>3 questions · ~1 min</Note>
+          </div>
         </div>
       </div>
-    </section>
+
+      {/* Quiz body */}
+      <div style={{ maxWidth: 660, margin: '0 auto', padding: '40px 28px 80px' }}>
+
+        {!done && <Progress step={step} />}
+
+        {!done && (
+          <h2 style={{
+            fontFamily: 'var(--font-serif-display)', fontWeight: 500,
+            fontSize: 'clamp(24px,3.5vw,34px)', letterSpacing: '-.01em',
+            margin: '0 0 22px', color: 'var(--ink)',
+          }}>{QUESTIONS[step]}</h2>
+        )}
+
+        {step === 0 && <VibeGrid value={vibe} onPick={setVibe} />}
+        {step === 1 && <MoveList value={move} onPick={setMove} />}
+        {step === 2 && <FuelGrid value={fuel} onPick={setFuel} />}
+        {done       && <ResultCard arche={arche} vibe={vibe} fuel={fuel} onRestart={reset} />}
+
+        {!done && (
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 28 }}>
+            <button onClick={() => step === 0 ? onExit() : setStep(step - 1)} style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.14em',
+              textTransform: 'uppercase', color: 'var(--fg3)',
+            }}>← Back</button>
+            <Pill
+              onClick={() => canAdvance && setStep(step + 1)}
+              style={{ opacity: canAdvance ? 1 : .35, pointerEvents: canAdvance ? 'auto' : 'none' }}
+            >
+              {step === 2 ? 'Reveal my archetype →' : 'Next →'}
+            </Pill>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
