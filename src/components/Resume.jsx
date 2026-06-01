@@ -98,7 +98,7 @@ export function Resume({ onBack }) {
             </div>
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
               <Pill onClick={() => window.print()}>Print / Save PDF</Pill>
-              <Pill dark onClick={() => window.open('mailto:hi@quindalwilliams.com')}>Get in touch</Pill>
+              <Pill dark onClick={() => window.open('mailto:q@quindal.art')}>Get in touch</Pill>
             </div>
           </div>
         </div>

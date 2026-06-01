@@ -84,7 +84,7 @@ export function Contact() {
         }}>
           <span>@quindalwilliams</span>
           <span>·</span>
-          <span>hi@quindalwilliams.com</span>
+          <span>q@quindal.art</span>
           <span>·</span>
           <span>Las Vegas</span>
         </div>
