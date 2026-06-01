@@ -249,3 +249,25 @@ a { text-decoration: none; }
   --space-9: 96px;
   --space-10: 128px;
 }
+
+/* ============================================================
+   MARQUEE / TICKER
+   ============================================================ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   HORIZONTAL SCROLL WORK RAIL
+   ============================================================ */
+.work-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink) var(--line);
+}
+.work-scroll::-webkit-scrollbar { height: 8px; }
+.work-scroll::-webkit-scrollbar-track { background: var(--line); }
+.work-scroll::-webkit-scrollbar-thumb {
+  background: var(--ink);
+  border-radius: 4px;
+}
