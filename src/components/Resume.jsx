@@ -1,23 +1,46 @@
 import { ASSET, Lab, Pill } from './ui';
 
+const LINKEDIN = 'https://www.linkedin.com/in/quindal-%E2%80%8F%E2%80%8F%E2%80%8E-%E2%80%8E-%E2%80%8F%E2%80%8F%E2%80%8E-%E2%80%8E-730631186/';
+
 const EXPERIENCE = [
   {
-    role: 'Creative Director', org: 'Circle', location: 'Las Vegas, NV',
-    period: '2023 — Present', color: 'var(--crimson-500)',
+    role: 'Account Manager / Creative', org: 'Circle', location: 'Las Vegas, NV',
+    period: 'Apr 2025 — Present', color: 'var(--crimson-500)',
     items: [
-      'Lead creative direction for experiential marketing activations, trade-show environments, and conference identity systems.',
-      'Designed and built the Teton Ridge western-themed experiential booth at the National Finals Rodeo (Cowboy Christmas 2026).',
-      'Delivered full identity, signage, badge, and stage package for SEICon III — scaled from tote bag to jumbotron.',
-      'Directed Sanmina Corporation\'s trade-show presence including booth architecture, lit product plinths, and brand environment.',
+      'Lead creative direction and account management for experiential marketing activations and client campaigns.',
+      'Bridge sales and creative — translating client vision into spatial and visual deliverables.',
+      'Brand identity, event design, and client-facing creative across trade-show and live marketing environments.',
     ],
   },
   {
-    role: 'Freelance Creative Director', org: 'Independent', location: 'Remote',
-    period: '2021 — Present', color: 'var(--magenta-500)',
+    role: 'Project Manager', org: 'Circle', location: 'Las Vegas, NV',
+    period: 'Sep 2023 — May 2025', color: 'var(--magenta-500)',
     items: [
-      'Brand identity, packaging, campaigns, and creative direction for founders, service brands, and culture-makers.',
-      'Developed Sugar Hour spec packaging system — nostalgic candy concept with Lisa-Frank saturation and embossed sticker details.',
-      '30+ brands shaped across identity, spatial, print, and digital touchpoints.',
+      'Managed end-to-end delivery for large-scale events, activations, and client initiatives.',
+      'Led cross-functional teams across design, logistics, and vendor coordination.',
+      'Oversaw business planning, purchase orders, and production timelines for multi-market rollouts.',
+    ],
+  },
+  {
+    role: 'Regional Coordinator', org: 'Circle', location: 'Las Vegas, NV',
+    period: 'Apr 2022 — Sep 2025', color: 'var(--amber-700)',
+    items: [
+      'Coordinated regional operations, vendor relationships, and event logistics across multiple markets.',
+      'Managed order fulfillment and operational support for large-format events.',
+    ],
+  },
+  {
+    role: 'Queue Host', org: 'Louis Vuitton', location: 'Las Vegas, NV',
+    period: 'Oct 2021 — Mar 2022', color: 'var(--azure-700)',
+    items: [
+      'Delivered elevated luxury client experience in a high-volume flagship retail environment.',
+    ],
+  },
+  {
+    role: 'Beauty Advisor', org: 'Ulta Beauty', location: 'Bettendorf, IA',
+    period: 'Aug 2019 — Sep 2021', color: 'var(--olive-700)',
+    items: [
+      'Provided personalized beauty consultations and drove sales through product expertise and client relationships.',
     ],
   },
 ];
@@ -25,24 +48,35 @@ const EXPERIENCE = [
 const EDUCATION = [
   {
     degree: 'BFA, Graphic Design', org: 'Savannah College of Art and Design (SCAD)',
-    period: 'Jan 2026 — Expected 2029', color: 'var(--teal-700)',
+    period: 'Jan 2026 — Present', color: 'var(--teal-700)',
     note: 'Enrolled while working full-time. Studio launch planned at graduation.',
   },
+];
+
+const CERTIFICATIONS = [
+  { label: 'Adobe Certified Associate — Visual Communication (Photoshop)', color: 'var(--crimson-500)' },
+  { label: 'Claude Code 101: From Prompt to Product', color: 'var(--teal-700)' },
+  { label: 'Graphic Design: Core Principles for Visual Design', color: 'var(--magenta-500)' },
+  { label: 'Finance Essentials for Small Business', color: 'var(--amber-700)' },
 ];
 
 const SKILLS = [
   { label: 'Brand Identity', color: 'var(--crimson-500)' },
   { label: 'Creative Direction', color: 'var(--magenta-500)' },
-  { label: 'Spatial / Experiential', color: 'var(--teal-700)' },
-  { label: 'Campaigns', color: 'var(--azure-700)' },
-  { label: 'Packaging', color: 'var(--amber-700)' },
-  { label: 'Art Direction', color: 'var(--olive-700)' },
-  { label: 'Typography', color: 'var(--crimson-500)' },
-  { label: 'Print Design', color: 'var(--magenta-500)' },
-  { label: 'Adobe Creative Suite', color: 'var(--teal-700)' },
-  { label: 'Figma', color: 'var(--azure-700)' },
-  { label: 'Event + Trade-show Production', color: 'var(--amber-700)' },
-  { label: 'Wayfinding + Signage', color: 'var(--olive-700)' },
+  { label: 'Account Management', color: 'var(--azure-700)' },
+  { label: 'Project Management', color: 'var(--teal-700)' },
+  { label: 'Event Planning', color: 'var(--amber-700)' },
+  { label: 'Experiential / Trade-show', color: 'var(--olive-700)' },
+  { label: 'Team Leadership', color: 'var(--crimson-500)' },
+  { label: 'Adobe Photoshop', color: 'var(--magenta-500)' },
+  { label: 'Adobe Illustrator', color: 'var(--teal-700)' },
+  { label: 'Sales & Marketing', color: 'var(--azure-700)' },
+  { label: 'Graphic Design', color: 'var(--amber-700)' },
+  { label: 'Visual Design', color: 'var(--olive-700)' },
+  { label: 'Business Planning', color: 'var(--crimson-500)' },
+  { label: 'Problem Solving', color: 'var(--magenta-500)' },
+  { label: 'Customer Experience', color: 'var(--teal-700)' },
+  { label: 'Multitasking', color: 'var(--azure-700)' },
 ];
 
 function SectionHead({ children, color = 'var(--crimson-500)' }) {
@@ -56,6 +90,14 @@ function SectionHead({ children, color = 'var(--crimson-500)' }) {
         fontSize: 'clamp(22px,3vw,30px)', letterSpacing: '-.01em', margin: 0, color: 'var(--ink)',
       }}>{children}</h2>
     </div>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </svg>
   );
 }
 
@@ -93,11 +135,16 @@ export function Resume({ onBack }) {
                 fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '.12em',
                 textTransform: 'uppercase', color: 'rgba(247,243,239,.6)', marginTop: 14,
               }}>
-                Creative Director · Experiential Design · Las Vegas, NV
+                Account Manager / Creative · Circle · Las Vegas, NV
               </p>
             </div>
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
               <Pill onClick={() => window.print()}>Print / Save PDF</Pill>
+              <Pill dark onClick={() => window.open(LINKEDIN, '_blank', 'noopener')}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                  <LinkedInIcon /> LinkedIn
+                </span>
+              </Pill>
               <Pill dark onClick={() => window.open('mailto:q@quindal.art')}>Get in touch</Pill>
             </div>
           </div>
@@ -113,8 +160,8 @@ export function Resume({ onBack }) {
             fontFamily: 'var(--font-serif)', fontSize: 20, lineHeight: 1.6,
             color: 'var(--ink)', margin: 0,
           }}>
-            Creative director with a background in experiential design, brand identity, and campaigns.
-            Currently directing work at <strong>Circle</strong> in Las Vegas while completing a BFA at <strong>SCAD</strong>.
+            Creative with 4+ years at <strong>Circle</strong> spanning coordination, project management, and account-side creative work.
+            Currently completing a BFA in Graphic Design at <strong>SCAD</strong> while working full-time.
             Building toward an independent studio at graduation — this is Phase 1.
           </p>
         </div>
@@ -122,8 +169,8 @@ export function Resume({ onBack }) {
         {/* Experience */}
         <div style={{ marginBottom: 52 }}>
           <SectionHead color="var(--crimson-500)">Experience</SectionHead>
-          {EXPERIENCE.map(e => (
-            <div key={e.role} style={{ marginBottom: 36 }}>
+          {EXPERIENCE.map((e, idx) => (
+            <div key={idx} style={{ marginBottom: 36 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 8 }}>
                 <div>
                   <span style={{
@@ -137,15 +184,13 @@ export function Resume({ onBack }) {
                 </div>
                 <Lab color="var(--fg3)">{e.period} · {e.location}</Lab>
               </div>
-              <ul style={{ margin: '14px 0 0', paddingLeft: 18, listStyle: 'none' }}>
+              <ul style={{ margin: '14px 0 0', paddingLeft: 0, listStyle: 'none' }}>
                 {e.items.map((item, i) => (
                   <li key={i} style={{
                     fontFamily: 'var(--font-sans)', fontSize: 15, lineHeight: 1.65,
                     color: 'var(--fg1)', marginBottom: 8, paddingLeft: 14, position: 'relative',
                   }}>
-                    <span style={{
-                      position: 'absolute', left: 0, color: e.color, fontWeight: 700,
-                    }}>—</span>
+                    <span style={{ position: 'absolute', left: 0, color: e.color, fontWeight: 700 }}>—</span>
                     {item}
                   </li>
                 ))}
@@ -160,12 +205,10 @@ export function Resume({ onBack }) {
           {EDUCATION.map(e => (
             <div key={e.degree}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 8 }}>
-                <div>
-                  <span style={{
-                    fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 22,
-                    color: 'var(--ink)',
-                  }}>{e.degree}</span>
-                </div>
+                <span style={{
+                  fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 22,
+                  color: 'var(--ink)',
+                }}>{e.degree}</span>
                 <Lab color="var(--fg3)">{e.period}</Lab>
               </div>
               <div style={{
@@ -178,6 +221,22 @@ export function Resume({ onBack }) {
               }}>{e.note}</p>
             </div>
           ))}
+        </div>
+
+        {/* Certifications */}
+        <div style={{ marginBottom: 52 }}>
+          <SectionHead color="var(--azure-700)">Licenses & Certifications</SectionHead>
+          <ul style={{ margin: 0, paddingLeft: 0, listStyle: 'none' }}>
+            {CERTIFICATIONS.map((c, i) => (
+              <li key={i} style={{
+                fontFamily: 'var(--font-sans)', fontSize: 15, lineHeight: 1.65,
+                color: 'var(--fg1)', marginBottom: 8, paddingLeft: 14, position: 'relative',
+              }}>
+                <span style={{ position: 'absolute', left: 0, color: c.color, fontWeight: 700 }}>—</span>
+                {c.label}
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Skills */}
