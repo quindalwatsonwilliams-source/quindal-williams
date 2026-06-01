@@ -24,7 +24,11 @@ function WorkCard({ p }) {
       <div style={{
         width: '100%', height: 280, borderRadius: 4, overflow: 'hidden', position: 'relative',
         background: p.accent,
-        backgroundImage: p.tex ? `url(${ASSET}/textures/${p.tex}-sm.jpg)` : 'none',
+        backgroundImage: p.tex === 'leopard'
+          ? `url(${ASSET}/textures/leopard-sm.jpg)`
+          : p.tex === 'zebra'
+            ? `url(${ASSET}/textures/zebra-sm.jpg)`
+            : 'none',
         backgroundSize: 'cover', backgroundPosition: 'center',
         boxShadow: '0 16px 34px rgba(26,26,46,.12)',
       }}>
