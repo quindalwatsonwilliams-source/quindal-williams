@@ -8,24 +8,9 @@ const NAV_LINKS = [
   { id: 'contact',  label: 'Contact' },
 ];
 
-/* Horizontal lockup: QUINDAL [monogram] WILLIAMS */
 function Logo() {
-  const word = {
-    fontFamily: "'Cormorant Garamond', Georgia, serif",
-    fontWeight: 300,
-    fontSize: 17,
-    letterSpacing: '.28em',
-    textTransform: 'uppercase',
-    color: 'var(--ink)',
-    lineHeight: 1,
-    userSelect: 'none',
-  };
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-      <span style={word}>Quindal</span>
-      <img src={`${ASSET}/logos/monogram-red.png`} style={{ height: 32, display: 'block' }} alt="QW" />
-      <span style={word}>Williams</span>
-    </div>
+    <img src={`${ASSET}/logos/logo-horizontal.png`} style={{ height: 36, display: 'block' }} alt="Quindal Williams" />
   );
 }
 
