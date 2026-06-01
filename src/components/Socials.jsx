@@ -22,7 +22,7 @@ const PLATFORMS = [
   {
     name: 'LinkedIn',
     handle: 'Quindal Williams',
-    url: 'https://linkedin.com/in/quindalwilliams',
+    url: 'https://www.linkedin.com/in/quindal-%E2%80%8F%E2%80%8F%E2%80%8E-%E2%80%8E-%E2%80%8F%E2%80%8F%E2%80%8E-%E2%80%8E-730631186/',
     desc: 'Professional highlights and the occasionally serious post.',
     bg: 'var(--azure-700)',
     accent: 'var(--azure-300)',
