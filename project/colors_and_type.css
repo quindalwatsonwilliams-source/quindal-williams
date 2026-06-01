@@ -1,0 +1,335 @@
+/* ============================================================
+   QUINDAL — Colors & Type
+   Creative director / experiential design. Fun, playful,
+   eclectic, editorial. "The adulthood I was promised as a kid."
+   ============================================================ */
+
+/* ---------- FONTS ---------- */
+/* Domaine Text — editorial serif (Klim Type Foundry TRIAL build).
+   This is the brand's voice typeface: headlines, pull quotes, body. */
+@font-face {
+  font-family: "Domaine Text";
+  src: url("fonts/DomaineText-Light.otf") format("opentype");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("fonts/DomaineText-LightItalic.otf") format("opentype");
+  font-weight: 300; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("fonts/DomaineText-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("fonts/DomaineText-RegularItalic.otf") format("opentype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("fonts/DomaineText-Medium.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("fonts/DomaineText-MediumItalic.otf") format("opentype");
+  font-weight: 500; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("fonts/DomaineText-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("fonts/DomaineText-BoldItalic.otf") format("opentype");
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("fonts/DomaineText-Black.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("fonts/DomaineText-BlackItalic.otf") format("opentype");
+  font-weight: 900; font-style: italic; font-display: swap;
+}
+
+/* Domaine Display — the large-headline cut of the family (TRIAL build). */
+@font-face {
+  font-family: "Domaine Display";
+  src: url("fonts/DomaineDisplay-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("fonts/DomaineDisplay-RegularItalic.otf") format("opentype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("fonts/DomaineDisplay-Medium.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("fonts/DomaineDisplay-Semibold.otf") format("opentype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("fonts/DomaineDisplay-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("fonts/DomaineDisplay-BoldItalic.otf") format("opentype");
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("fonts/DomaineDisplay-Black.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("fonts/DomaineDisplay-BlackItalic.otf") format("opentype");
+  font-weight: 900; font-style: italic; font-display: swap;
+}
+
+/* Canela — alternate high-contrast didone serif (TRIAL build). Use sparingly
+   for big editorial moments where extra glamour is wanted. */
+@font-face {
+  font-family: "Canela";
+  src: url("fonts/Canela-Thin.otf") format("opentype");
+  font-weight: 200; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Canela";
+  src: url("fonts/Canela-Light.otf") format("opentype");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Canela";
+  src: url("fonts/Canela-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Canela";
+  src: url("fonts/Canela-RegularItalic.otf") format("opentype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Canela";
+  src: url("fonts/Canela-Medium.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Canela";
+  src: url("fonts/Canela-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* Display + UI sans are pulled from Google Fonts (SUBSTITUTION — see README).
+   Import in each HTML <head>:
+   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+   - Fredoka  = bubbly rounded "show-logo" display
+   - Space Grotesk = geometric UI / labels / captions
+*/
+
+:root {
+  /* ============ TYPE FAMILIES ============ */
+  --font-display:       "Fredoka", "Trebuchet MS", system-ui, sans-serif; /* bubbly, playful — the "kid at play" voice */
+  --font-serif-display: "Domaine Display", "Canela", Georgia, serif;       /* big editorial headlines */
+  --font-serif:         "Domaine Text", Georgia, "Times New Roman", serif;  /* editorial body + voice */
+  --font-serif-alt:     "Canela", "Domaine Display", Georgia, serif;        /* glamour alternate */
+  --font-sans:          "Space Grotesk", system-ui, -apple-system, sans-serif; /* UI, labels, wordmark feel */
+  --font-mono:          "Space Mono", "SFMono-Regular", ui-monospace, monospace;
+
+  /* ============ CORE BRAND COLORS ============ */
+  --cream:    #F7F3EF; /* primary page background — warm paper */
+  --ink:      #1A1A2E; /* critical anchor — keeps it studio, not kids brand */
+  --black:    #000000; /* logo / hard contrast */
+  --white:    #FFFFFF;
+
+  /* ============ HUE SCALES (from palette art) ============
+     Each ramp runs 900 (deep) → 100 (tint). 500 = the "true" brand hue. */
+
+  /* OLIVE / CITRON — chartreuse, grassy, fresh */
+  --olive-900: #4E4F06;
+  --olive-700: #858709;
+  --olive-500: #BFC20A;
+  --olive-300: #D2D454;
+  --olive-100: #DFE184;
+
+  /* CRIMSON — Cartoon-Network red, warm danger */
+  --crimson-900: #3C0606;
+  --crimson-700: #5D0909;
+  --crimson-500: #B2010C;
+  --crimson-300: #C1343D;
+  --crimson-100: #E69593;
+
+  /* AZURE — sky / Frutiger blue */
+  --azure-900: #0D1F30;
+  --azure-700: #225281;
+  --azure-500: #8EB8E1;
+  --azure-300: #B6CCE7;
+  --azure-100: #EAF1F8;
+
+  /* AMBER — sunny gold */
+  --amber-900: #F8BB0B;
+  --amber-700: #F9C93C;
+  --amber-500: #FBD66D;
+  --amber-300: #FBDD85;
+  --amber-100: #FEF1CE;
+
+  /* TEAL — slime-adjacent deep green-blue */
+  --teal-900: #0E6771;
+  --teal-700: #56959C;
+  --teal-500: #6EA4AA;
+  --teal-300: #B7D1D4;
+  --teal-100: #CFE1E3;
+
+  /* MAGENTA — bubblegum / berry, the personal-palette heart */
+  --magenta-900: #5D1539;
+  --magenta-700: #A82967;
+  --magenta-500: #E72388;
+  --magenta-300: #E58AB9;
+  --magenta-100: #F6DBEA;
+
+  /* ============ SEMANTIC ROLES ============ */
+  --bg:        var(--cream);
+  --bg-ink:    var(--ink);
+  --fg1:       var(--ink);    /* primary text */
+  --fg2:       #55556b;       /* secondary text (ink @ ~70%) */
+  --fg3:       #8a8a9c;       /* muted / captions */
+  --fg-on-dark:#F7F3EF;
+
+  --accent:        var(--crimson-500); /* PRIMARY brand accent — the logo crimson */
+  --accent-2:      var(--magenta-500); /* secondary — bubblegum berry */
+  --accent-3:      var(--teal-900);    /* deep teal */
+  --highlight:     var(--amber-900);   /* sunny highlight */
+
+  --line:      #E4DCD2;       /* hairline on cream */
+  --line-ink:  rgba(247,243,239,.18);
+
+  /* ============ RADII ============ */
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 28px;
+  --r-xl: 44px;
+  --r-pill: 999px;
+
+  /* ============ SHADOWS ============
+     Soft warm elevation + a playful hard "sticker" offset shadow. */
+  --shadow-sm: 0 2px 8px rgba(26,26,46,.08);
+  --shadow-md: 0 10px 30px rgba(26,26,46,.12);
+  --shadow-lg: 0 24px 60px rgba(26,26,46,.16);
+  --shadow-sticker: 5px 5px 0 var(--ink);       /* hard offset, editorial sticker */
+  --shadow-sticker-accent: 6px 6px 0 var(--magenta-500);
+
+  /* ============ SPACING (8px base) ============ */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+}
+
+/* ============================================================
+   SEMANTIC TYPE STYLES
+   ============================================================ */
+
+.q-display {                 /* hero / show-logo energy */
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(48px, 8vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--fg1);
+}
+
+.q-h1 {                      /* editorial headline */
+  font-family: var(--font-serif-display);
+  font-weight: 500;
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--fg1);
+}
+.q-h1-italic { font-style: italic; font-weight: 400; }
+
+.q-h2 {
+  font-family: var(--font-serif-display);
+  font-weight: 500;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--fg1);
+}
+
+.q-h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.15;
+  color: var(--fg1);
+}
+
+.q-lead {                    /* large editorial intro */
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.5;
+  color: var(--fg2);
+}
+
+.q-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--fg1);
+}
+
+.q-small {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--fg2);
+}
+
+.q-eyebrow {                 /* tracked-out label */
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.q-quote {                   /* magazine pull quote */
+  font-family: var(--font-serif-alt);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(26px, 3.4vw, 42px);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--fg1);
+}
+
+.q-mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--fg2);
+}

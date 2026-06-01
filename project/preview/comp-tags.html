@@ -1,0 +1,58 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Space+Grotesk:wght@500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box}html,body{margin:0}
+body{background:#F7F3EF;color:#1A1A2E;padding:24px 28px;font-family:"Space Grotesk",sans-serif}
+.meta{font-family:"Space Mono",monospace;font-size:11px;color:#8a8a9c;margin-top:18px;letter-spacing:.02em}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+
+/* category tag: tinted pill + leading dot */
+.tag{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13px;letter-spacing:.01em;
+  border-radius:999px;padding:8px 16px;line-height:1}
+.dot{width:9px;height:9px;border-radius:999px;flex:none}
+
+/* solid status chip with sticker offset */
+.chip{display:inline-flex;align-items:center;gap:7px;font-family:"Fredoka",sans-serif;font-weight:600;font-size:13px;
+  border-radius:999px;padding:9px 16px;line-height:1;border:2px solid #1A1A2E;box-shadow:3px 3px 0 #1A1A2E}
+
+/* removable tag */
+.rem{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:13px;border-radius:999px;
+  padding:8px 9px 8px 16px;line-height:1;border:2px solid #1A1A2E;background:#fff}
+.rem .x{width:20px;height:20px;border-radius:999px;background:#1A1A2E;color:#F7F3EF;display:inline-flex;
+  align-items:center;justify-content:center;font-size:13px;line-height:1}
+
+/* count badge */
+.count{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13px;border-radius:999px;
+  padding:7px 8px 7px 16px;line-height:1;background:#1A1A2E;color:#F7F3EF}
+.count .n{min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:#E72388;color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+
+/* glyph sticker tag */
+.glyph{display:inline-flex;align-items:center;gap:7px;font-family:"Fredoka",sans-serif;font-weight:600;font-size:13px;
+  border-radius:999px;padding:8px 15px 8px 9px;line-height:1;border:2px solid #1A1A2E}
+.glyph .g{width:22px;height:22px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;
+  font-size:13px;border:1.5px solid #1A1A2E}
+</style></head><body>
+
+<div class="row">
+ <span class="tag" style="background:#F6DBEA;color:#5D1539"><span class="dot" style="background:#E72388"></span>Brand Identity</span>
+ <span class="tag" style="background:#CFE1E3;color:#0E6771"><span class="dot" style="background:#0E6771"></span>Campaign</span>
+ <span class="tag" style="background:#FEF1CE;color:#7a5a00"><span class="dot" style="background:#F8BB0B"></span>Spatial / Experiential</span>
+ <span class="tag" style="background:#EAF1F8;color:#0D1F30"><span class="dot" style="background:#225281"></span>Packaging</span>
+</div>
+
+<div class="row">
+ <span class="chip" style="background:#B2010C;color:#fff">● Available 2026</span>
+ <span class="chip" style="background:#F8BB0B;color:#1A1A2E">★ Featured</span>
+ <span class="chip" style="background:#3ECF8E;color:#0E3D2A;box-shadow:3px 3px 0 #0E6771;border-color:#0E6771">New work</span>
+ <span class="glyph" style="background:#fff"><span class="g" style="background:#E72388;color:#fff">✦</span>Spec project</span>
+</div>
+
+<div class="row" style="margin-bottom:0">
+ <span class="rem" style="color:#5D1539">SCAD BFA <span class="x">×</span></span>
+ <span class="rem" style="color:#225281">Las Vegas <span class="x">×</span></span>
+ <span class="count">Projects <span class="n">12</span></span>
+ <span class="count" style="background:#0E6771">Categories <span class="n" style="background:#F8BB0B;color:#1A1A2E">4</span></span>
+</div>
+
+<div class="meta">TAGS / BADGES · category pills w/ dots · sticker status chips · glyph + removable tags · count badges</div>
+</body></html>

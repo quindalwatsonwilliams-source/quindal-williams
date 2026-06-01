@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quindal Williams — Site Mockups</title>
+<link rel="icon" href="../../assets/logos/monogram-red.png">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#EDE6DE;color:var(--ink);font-family:var(--font-sans)}
+  /* subtle paper + leopard whisper backdrop so frames pop */
+  body{background-image:radial-gradient(circle at 12% 8%, rgba(231,35,136,.06), transparent 40%),
+       radial-gradient(circle at 88% 30%, rgba(178,1,12,.05), transparent 42%);}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px 110px}
+  header.hero{padding:64px 28px 30px;max-width:1040px;margin:0 auto}
+  .pair{display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap}
+  .sec{margin-top:30px;padding-top:40px;border-top:1.5px solid #DDD2C6}
+  .sec:first-of-type{border-top:none;padding-top:8px}
+  iframe{background:#F7F3EF}
+  .frameLabel{display:flex;align-items:center;gap:9px;font-family:var(--font-mono);font-size:11px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--fg3);margin:0 0 12px}
+  .frameLabel .pip{width:7px;height:7px;border-radius:999px;background:var(--crimson-500)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="browser-window.jsx"></script>
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="mockup-app.jsx"></script>
+</body>
+</html>

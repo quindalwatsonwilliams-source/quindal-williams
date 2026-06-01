@@ -1,0 +1,59 @@
+/* About.jsx — magazine profile + Stardoll-style character card */
+function StatRow({ k, v }) {
+  return (
+    <div style={{ display: "flex", justifyContent: "space-between", gap: 12, padding: "9px 0", borderBottom: "1px dashed rgba(247,243,239,.25)" }}>
+      <span style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: ".1em", textTransform: "uppercase", color: "var(--amber-700)" }}>{k}</span>
+      <span style={{ fontFamily: "var(--font-sans)", fontWeight: 500, fontSize: 14, color: "var(--cream)", textAlign: "right" }}>{v}</span>
+    </div>
+  );
+}
+
+function About() {
+  return (
+    <section id="about" style={{ padding: "80px 30px", background: "var(--ink)", color: "var(--cream)", scrollMarginTop: 70 }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: ".85fr 1.15fr", gap: 50, alignItems: "start" }} className="about-grid">
+        {/* character card */}
+        <div style={{ background: "var(--magenta-900)", borderRadius: 26, padding: 22, border: "2.5px solid var(--cream)", boxShadow: "8px 8px 0 var(--crimson-500)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+            <Eyebrow color="var(--amber-900)">Player Card</Eyebrow>
+            <Sticker size={40} bg="var(--amber-900)" rot={8}>★</Sticker>
+          </div>
+          <MascotSlot w="100%" h={300} label="Quindal" style={{ background: "var(--cream)", border: "2px solid var(--cream)" }} />
+          <div style={{ marginTop: 16 }}>
+            <StatRow k="Class" v="Creative Director" />
+            <StatRow k="Guild" v="Circle · Las Vegas" />
+            <StatRow k="Training" v="SCAD BFA" />
+            <StatRow k="Signature" v="Maximalist warmth" />
+            <StatRow k="Quest" v="Found her own studio" />
+          </div>
+        </div>
+        {/* profile body */}
+        <div>
+          <Eyebrow>About</Eyebrow>
+          <h2 style={{ fontFamily: "var(--font-serif-display)", fontWeight: 500, fontSize: "clamp(34px,4.6vw,58px)", lineHeight: 1.02, letterSpacing: "-.015em", margin: "14px 0 0", color: "var(--cream)" }}>
+            Hi, I’m Quindal.
+          </h2>
+          <p style={{ fontFamily: "var(--font-serif)", fontSize: 20, lineHeight: 1.6, color: "rgba(247,243,239,.86)", marginTop: 22 }}>
+            I make brands that feel like the adulthood you were promised as a kid — the Saturday-morning saturation,
+            the freedom to be a little unhinged, the conviction that taste and play belong in the same room.
+          </p>
+          <blockquote style={{ fontFamily: "var(--font-serif-alt)", fontStyle: "italic", fontWeight: 400,
+            fontSize: "clamp(26px,3.2vw,38px)", lineHeight: 1.25, color: "var(--amber-900)", margin: "30px 0", padding: 0 }}>
+            “Feminine but not soft. Editorial with warmth. Playful, never childish.”
+          </blockquote>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: 16, lineHeight: 1.7, color: "rgba(247,243,239,.78)" }}>
+            By day I direct experiential work at <strong style={{ color: "var(--cream)" }}>Circle</strong> in Las Vegas —
+            booths, conferences, and brand worlds you can walk through. I’m a <strong style={{ color: "var(--cream)" }}>SCAD</strong> BFA
+            student building toward my own studio over the next five years. This site is Phase 1: me, my work, and my world —
+            the studio comes at graduation.
+          </p>
+          <div style={{ display: "flex", gap: 8, marginTop: 22, flexWrap: "wrap" }}>
+            <Tag bg="var(--crimson-500)" fg="#fff">● Available 2026</Tag>
+            <Tag bg="transparent" fg="var(--cream)" style={{ border: "2px solid var(--cream)" }}>Las Vegas / remote</Tag>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+Object.assign(window, { About });
