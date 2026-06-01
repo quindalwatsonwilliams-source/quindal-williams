@@ -1,0 +1,251 @@
+/* ============================================================
+   QUINDAL — Colors & Type
+   Creative director / experiential design. Fun, playful,
+   eclectic, editorial. "The adulthood I was promised as a kid."
+   ============================================================ */
+
+/* ---------- FONTS ---------- */
+@font-face {
+  font-family: "Domaine Text";
+  src: url("/fonts/DomaineText-Light.otf") format("opentype");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("/fonts/DomaineText-LightItalic.otf") format("opentype");
+  font-weight: 300; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("/fonts/DomaineText-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("/fonts/DomaineText-RegularItalic.otf") format("opentype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("/fonts/DomaineText-Medium.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("/fonts/DomaineText-MediumItalic.otf") format("opentype");
+  font-weight: 500; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("/fonts/DomaineText-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("/fonts/DomaineText-BoldItalic.otf") format("opentype");
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("/fonts/DomaineText-Black.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Text";
+  src: url("/fonts/DomaineText-BlackItalic.otf") format("opentype");
+  font-weight: 900; font-style: italic; font-display: swap;
+}
+
+@font-face {
+  font-family: "Domaine Display";
+  src: url("/fonts/DomaineDisplay-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("/fonts/DomaineDisplay-RegularItalic.otf") format("opentype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("/fonts/DomaineDisplay-Medium.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("/fonts/DomaineDisplay-Semibold.otf") format("opentype");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("/fonts/DomaineDisplay-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("/fonts/DomaineDisplay-BoldItalic.otf") format("opentype");
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("/fonts/DomaineDisplay-Black.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Domaine Display";
+  src: url("/fonts/DomaineDisplay-BlackItalic.otf") format("opentype");
+  font-weight: 900; font-style: italic; font-display: swap;
+}
+
+@font-face {
+  font-family: "Canela";
+  src: url("/fonts/Canela-Thin.otf") format("opentype");
+  font-weight: 200; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Canela";
+  src: url("/fonts/Canela-Light.otf") format("opentype");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Canela";
+  src: url("/fonts/Canela-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Canela";
+  src: url("/fonts/Canela-RegularItalic.otf") format("opentype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Canela";
+  src: url("/fonts/Canela-Medium.otf") format("opentype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Canela";
+  src: url("/fonts/Canela-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+a { text-decoration: none; }
+::selection { background: var(--crimson-300); color: #fff; }
+
+/* Responsive layout helpers */
+@media (max-width: 820px) {
+  .hero-grid, .about-grid { grid-template-columns: 1fr !important; }
+  .work-spread { flex-direction: column !important; }
+  .svc-row { grid-template-columns: 48px 1fr !important; }
+  .svc-row p { grid-column: 1 / -1; }
+  .navlinks { display: none !important; }
+}
+
+:root {
+  /* ============ TYPE FAMILIES ============ */
+  --font-display:       "Fredoka", "Trebuchet MS", system-ui, sans-serif;
+  --font-serif-display: "Domaine Display", "Canela", Georgia, serif;
+  --font-serif:         "Domaine Text", Georgia, "Times New Roman", serif;
+  --font-serif-alt:     "Canela", "Domaine Display", Georgia, serif;
+  --font-sans:          "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-mono:          "Space Mono", "SFMono-Regular", ui-monospace, monospace;
+
+  /* ============ CORE BRAND COLORS ============ */
+  --cream:    #F7F3EF;
+  --ink:      #1A1A2E;
+  --black:    #000000;
+  --white:    #FFFFFF;
+
+  /* OLIVE / CITRON */
+  --olive-900: #4E4F06;
+  --olive-700: #858709;
+  --olive-500: #BFC20A;
+  --olive-300: #D2D454;
+  --olive-100: #DFE184;
+
+  /* CRIMSON */
+  --crimson-900: #3C0606;
+  --crimson-700: #5D0909;
+  --crimson-500: #B2010C;
+  --crimson-300: #C1343D;
+  --crimson-100: #E69593;
+
+  /* AZURE */
+  --azure-900: #0D1F30;
+  --azure-700: #225281;
+  --azure-500: #8EB8E1;
+  --azure-300: #B6CCE7;
+  --azure-100: #EAF1F8;
+
+  /* AMBER */
+  --amber-900: #F8BB0B;
+  --amber-700: #F9C93C;
+  --amber-500: #FBD66D;
+  --amber-300: #FBDD85;
+  --amber-100: #FEF1CE;
+
+  /* TEAL */
+  --teal-900: #0E6771;
+  --teal-700: #56959C;
+  --teal-500: #6EA4AA;
+  --teal-300: #B7D1D4;
+  --teal-100: #CFE1E3;
+
+  /* MAGENTA */
+  --magenta-900: #5D1539;
+  --magenta-700: #A82967;
+  --magenta-500: #E72388;
+  --magenta-300: #E58AB9;
+  --magenta-100: #F6DBEA;
+
+  /* ============ SEMANTIC ROLES ============ */
+  --bg:        var(--cream);
+  --bg-ink:    var(--ink);
+  --fg1:       var(--ink);
+  --fg2:       #55556b;
+  --fg3:       #8a8a9c;
+  --fg-on-dark:#F7F3EF;
+
+  --accent:        var(--crimson-500);
+  --accent-2:      var(--magenta-500);
+  --accent-3:      var(--teal-900);
+  --highlight:     var(--amber-900);
+
+  --line:      #E4DCD2;
+  --line-ink:  rgba(247,243,239,.18);
+
+  /* ============ RADII ============ */
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 28px;
+  --r-xl: 44px;
+  --r-pill: 999px;
+
+  /* ============ SHADOWS ============ */
+  --shadow-sm: 0 2px 8px rgba(26,26,46,.08);
+  --shadow-md: 0 10px 30px rgba(26,26,46,.12);
+  --shadow-lg: 0 24px 60px rgba(26,26,46,.16);
+  --shadow-sticker: 5px 5px 0 var(--ink);
+  --shadow-sticker-accent: 6px 6px 0 var(--magenta-500);
+
+  /* ============ SPACING (8px base) ============ */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+}
