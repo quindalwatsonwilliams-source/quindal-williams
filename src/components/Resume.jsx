@@ -1,4 +1,4 @@
-import { ASSET, Lab, Pill } from './ui';
+import { ASSET, Pill } from './ui';
 
 const LINKEDIN = 'https://www.linkedin.com/in/quindal-%E2%80%8F%E2%80%8F%E2%80%8E-%E2%80%8E-%E2%80%8F%E2%80%8F%E2%80%8E-%E2%80%8E-730631186/';
 
@@ -47,9 +47,10 @@ const EXPERIENCE = [
 
 const EDUCATION = [
   {
-    degree: 'BFA, Graphic Design', org: 'Savannah College of Art and Design (SCAD)',
+    degree: 'BFA, Graphic Design',
+    org: 'Savannah College of Art and Design (SCAD)',
     period: 'Jan 2026 — Present', color: 'var(--teal-700)',
-    note: 'Enrolled while working full-time. Studio launch planned at graduation.',
+    note: 'Enrolled while working full-time.',
   },
 ];
 
@@ -79,181 +80,295 @@ const SKILLS = [
   { label: 'Multitasking', color: 'var(--azure-700)' },
 ];
 
-function SectionHead({ children, color = 'var(--crimson-500)' }) {
+function LinkedInIcon() {
   return (
-    <div style={{
-      display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28,
-      paddingBottom: 14, borderBottom: `2px solid ${color}`,
-    }}>
-      <h2 style={{
-        fontFamily: 'var(--font-serif-display)', fontWeight: 500,
-        fontSize: 'clamp(22px,3vw,30px)', letterSpacing: '-.01em', margin: 0, color: 'var(--ink)',
-      }}>{children}</h2>
-    </div>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'block' }}>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
   );
 }
 
-function LinkedInIcon() {
+function GhostBtn({ onClick, children }) {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-    </svg>
+    <button onClick={onClick} style={{
+      background: 'transparent',
+      border: '1px solid rgba(247,243,239,.28)',
+      color: 'rgba(247,243,239,.75)',
+      fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.16em',
+      textTransform: 'uppercase', padding: '9px 18px',
+      cursor: 'pointer', borderRadius: 2,
+      display: 'flex', alignItems: 'center', gap: 7,
+      transition: 'border-color .15s, color .15s',
+    }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(247,243,239,.7)'; e.currentTarget.style.color = '#F7F3EF'; }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(247,243,239,.28)'; e.currentTarget.style.color = 'rgba(247,243,239,.75)'; }}
+    >
+      {children}
+    </button>
+  );
+}
+
+function SideLabel({ children, color }) {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18,
+    }}>
+      <span style={{
+        fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '.24em',
+        textTransform: 'uppercase', color,
+      }}>{children}</span>
+      <div style={{ flex: 1, height: 1, background: color, opacity: .25 }} />
+    </div>
   );
 }
 
 export function Resume({ onBack }) {
   return (
-    <div style={{ background: 'var(--cream)', minHeight: '100vh' }}>
+    <div style={{ background: '#0E0203', minHeight: '100vh' }}>
 
-      {/* Header */}
+      {/* ── HERO HEADER ── */}
       <div style={{
-        background: 'var(--ink)',
-        backgroundImage: `linear-gradient(rgba(26,26,46,.94),rgba(26,26,46,.94)), url(${ASSET}/textures/leopard-sm.jpg)`,
+        position: 'relative',
+        background: '#1a0405',
+        backgroundImage: `linear-gradient(135deg, #1a0405 55%, #2e0608 100%), url(${ASSET}/textures/leopard-sm.jpg)`,
         backgroundSize: 'cover',
-        padding: '52px 28px 48px',
-        color: 'var(--cream)',
+        padding: '36px 52px 56px',
+        borderBottom: '2px solid var(--crimson-500)',
+        overflow: 'hidden',
+        color: '#F7F3EF',
       }}>
-        <div style={{ maxWidth: 860, margin: '0 auto' }}>
-          <button onClick={onBack} style={{
-            background: 'none', border: 'none', cursor: 'pointer',
-            fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.14em',
-            textTransform: 'uppercase', color: 'rgba(247,243,239,.55)',
-            padding: 0, marginBottom: 28, display: 'flex', alignItems: 'center', gap: 6,
-          }}>← Back</button>
+        {/* Ghosted monogram watermark */}
+        <img src={`${ASSET}/logos/monogram-red.png`} aria-hidden style={{
+          position: 'absolute', right: 40, bottom: -30,
+          height: 300, opacity: .06, userSelect: 'none', pointerEvents: 'none',
+        }} alt="" />
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 20 }}>
-            <div>
-              <Lab color="var(--amber-900)" style={{ marginBottom: 10 }}>Curriculum Vitae</Lab>
-              <h1 style={{
-                fontFamily: 'var(--font-serif-display)', fontWeight: 500,
-                fontSize: 'clamp(42px,7vw,80px)', lineHeight: .9, letterSpacing: '-.02em', margin: 0,
-              }}>
-                Quindal<br />
-                <span style={{ fontStyle: 'italic', color: 'var(--crimson-300)' }}>Williams</span>
-              </h1>
-              <p style={{
-                fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '.12em',
-                textTransform: 'uppercase', color: 'rgba(247,243,239,.6)', marginTop: 14,
-              }}>
-                Account Manager / Creative · Circle · Las Vegas, NV
-              </p>
-            </div>
-            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-              <Pill onClick={() => window.print()}>Print / Save PDF</Pill>
-              <Pill dark onClick={() => window.open(LINKEDIN, '_blank', 'noopener')}>
-                <span style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
-                  <LinkedInIcon /> LinkedIn
-                </span>
-              </Pill>
-              <Pill dark onClick={() => window.open('mailto:q@quindal.art')}>Get in touch</Pill>
+        {/* Back button */}
+        <button onClick={onBack} style={{
+          background: 'none', border: 'none', cursor: 'pointer',
+          fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.16em',
+          textTransform: 'uppercase', color: 'rgba(247,243,239,.38)',
+          padding: 0, marginBottom: 44, display: 'flex', alignItems: 'center', gap: 6,
+        }}>← Back to site</button>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 32 }}>
+
+          {/* Name block */}
+          <div>
+            <div style={{
+              fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.3em',
+              textTransform: 'uppercase', color: 'var(--crimson-300)',
+              marginBottom: 14,
+            }}>Curriculum Vitae</div>
+
+            <h1 style={{
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontWeight: 300, fontSize: 'clamp(68px, 10vw, 122px)',
+              lineHeight: .86, letterSpacing: '.01em', margin: 0,
+              color: '#F7F3EF',
+            }}>
+              Quindal<br />
+              <em style={{ color: 'var(--crimson-300)', fontStyle: 'italic', fontWeight: 300 }}>Williams</em>
+            </h1>
+
+            <div style={{
+              fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.18em',
+              textTransform: 'uppercase', color: 'rgba(247,243,239,.45)',
+              marginTop: 22, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap',
+            }}>
+              <span>Account Manager / Creative</span>
+              <span style={{ color: 'var(--crimson-500)', opacity: .7 }}>·</span>
+              <span>Circle</span>
+              <span style={{ color: 'var(--crimson-500)', opacity: .7 }}>·</span>
+              <span>Las Vegas, NV</span>
             </div>
           </div>
+
+          {/* Action buttons */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 9, alignItems: 'stretch' }}>
+            <Pill onClick={() => window.print()}>Print / Save PDF</Pill>
+            <GhostBtn onClick={() => window.open(LINKEDIN, '_blank', 'noopener')}>
+              <LinkedInIcon /> LinkedIn
+            </GhostBtn>
+            <GhostBtn onClick={() => window.open('mailto:q@quindal.art')}>
+              q@quindal.art
+            </GhostBtn>
+          </div>
+
         </div>
       </div>
 
-      {/* Body */}
-      <div style={{ maxWidth: 860, margin: '0 auto', padding: '52px 28px 80px' }}>
+      {/* ── BODY: SIDEBAR + MAIN ── */}
+      <div style={{ display: 'flex', minHeight: 'calc(100vh - 380px)', alignItems: 'stretch' }}>
 
-        {/* Summary */}
-        <div style={{ marginBottom: 52 }}>
+        {/* SIDEBAR */}
+        <aside style={{
+          width: 272, flexShrink: 0,
+          background: '#120203',
+          borderRight: '1px solid rgba(192,57,43,.18)',
+          padding: '44px 30px 60px',
+          color: '#F7F3EF',
+        }}>
+
+          {/* Skills */}
+          <div style={{ marginBottom: 40 }}>
+            <SideLabel color="var(--crimson-500)">Skills</SideLabel>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {SKILLS.map(s => (
+                <span key={s.label} style={{
+                  fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '.08em',
+                  textTransform: 'uppercase', color: s.color,
+                  border: `1px solid ${s.color}`, borderRadius: 2,
+                  padding: '5px 8px', opacity: .85,
+                }}>{s.label}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* Education */}
+          <div style={{ marginBottom: 40 }}>
+            <SideLabel color="var(--teal-700)">Education</SideLabel>
+            {EDUCATION.map(e => (
+              <div key={e.degree}>
+                <div style={{
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontWeight: 400, fontSize: 17, color: '#F7F3EF', lineHeight: 1.3,
+                }}>{e.degree}</div>
+                <div style={{
+                  fontFamily: 'var(--font-serif)', fontStyle: 'italic',
+                  fontSize: 13, color: e.color, marginTop: 5, lineHeight: 1.5,
+                }}>{e.org}</div>
+                <div style={{
+                  fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '.1em',
+                  textTransform: 'uppercase', color: 'rgba(247,243,239,.35)',
+                  marginTop: 7,
+                }}>{e.period}</div>
+                <div style={{
+                  fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '.06em',
+                  color: 'rgba(247,243,239,.3)', marginTop: 5, lineHeight: 1.6,
+                }}>{e.note}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Certifications */}
+          <div style={{ marginBottom: 40 }}>
+            <SideLabel color="var(--azure-700)">Certifications</SideLabel>
+            {CERTIFICATIONS.map((c, i) => (
+              <div key={i} style={{
+                fontFamily: 'var(--font-sans)', fontSize: 12, lineHeight: 1.55,
+                color: 'rgba(247,243,239,.6)', marginBottom: 10,
+                paddingLeft: 12, position: 'relative',
+              }}>
+                <span style={{ position: 'absolute', left: 0, top: 2, color: c.color, fontSize: 10 }}>—</span>
+                {c.label}
+              </div>
+            ))}
+          </div>
+
+          {/* Contact */}
+          <div>
+            <SideLabel color="var(--magenta-500)">Contact</SideLabel>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.06em', color: 'rgba(247,243,239,.5)', lineHeight: 2.2 }}>
+              <div>q@quindal.art</div>
+              <div>quindal.art</div>
+              <div>Las Vegas, NV</div>
+            </div>
+          </div>
+
+        </aside>
+
+        {/* MAIN CONTENT */}
+        <main style={{
+          flex: 1,
+          background: 'var(--cream)',
+          padding: '48px 52px 80px',
+        }}>
+
+          {/* Summary */}
           <p style={{
-            fontFamily: 'var(--font-serif)', fontSize: 20, lineHeight: 1.6,
-            color: 'var(--ink)', margin: 0,
+            fontFamily: 'var(--font-serif)', fontSize: 18, lineHeight: 1.7,
+            color: 'var(--ink)', margin: '0 0 52px',
+            borderLeft: '3px solid var(--crimson-500)',
+            paddingLeft: 22,
           }}>
             Creative with 4+ years at <strong>Circle</strong> spanning coordination, project management, and account-side creative work.
             Currently completing a BFA in Graphic Design at <strong>SCAD</strong> while working full-time.
             Building toward an independent studio at graduation — this is Phase 1.
           </p>
-        </div>
 
-        {/* Experience */}
-        <div style={{ marginBottom: 52 }}>
-          <SectionHead color="var(--crimson-500)">Experience</SectionHead>
-          {EXPERIENCE.map((e, idx) => (
-            <div key={idx} style={{ marginBottom: 36 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 8 }}>
-                <div>
-                  <span style={{
-                    fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 22,
-                    color: 'var(--ink)',
-                  }}>{e.role}</span>
-                  <span style={{
-                    fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 18,
-                    color: e.color, marginLeft: 8,
-                  }}>— {e.org}</span>
-                </div>
-                <Lab color="var(--fg3)">{e.period} · {e.location}</Lab>
-              </div>
-              <ul style={{ margin: '14px 0 0', paddingLeft: 0, listStyle: 'none' }}>
-                {e.items.map((item, i) => (
-                  <li key={i} style={{
-                    fontFamily: 'var(--font-sans)', fontSize: 15, lineHeight: 1.65,
-                    color: 'var(--fg1)', marginBottom: 8, paddingLeft: 14, position: 'relative',
-                  }}>
-                    <span style={{ position: 'absolute', left: 0, color: e.color, fontWeight: 700 }}>—</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Education */}
-        <div style={{ marginBottom: 52 }}>
-          <SectionHead color="var(--teal-700)">Education</SectionHead>
-          {EDUCATION.map(e => (
-            <div key={e.degree}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 8 }}>
-                <span style={{
-                  fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 22,
-                  color: 'var(--ink)',
-                }}>{e.degree}</span>
-                <Lab color="var(--fg3)">{e.period}</Lab>
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17,
-                color: e.color, marginTop: 4,
-              }}>{e.org}</div>
-              <p style={{
-                fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '.04em',
-                textTransform: 'uppercase', color: 'var(--fg3)', marginTop: 8, lineHeight: 1.6,
-              }}>{e.note}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Certifications */}
-        <div style={{ marginBottom: 52 }}>
-          <SectionHead color="var(--azure-700)">Licenses & Certifications</SectionHead>
-          <ul style={{ margin: 0, paddingLeft: 0, listStyle: 'none' }}>
-            {CERTIFICATIONS.map((c, i) => (
-              <li key={i} style={{
-                fontFamily: 'var(--font-sans)', fontSize: 15, lineHeight: 1.65,
-                color: 'var(--fg1)', marginBottom: 8, paddingLeft: 14, position: 'relative',
-              }}>
-                <span style={{ position: 'absolute', left: 0, color: c.color, fontWeight: 700 }}>—</span>
-                {c.label}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Skills */}
-        <div>
-          <SectionHead color="var(--magenta-500)">Skills</SectionHead>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-            {SKILLS.map(s => (
-              <span key={s.label} style={{
-                fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.1em',
-                textTransform: 'uppercase', color: s.color,
-                border: `1.5px solid ${s.color}`, borderRadius: 2,
-                padding: '7px 12px',
-              }}>{s.label}</span>
-            ))}
+          {/* Experience label */}
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 14,
+            marginBottom: 36,
+          }}>
+            <span style={{
+              fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '.28em',
+              textTransform: 'uppercase', color: 'var(--crimson-500)',
+            }}>Experience</span>
+            <div style={{ flex: 1, height: 1, background: 'var(--crimson-500)', opacity: .18 }} />
           </div>
-        </div>
 
+          {/* Experience entries */}
+          {EXPERIENCE.map((e, idx) => (
+            <div key={idx} style={{
+              display: 'flex', gap: 22,
+              marginBottom: 38,
+              paddingBottom: 38,
+              borderBottom: idx < EXPERIENCE.length - 1 ? '1px solid var(--line)' : 'none',
+            }}>
+              {/* Year watermark */}
+              <div style={{
+                flexShrink: 0, width: 58, textAlign: 'right', paddingTop: 2,
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontWeight: 300, fontSize: 44, lineHeight: 1,
+                color: e.color, opacity: .28, letterSpacing: '-.02em',
+                userSelect: 'none',
+              }}>
+                {e.period.match(/\d{4}/)?.[0]}
+              </div>
+
+              {/* Entry */}
+              <div style={{ flex: 1 }}>
+                <div style={{
+                  display: 'flex', justifyContent: 'space-between',
+                  alignItems: 'flex-start', flexWrap: 'wrap', gap: 6,
+                  marginBottom: 14,
+                }}>
+                  <div>
+                    <div style={{
+                      fontFamily: "'Cormorant Garamond', Georgia, serif",
+                      fontWeight: 500, fontSize: 21, color: 'var(--ink)', lineHeight: 1.2,
+                    }}>{e.role}</div>
+                    <div style={{
+                      fontFamily: 'var(--font-serif)', fontStyle: 'italic',
+                      fontSize: 15, color: e.color, marginTop: 3,
+                    }}>{e.org}</div>
+                  </div>
+                  <div style={{
+                    fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '.1em',
+                    textTransform: 'uppercase', color: 'var(--fg3)',
+                    textAlign: 'right', lineHeight: 1.8,
+                  }}>
+                    {e.period}<br />{e.location}
+                  </div>
+                </div>
+
+                {e.items.map((item, i) => (
+                  <div key={i} style={{
+                    fontFamily: 'var(--font-sans)', fontSize: 14, lineHeight: 1.65,
+                    color: 'var(--fg1)', marginBottom: 6,
+                    paddingLeft: 14, position: 'relative',
+                  }}>
+                    <span style={{ position: 'absolute', left: 0, color: e.color, fontWeight: 700, fontSize: 13 }}>—</span>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+
+        </main>
       </div>
     </div>
   );
