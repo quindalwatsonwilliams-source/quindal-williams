@@ -38,18 +38,26 @@ export function Hero({ onCharacter, onWork }) {
           {/* Right caption */}
           <div style={{ position: 'absolute', right: '1%', top: '20%', width: 200, textAlign: 'right', zIndex: 4 }} className="ed-cap">
             <Lab color="#1A1A2E">Experiential design<br />&amp; brand worlds<br />you can walk through</Lab>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 4, marginTop: 8 }}>
-              <Arrow w={56} h={38} flip color="#1A1A2E" />
-              <Note size={22} rot={7}>that's me!</Note>
-            </div>
           </div>
 
           {/* Stat bottom-left */}
           <div style={{ position: 'absolute', left: '3%', bottom: '7%', zIndex: 4 }} className="ed-cap">
-            <div style={{ fontFamily: 'var(--font-serif-display)', fontSize: 40, fontWeight: 500, color: '#1A1A2E', lineHeight: 1 }}>
-              30+
+            <div style={{
+              background: '#000000',
+              borderRadius: 100,
+              padding: '8px 16px',
+              display: 'inline-block',
+            }}>
+              <div style={{ fontFamily: 'var(--font-serif-display)', fontSize: 40, fontWeight: 500, color: '#ffffff', lineHeight: 1 }}>
+                30+
+              </div>
+              <div style={{
+                fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '.14em',
+                textTransform: 'uppercase', color: '#ffffff', marginTop: 2,
+              }}>
+                brands shaped
+              </div>
             </div>
-            <Lab color="#1A1A2E" style={{ marginTop: 2 }}>brands<br />shaped</Lab>
           </div>
 
           {/* CTA bottom-right */}

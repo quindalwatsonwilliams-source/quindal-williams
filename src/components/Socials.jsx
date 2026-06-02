@@ -15,8 +15,8 @@ const PLATFORMS = [
     handle: '@quindalwilliams',
     url: 'https://tiktok.com/@quindalwilliams',
     desc: 'Behind the scenes, creative breakdowns, and chaos.',
-    bg: 'var(--ink)',
-    accent: 'var(--teal-500)',
+    bg: '#0E6771',
+    accent: '#F7F3EF',
     icon: '▶',
   },
   {
