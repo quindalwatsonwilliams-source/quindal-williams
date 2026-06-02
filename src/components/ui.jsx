@@ -59,7 +59,7 @@ export function Btn({ children, variant = 'primary', onClick, style, type, big }
       boxShadow: press ? '1px 1px 0 var(--ink)' : '4px 4px 0 var(--ink)',
     },
     ghost: { background: 'transparent', color: 'var(--ink)', border: '2px solid var(--ink)' },
-    dark: { background: 'var(--ink)', color: 'var(--cream)' },
+    dark: { background: '#1A1A2E', color: '#F7F3EF' },
   };
   return (
     <button type={type} onClick={onClick}
@@ -79,8 +79,8 @@ export function Pill({ children, dark, onClick, big, style }) {
       style={{
         fontFamily: 'var(--font-sans)', fontWeight: 600,
         fontSize: big ? 13 : 11, letterSpacing: '.16em', textTransform: 'uppercase',
-        cursor: 'pointer', color: dark ? 'var(--cream)' : '#fff',
-        background: dark ? 'var(--ink)' : 'var(--crimson-500)',
+        cursor: 'pointer', color: dark ? '#F7F3EF' : '#fff',
+        background: dark ? '#1A1A2E' : 'var(--crimson-500)',
         border: 'none', borderRadius: 999, padding: big ? '16px 30px' : '12px 22px',
         transform: p ? 'scale(.96)' : 'scale(1)', transition: 'transform .12s ease',
         ...style,
@@ -145,7 +145,7 @@ export function MascotSlot({ w = 280, h = 360, label = "Quindal's cartoon charac
     <div style={{
       width: w, height: h, flex: 'none', position: 'relative',
       borderRadius: 8, border: '1.5px dashed rgba(26,26,46,.22)',
-      background: 'var(--cream)',
+      background: '#3C0606',
       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
       textAlign: 'center', padding: 22, ...style,
     }}>

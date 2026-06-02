@@ -10,7 +10,7 @@ const NAV_LINKS = [
 
 function Logo() {
   return (
-    <img src={`${ASSET}/logos/logo-horizontal.png`} style={{ height: 36, display: 'block' }} alt="Quindal Williams" />
+    <img src={`${ASSET}/logos/logo-horizontal.png`} style={{ height: 36, display: 'block', filter: 'brightness(0) invert(1)' }} alt="Quindal Williams" />
   );
 }
 
@@ -19,7 +19,7 @@ export function Nav({ onHome, onLink, onCharacter, onResume }) {
     <nav style={{
       position: 'sticky', top: 0, zIndex: 60,
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      padding: '11px 28px', background: 'rgba(247,243,239,.9)',
+      padding: '11px 28px', background: 'rgba(60,6,6,.94)',
       backdropFilter: 'blur(10px)', borderBottom: '1px solid var(--line)',
     }}>
       <a onClick={onHome} style={{ cursor: 'pointer' }}>

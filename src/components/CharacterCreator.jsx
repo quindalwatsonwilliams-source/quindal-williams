@@ -323,7 +323,7 @@ export function CharacterCreator({ onExit }) {
       <div style={{
         borderBottom: '1px solid var(--line)',
         padding: '48px 28px 40px',
-        background: '#FBF7EC',
+        background: '#3C0606',
       }}>
         <div style={{ maxWidth: 660, margin: '0 auto' }}>
           <button onClick={onExit} style={{

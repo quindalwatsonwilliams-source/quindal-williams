@@ -160,8 +160,8 @@ a { text-decoration: none; }
   --font-mono:          "Space Mono", "SFMono-Regular", ui-monospace, monospace;
 
   /* ============ CORE BRAND COLORS ============ */
-  --cream:    #F7F3EF;
-  --ink:      #1A1A2E;
+  --cream:    #3C0606;
+  --ink:      #F2EDE8;
   --black:    #000000;
   --white:    #FFFFFF;
 
@@ -211,8 +211,8 @@ a { text-decoration: none; }
   --bg:        var(--cream);
   --bg-ink:    var(--ink);
   --fg1:       var(--ink);
-  --fg2:       #55556b;
-  --fg3:       #8a8a9c;
+  --fg2:       rgba(242,237,232,.60);
+  --fg3:       rgba(242,237,232,.38);
   --fg-on-dark:#F7F3EF;
 
   --accent:        var(--crimson-500);
@@ -220,7 +220,7 @@ a { text-decoration: none; }
   --accent-3:      var(--teal-900);
   --highlight:     var(--amber-900);
 
-  --line:      #E4DCD2;
+  --line:      rgba(242,237,232,.12);
   --line-ink:  rgba(247,243,239,.18);
 
   /* ============ RADII ============ */

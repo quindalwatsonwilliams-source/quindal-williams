@@ -2,7 +2,7 @@ import { MascotSlot, Lab, Note, Pill } from './ui';
 
 export function About() {
   return (
-    <section id="about" style={{ background: '#FBF7EC', padding: '78px 28px', scrollMarginTop: 64 }}>
+    <section id="about" style={{ background: '#3C0606', padding: '78px 28px', scrollMarginTop: 64 }}>
       <div style={{ maxWidth: 1040, margin: '0 auto' }}>
 
         <Note size={30} rot={-4} color="var(--amber-700)" style={{ marginLeft: 4 }}>Hey, I'm Quindal —</Note>

@@ -32,7 +32,7 @@ const PLATFORMS = [
 
 export function Socials() {
   return (
-    <section id="socials" style={{ background: '#FBF7EC', scrollMarginTop: 64 }}>
+    <section id="socials" style={{ background: '#3C0606', scrollMarginTop: 64 }}>
       <Marquee text="SOCIALS" color="var(--ink)" />
 
       <div style={{ padding: '32px 28px 64px' }}>
@@ -66,7 +66,7 @@ export function Socials() {
                 <Lab color={p.accent} style={{ marginBottom: 8 }}>{p.name}</Lab>
                 <div style={{
                   fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 22,
-                  color: 'var(--cream)', lineHeight: 1.1, marginBottom: 10,
+                  color: '#F7F3EF', lineHeight: 1.1, marginBottom: 10,
                 }}>{p.handle}</div>
                 <p style={{
                   fontFamily: 'var(--font-mono)', fontSize: 11, lineHeight: 1.7,

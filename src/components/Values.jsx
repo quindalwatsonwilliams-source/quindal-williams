@@ -38,7 +38,7 @@ export function Values() {
       {/* Cards on dark zebra */}
       <div style={{
         marginTop: 28, padding: '52px 28px 62px',
-        background: 'var(--ink)',
+        background: '#1A1A2E',
         backgroundImage: `linear-gradient(rgba(26,26,46,.88), rgba(26,26,46,.95)), url(${ASSET}/textures/zebra-sm.jpg)`,
         backgroundSize: 'cover', backgroundPosition: 'center',
       }}>
@@ -52,7 +52,7 @@ export function Values() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
                 <h3 style={{
                   fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 26,
-                  letterSpacing: '.02em', color: 'var(--cream)', margin: 0, textTransform: 'uppercase',
+                  letterSpacing: '.02em', color: '#F7F3EF', margin: 0, textTransform: 'uppercase',
                 }}>{v.t}</h3>
                 <span style={{
                   fontFamily: 'var(--font-mono)', fontSize: 11, color: v.accent, marginTop: 4,

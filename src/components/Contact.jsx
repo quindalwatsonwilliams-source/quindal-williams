@@ -8,7 +8,7 @@ export function Contact() {
 
   return (
     <footer id="contact" style={{
-      background: 'var(--ink)', color: 'var(--cream)',
+      background: '#1A1A2E', color: '#F7F3EF',
       padding: '70px 28px 60px', scrollMarginTop: 54,
       backgroundImage: `linear-gradient(rgba(26,26,46,.93),rgba(26,26,46,.93)), url(${ASSET}/textures/leopard-sm.jpg)`,
       backgroundSize: 'cover',
@@ -41,7 +41,7 @@ export function Contact() {
                   width: '100%', fontFamily: 'var(--font-sans)', fontSize: 15, lineHeight: 1.5,
                   padding: '13px 15px', border: '1px solid rgba(247,243,239,.3)', borderRadius: 8,
                   outline: 'none', resize: 'vertical', boxSizing: 'border-box',
-                  background: 'rgba(247,243,239,.08)', color: 'var(--cream)',
+                  background: 'rgba(247,243,239,.08)', color: '#F7F3EF',
                 }}
               />
               <div style={{ display: 'flex', gap: 10, marginTop: 12, alignItems: 'center', flexWrap: 'wrap' }}>
@@ -52,7 +52,7 @@ export function Contact() {
                   style={{
                     flex: '1 1 180px', fontFamily: 'var(--font-sans)', fontSize: 15,
                     padding: '12px 15px', border: '1px solid rgba(247,243,239,.3)', borderRadius: 8,
-                    outline: 'none', background: 'rgba(247,243,239,.08)', color: 'var(--cream)',
+                    outline: 'none', background: 'rgba(247,243,239,.08)', color: '#F7F3EF',
                   }}
                 />
                 <Pill onClick={() => msg.trim() && setSent(true)}>Send it →</Pill>
@@ -65,7 +65,7 @@ export function Contact() {
                 display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22,
               }}>✓</div>
               <div>
-                <div style={{ fontFamily: 'var(--font-serif-display)', fontSize: 20, color: 'var(--cream)' }}>
+                <div style={{ fontFamily: 'var(--font-serif-display)', fontSize: 20, color: '#F7F3EF' }}>
                   Got it — talk soon!
                 </div>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(247,243,239,.6)', marginTop: 4, letterSpacing: '.06em', textTransform: 'uppercase' }}>
