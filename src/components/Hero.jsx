@@ -28,7 +28,7 @@ export function Hero({ onCharacter, onWork }) {
 
           {/* Left caption */}
           <div style={{ position: 'absolute', left: '1%', top: '26%', width: 200, zIndex: 4 }} className="ed-cap">
-            <Lab color="#1A1A2E">Creative director for<br />brands with<br />a personality</Lab>
+            <Lab color="#1A1A2E">Creative direction, events,<br />and brand identity<br />with a point of view</Lab>
             <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 8 }}>
               <Note size={22} rot={-8}>say less ✦</Note>
               <Arrow w={56} h={38} color="#1A1A2E" />
@@ -37,7 +37,7 @@ export function Hero({ onCharacter, onWork }) {
 
           {/* Right caption */}
           <div style={{ position: 'absolute', right: '1%', top: '20%', width: 200, textAlign: 'right', zIndex: 4 }} className="ed-cap">
-            <Lab color="#1A1A2E">Experiential design<br />&amp; brand worlds<br />you can walk through</Lab>
+            <Lab color="#1A1A2E">Trade-show environments<br />&amp; experiential design<br />built to be felt</Lab>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 4, marginTop: 8 }}>
               <Arrow w={56} h={38} flip color="#1A1A2E" />
               <Note size={22} rot={7}>that's me!</Note>
@@ -47,9 +47,9 @@ export function Hero({ onCharacter, onWork }) {
           {/* Stat bottom-left */}
           <div style={{ position: 'absolute', left: '3%', bottom: '7%', zIndex: 4 }} className="ed-cap">
             <div style={{ fontFamily: 'var(--font-serif-display)', fontSize: 40, fontWeight: 500, color: '#1A1A2E', lineHeight: 1 }}>
-              30+
+              4+
             </div>
-            <Lab color="#1A1A2E" style={{ marginTop: 2 }}>brands<br />shaped</Lab>
+            <Lab color="#1A1A2E" style={{ marginTop: 2 }}>years at<br />Circle</Lab>
           </div>
 
           {/* CTA bottom-right */}
@@ -64,9 +64,9 @@ export function Hero({ onCharacter, onWork }) {
           padding: '20px 4px 36px', gap: 16, flexWrap: 'wrap',
         }}>
           <div style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 19, color: '#55556b', maxWidth: 420 }}>
-            Maximalist taste,{' '}
-            <span style={{ color: 'var(--teal-700)' }}>editorial warmth,</span>
-            {' '}and a little bit of whimsy.
+            Account Manager / Creative at{' '}
+            <span style={{ color: 'var(--teal-700)' }}>Circle</span>
+            {' '}· BFA Graphic Design at SCAD · Las Vegas, NV
           </div>
           <Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: '#1A1A2E' }}>✦ Build your character</Pill>
         </div>

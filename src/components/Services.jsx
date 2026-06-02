@@ -1,11 +1,11 @@
 import { Lab } from './ui';
 
 const SERVICES = [
-  { n: '01', t: 'Branding', d: 'Identity systems, logotypes, and the rules that keep a brand feeling like itself everywhere.' },
-  { n: '02', t: 'Creative Direction', d: 'The vision and the taste-keeping — concept, art direction, and making sure the whole thing sings.' },
-  { n: '03', t: 'Campaigns', d: 'Launch ideas with legs — concepts, key art, and rollout across the channels that matter.' },
-  { n: '04', t: 'Packaging', d: 'Objects you want to keep. Structure, illustration, and the unboxing moment.' },
-  { n: '05', t: 'Spatial / Experiential', d: 'Brand worlds you can walk through — booths, activations, and environments built to be felt.' },
+  { n: '01', t: 'Brand Identity', d: 'Visual identity systems, logotypes, and the design language that keeps a brand consistent everywhere it shows up.' },
+  { n: '02', t: 'Creative Direction', d: 'Concept, art direction, and the taste-keeping that makes a campaign, event, or identity hold together from first brief to final file.' },
+  { n: '03', t: 'Event & Experiential Design', d: "Trade-show environments, conference identities, activations, and spatial branding. I've built it from signage to stage." },
+  { n: '04', t: 'Campaigns', d: 'Launch concepts with actual legs — key visuals, messaging direction, and rollout across the platforms that matter.' },
+  { n: '05', t: 'Account & Project Management', d: 'End-to-end delivery for creative projects — timelines, vendors, stakeholders, and making sure nothing falls through the cracks.' },
 ];
 
 export function Services() {
@@ -18,7 +18,7 @@ export function Services() {
             fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0,
           }}>What I do</h2>
           <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17, color: 'var(--fg2)' }}>
-            — pricing on request, personality included free.
+            — let's talk about what you need.
           </span>
         </div>
         <div style={{ borderTop: '1.5px solid var(--ink)' }}>
