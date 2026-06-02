@@ -11,7 +11,7 @@ export function About() {
           fontSize: 'clamp(28px,4vw,50px)', lineHeight: 1.04,
           letterSpacing: '-.01em', color: 'var(--ink)', margin: '10px 0 0', maxWidth: 760,
         }}>
-          Creative director, event designer,<br />
+          Creative director, experiential designer,<br />
           and your <span style={{ fontStyle: 'italic', color: 'var(--magenta-500)' }}>creative partner.</span>
         </h2>
 
@@ -29,7 +29,7 @@ export function About() {
                   fontFamily: 'var(--font-mono)', fontSize: 12.5, lineHeight: 1.85,
                   color: 'var(--ink)', margin: 0, textTransform: 'uppercase', letterSpacing: '.02em',
                 }}>
-                  Four years at Circle — coordinating events, managing projects, and directing creative across trade-show environments, conferences, and brand activations. I've taken it from tote bag to jumbotron and every touchpoint in between.
+                  I remember the moment I decided to stop making things that were merely fine. Now I build brands and spaces with taste, warmth, and a little bit of mischief.
                 </p>
                 <div style={{ marginTop: 20 }}>
                   <Pill
@@ -49,13 +49,13 @@ export function About() {
               fontFamily: 'var(--font-mono)', fontSize: 12.5, lineHeight: 1.85,
               color: 'var(--ink)', margin: 0, textTransform: 'uppercase', letterSpacing: '.02em',
             }}>
-              I help founders and service brands look as good as the work they do — identity systems, event environments, and the kind of creative direction that makes everything feel intentional.
+              I help service brands, founders, and culture-makers look as good as the work they do — identity, campaigns, packaging, and environments you can walk through.
             </p>
             <p style={{
               fontFamily: 'var(--font-mono)', fontSize: 12.5, lineHeight: 1.85,
               color: 'var(--fg2)', margin: '16px 0 0', textTransform: 'uppercase', letterSpacing: '.02em',
             }}>
-              I'm also finishing my BFA in Graphic Design at SCAD while working full-time. Constantly learning, staying current, and genuinely excited about the work.
+              If you've ever felt like your brand was playing it too safe — I've been there. Let's make the loud, warm, unmistakable version instead.
             </p>
 
             {/* Polaroid */}
