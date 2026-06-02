@@ -38,11 +38,11 @@ function WorkCard({ p }) {
         <div>
           <h3 style={{
             fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 24,
-            color: 'var(--ink)', margin: 0, lineHeight: 1,
+            color: '#1A1A2E', margin: 0, lineHeight: 1,
           }}>{p.title}</h3>
           <div style={{
             fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 15,
-            color: 'var(--fg2)', marginTop: 3,
+            color: '#55556b', marginTop: 3,
           }}>{p.sub}</div>
         </div>
         <Lab color={p.catColor} style={{ whiteSpace: 'nowrap', textAlign: 'right' }}>{p.cat}</Lab>
@@ -53,15 +53,15 @@ function WorkCard({ p }) {
 
 export function Work() {
   return (
-    <section id="work" style={{ background: 'var(--cream)', scrollMarginTop: 64 }}>
+    <section id="work" style={{ background: '#F7F3EF', scrollMarginTop: 64 }}>
       {/* Section header */}
       <div style={{ padding: '60px 28px 0', maxWidth: 1040, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, flexWrap: 'wrap' }}>
           <h2 style={{
             fontFamily: 'var(--font-serif-display)', fontWeight: 500,
-            fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0,
+            fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0, color: '#1A1A2E',
           }}>Selected Work</h2>
-          <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17, color: 'var(--fg2)' }}>
+          <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17, color: '#55556b' }}>
             — real projects, spec dreams, &amp; everything I've talked my way into
           </span>
         </div>
