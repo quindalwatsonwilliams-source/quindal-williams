@@ -4,9 +4,9 @@ export const ASSET = '/assets';
 
 export function Eyebrow({ children, color = 'var(--crimson-500)', style }) {
   return (
-    <div style={{
+    <div data-label-reveal style={{
       fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 12,
-      letterSpacing: '.18em', textTransform: 'uppercase', color, ...style,
+      letterSpacing: '.18em', textTransform: 'uppercase', color, position: 'relative', ...style,
     }}>
       {children}
     </div>
@@ -93,9 +93,9 @@ export function Pill({ children, dark, onClick, big, style }) {
 /* Tracked uppercase mono label */
 export function Lab({ children, color = 'var(--ink)', style }) {
   return (
-    <div style={{
+    <div data-label-reveal style={{
       fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.14em',
-      textTransform: 'uppercase', color, lineHeight: 1.7, ...style,
+      textTransform: 'uppercase', color, lineHeight: 1.7, position: 'relative', ...style,
     }}>
       {children}
     </div>

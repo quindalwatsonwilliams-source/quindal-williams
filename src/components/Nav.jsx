@@ -1,4 +1,5 @@
 import { ASSET, Pill } from './ui';
+import { MagneticWrapper } from './MagneticWrapper';
 
 const NAV_LINKS = [
   { id: 'about',    label: 'About' },
@@ -39,7 +40,7 @@ export function Nav({ onHome, onLink, onCharacter, onResume }) {
             color: 'var(--teal-700)',
           }}>Résumé</a>
         </div>
-        <Pill onClick={onCharacter}>Work with me</Pill>
+        <MagneticWrapper><Pill onClick={onCharacter}>Work with me</Pill></MagneticWrapper>
       </div>
     </nav>
   );

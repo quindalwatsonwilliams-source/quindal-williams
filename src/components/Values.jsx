@@ -1,5 +1,6 @@
 import { ASSET, Lab } from './ui';
 
+
 const ED_VALUES = [
   {
     t: 'Play',
@@ -37,7 +38,7 @@ const ED_VALUES = [
 
 export function Values() {
   return (
-    <section style={{ background: 'var(--cream)' }}>
+    <section style={{ background: 'var(--cream)', position: 'relative' }}>
       {/* Section header */}
       <div style={{ padding: '60px 28px 0', maxWidth: 1040, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, flexWrap: 'wrap' }}>
@@ -55,7 +56,7 @@ export function Values() {
       <div style={{
         marginTop: 28, padding: '52px 28px 62px',
         background: '#1A1A2E',
-        backgroundImage: `linear-gradient(rgba(26,26,46,.88), rgba(26,26,46,.95)), url(${ASSET}/textures/zebra-sm.jpg)`,
+        backgroundImage: `linear-gradient(rgba(26,26,46,.22), rgba(26,26,46,.28)), url(${ASSET}/textures/zebra-sm.jpg)`,
         backgroundSize: 'cover', backgroundPosition: 'center',
       }}>
         <div style={{ maxWidth: 920, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }} className="ed-values-grid">
@@ -83,6 +84,13 @@ export function Values() {
           ))}
         </div>
       </div>
+
+      {/* Lips sticker */}
+      <img src={`${ASSET}/Stickers/sticker-lips.png`} alt="" className="sticker-deco" style={{
+        position: 'absolute', right: '-10px', top: '18%', width: 180,
+        transform: 'rotate(-6deg)', zIndex: 6, pointerEvents: 'none',
+        filter: 'drop-shadow(3px 5px 10px rgba(0,0,0,0.20))',
+      }} />
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import { MascotSlot, Lab, Note, Arrow, Pill } from './ui';
+import { MagneticWrapper } from './MagneticWrapper';
 
 export function Hero({ onCharacter, onWork }) {
   return (
@@ -62,8 +63,9 @@ export function Hero({ onCharacter, onWork }) {
 
           {/* CTA bottom-right */}
           <div style={{ position: 'absolute', right: '3%', bottom: '9%', zIndex: 4 }} className="ed-cap">
-            <Pill big onClick={onWork}>See the work</Pill>
+            <MagneticWrapper><Pill big onClick={onWork}>See the work</Pill></MagneticWrapper>
           </div>
+
         </div>
 
         {/* Below-hero row */}
@@ -76,7 +78,7 @@ export function Hero({ onCharacter, onWork }) {
             <span style={{ color: 'var(--teal-700)' }}>editorial warmth,</span>
             {' '}and a little bit of whimsy.
           </div>
-          <Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: '#1A1A2E' }}>✦ Build your character</Pill>
+          <MagneticWrapper><Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: '#1A1A2E' }}>✦ Build your character</Pill></MagneticWrapper>
         </div>
       </div>
     </header>

@@ -32,7 +32,7 @@ const PLATFORMS = [
 
 export function Socials() {
   return (
-    <section id="socials" style={{ background: '#F7F3EF', scrollMarginTop: 64 }}>
+    <section id="socials" className="cv-auto" style={{ background: '#F7F3EF', scrollMarginTop: 64 }}>
       <Marquee text="SOCIALS" color="#1A1A2E" />
 
       <div style={{ padding: '32px 28px 64px' }}>

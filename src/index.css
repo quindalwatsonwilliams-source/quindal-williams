@@ -7,124 +7,124 @@
 /* ---------- FONTS ---------- */
 @font-face {
   font-family: "Domaine Text";
-  src: url("/fonts/DomaineText-Light.otf") format("opentype");
+  src: url("/fonts/DomaineText-Light.woff2") format("woff2");
   font-weight: 300; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Text";
-  src: url("/fonts/DomaineText-LightItalic.otf") format("opentype");
+  src: url("/fonts/DomaineText-LightItalic.woff2") format("woff2");
   font-weight: 300; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Text";
-  src: url("/fonts/DomaineText-Regular.otf") format("opentype");
+  src: url("/fonts/DomaineText-Regular.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Text";
-  src: url("/fonts/DomaineText-RegularItalic.otf") format("opentype");
+  src: url("/fonts/DomaineText-RegularItalic.woff2") format("woff2");
   font-weight: 400; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Text";
-  src: url("/fonts/DomaineText-Medium.otf") format("opentype");
+  src: url("/fonts/DomaineText-Medium.woff2") format("woff2");
   font-weight: 500; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Text";
-  src: url("/fonts/DomaineText-MediumItalic.otf") format("opentype");
+  src: url("/fonts/DomaineText-MediumItalic.woff2") format("woff2");
   font-weight: 500; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Text";
-  src: url("/fonts/DomaineText-Bold.otf") format("opentype");
+  src: url("/fonts/DomaineText-Bold.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Text";
-  src: url("/fonts/DomaineText-BoldItalic.otf") format("opentype");
+  src: url("/fonts/DomaineText-BoldItalic.woff2") format("woff2");
   font-weight: 700; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Text";
-  src: url("/fonts/DomaineText-Black.otf") format("opentype");
+  src: url("/fonts/DomaineText-Black.woff2") format("woff2");
   font-weight: 900; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Text";
-  src: url("/fonts/DomaineText-BlackItalic.otf") format("opentype");
+  src: url("/fonts/DomaineText-BlackItalic.woff2") format("woff2");
   font-weight: 900; font-style: italic; font-display: swap;
 }
 
 @font-face {
   font-family: "Domaine Display";
-  src: url("/fonts/DomaineDisplay-Regular.otf") format("opentype");
+  src: url("/fonts/DomaineDisplay-Regular.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Display";
-  src: url("/fonts/DomaineDisplay-RegularItalic.otf") format("opentype");
+  src: url("/fonts/DomaineDisplay-RegularItalic.woff2") format("woff2");
   font-weight: 400; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Display";
-  src: url("/fonts/DomaineDisplay-Medium.otf") format("opentype");
+  src: url("/fonts/DomaineDisplay-Medium.woff2") format("woff2");
   font-weight: 500; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Display";
-  src: url("/fonts/DomaineDisplay-Semibold.otf") format("opentype");
+  src: url("/fonts/DomaineDisplay-Semibold.woff2") format("woff2");
   font-weight: 600; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Display";
-  src: url("/fonts/DomaineDisplay-Bold.otf") format("opentype");
+  src: url("/fonts/DomaineDisplay-Bold.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Display";
-  src: url("/fonts/DomaineDisplay-BoldItalic.otf") format("opentype");
+  src: url("/fonts/DomaineDisplay-BoldItalic.woff2") format("woff2");
   font-weight: 700; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Display";
-  src: url("/fonts/DomaineDisplay-Black.otf") format("opentype");
+  src: url("/fonts/DomaineDisplay-Black.woff2") format("woff2");
   font-weight: 900; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Domaine Display";
-  src: url("/fonts/DomaineDisplay-BlackItalic.otf") format("opentype");
+  src: url("/fonts/DomaineDisplay-BlackItalic.woff2") format("woff2");
   font-weight: 900; font-style: italic; font-display: swap;
 }
 
 @font-face {
   font-family: "Canela";
-  src: url("/fonts/Canela-Thin.otf") format("opentype");
+  src: url("/fonts/Canela-Thin.woff2") format("woff2");
   font-weight: 200; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Canela";
-  src: url("/fonts/Canela-Light.otf") format("opentype");
+  src: url("/fonts/Canela-Light.woff2") format("woff2");
   font-weight: 300; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Canela";
-  src: url("/fonts/Canela-Regular.otf") format("opentype");
+  src: url("/fonts/Canela-Regular.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Canela";
-  src: url("/fonts/Canela-RegularItalic.otf") format("opentype");
+  src: url("/fonts/Canela-RegularItalic.woff2") format("woff2");
   font-weight: 400; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "Canela";
-  src: url("/fonts/Canela-Medium.otf") format("opentype");
+  src: url("/fonts/Canela-Medium.woff2") format("woff2");
   font-weight: 500; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Canela";
-  src: url("/fonts/Canela-Bold.otf") format("opentype");
+  src: url("/fonts/Canela-Bold.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
 }
 
@@ -132,6 +132,7 @@
    RESET & BASE
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; }
+@media (pointer: fine) { *, *::before, *::after { cursor: none !important; } }
 html, body {
   margin: 0;
   background: #F7F3EF;
@@ -141,21 +142,35 @@ html, body {
 a { text-decoration: none; }
 ::selection { background: var(--crimson-300); color: #fff; }
 
+/* Work horizontal scroll */
+.work-scroll { scrollbar-width: thin; scrollbar-color: #B2010C #EDE8E3; }
+.work-scroll::-webkit-scrollbar { height: 4px; }
+.work-scroll::-webkit-scrollbar-track { background: #EDE8E3; }
+.work-scroll::-webkit-scrollbar-thumb { background: #B2010C; border-radius: 2px; }
+
+/* Project page body grid */
+@media (max-width: 768px) {
+  .proj-body-grid { grid-template-columns: 1fr !important; }
+  .proj-sidebar { border-left: none !important; padding-left: 0 !important; border-top: 1px solid rgba(26,26,46,.1); padding-top: 32px; }
+}
+
+/* Sticker decorations */
+.sticker-deco { display: block; }
+
 /* Work card stagger */
-.work-card-stagger-0 { transform: translateY(0px); }
-.work-card-stagger-1 { transform: translateY(24px); }
-.work-card-stagger-2 { transform: translateY(12px); }
+.work-stagger-0 { transform: translateY(0px); }
+.work-stagger-1 { transform: translateY(24px); }
+.work-stagger-2 { transform: translateY(12px); }
 
 /* Responsive layout helpers */
 @media (max-width: 820px) {
+  .sticker-deco { display: none; }
+  .work-stagger-0, .work-stagger-1, .work-stagger-2 { transform: translateY(0); }
   .hero-grid, .about-grid { grid-template-columns: 1fr !important; }
   .work-spread { flex-direction: column !important; }
   .svc-row { grid-template-columns: 48px 1fr !important; }
-  .svc-row p { grid-column: 1 / -1; }
+  .svc-row > div:nth-child(3) { grid-column: 1 / -1; }
   .navlinks { display: none !important; }
-  .work-card-stagger-0,
-  .work-card-stagger-1,
-  .work-card-stagger-2 { transform: translateY(0); }
 }
 
 :root {
@@ -280,4 +295,71 @@ a { text-decoration: none; }
   .ed-work-grid   { grid-template-columns: 1fr !important; }
   .ed-cap         { display: none !important; }
   .ed-navlinks    { display: none !important; }
+}
+
+/* Skip layout/paint for offscreen sections. Not used on sections whose
+   stickers overflow the box (About, Values) — paint containment would clip them. */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+
+/* ============================================================
+   FILM GRAIN — discrete position jumps, GPU-composited
+   ============================================================ */
+@keyframes grain-shift {
+  0%   { background-position: 0 0; }
+  20%  { background-position: -64px 40px; }
+  40%  { background-position: 44px -56px; }
+  60%  { background-position: -28px -72px; }
+  80%  { background-position: 60px 24px; }
+  100% { background-position: 0 0; }
+}
+.film-grain { animation: grain-shift 0.5s steps(1) infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .film-grain { animation: none; }
+}
+
+/* ============================================================
+   LOADING SCREEN — monogram size
+   ============================================================ */
+.loading-monogram { width: 120px; height: 120px; }
+@media (max-width: 768px) { .loading-monogram { width: 80px; height: 80px; } }
+
+/* ============================================================
+   LABEL REVEAL
+   ============================================================ */
+[data-label-reveal].needs-reveal {
+  clip-path: inset(0 100% 0 0);
+}
+
+[data-label-reveal].is-revealed {
+  animation: labelReveal 350ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms) both;
+}
+
+@keyframes labelReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+[data-label-reveal]::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 1px;
+  background: #F8BB0B;
+  width: 0;
+  transition: width 350ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--reveal-delay, 0ms) + 60ms);
+}
+
+[data-label-reveal].is-revealed::after { width: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-label-reveal].needs-reveal { clip-path: none; opacity: 0; }
+  [data-label-reveal].is-revealed  {
+    animation: none;
+    opacity: 1;
+    clip-path: none;
+    transition: opacity 300ms ease var(--reveal-delay, 0ms);
+  }
+  [data-label-reveal]::after { transition: none; }
+  [data-label-reveal].is-revealed::after { width: 100%; }
 }

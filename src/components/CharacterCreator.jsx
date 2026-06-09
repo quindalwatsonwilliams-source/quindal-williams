@@ -317,13 +317,15 @@ export function CharacterCreator({ onExit }) {
   const QUESTIONS = ['Pick your vibe.', 'Your signature move?', 'What fuels you?'];
 
   return (
-    <div style={{ background: 'var(--cream)', minHeight: 'calc(100vh - 54px)' }}>
+    <div style={{ background: '#3C0606', minHeight: 'calc(100vh - 54px)' }}>
 
-      {/* Page header */}
+      {/* Page header — dark leopard */}
       <div style={{
         borderBottom: '1px solid var(--line)',
         padding: '48px 28px 40px',
-        background: '#3C0606',
+        background: '#1A1A2E',
+        backgroundImage: `linear-gradient(rgba(26,26,46,.93),rgba(26,26,46,.93)), url(${ASSET}/textures/leopard-sm.jpg)`,
+        backgroundSize: 'cover',
       }}>
         <div style={{ maxWidth: 660, margin: '0 auto' }}>
           <button onClick={onExit} style={{
@@ -350,8 +352,16 @@ export function CharacterCreator({ onExit }) {
         </div>
       </div>
 
-      {/* Quiz body */}
-      <div style={{ maxWidth: 660, margin: '0 auto', padding: '40px 28px 80px' }}>
+      {/* Quiz body — F7F3EF column, deep red flanks */}
+      <div style={{ background: '#3C0606' }}>
+      <div style={{
+        maxWidth: 660, margin: '0 auto', padding: '40px 28px 80px',
+        background: '#F7F3EF', minHeight: '70vh',
+        '--ink': '#1A1A2E',
+        '--fg2': 'rgba(26,26,46,0.60)',
+        '--fg3': 'rgba(26,26,46,0.45)',
+        '--line': 'rgba(26,26,46,0.14)',
+      }}>
 
         {!done && <Progress step={step} />}
 
@@ -383,6 +393,7 @@ export function CharacterCreator({ onExit }) {
             </Pill>
           </div>
         )}
+      </div>
       </div>
     </div>
   );

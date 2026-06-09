@@ -1,8 +1,8 @@
-import { MascotSlot, Lab, Note, Pill } from './ui';
+import { MascotSlot, Lab, Note, Pill, ASSET } from './ui';
 
 export function About() {
   return (
-    <section id="about" style={{ background: '#3C0606', padding: '78px 28px', scrollMarginTop: 64 }}>
+    <section id="about" style={{ background: '#3C0606', padding: '78px 28px', scrollMarginTop: 64, position: 'relative', overflow: 'visible' }}>
       <div style={{ maxWidth: 1040, margin: '0 auto' }}>
 
         <Note size={30} rot={-4} color="var(--amber-700)" style={{ marginLeft: 4 }}>Hey, I'm Quindal —</Note>
@@ -76,6 +76,13 @@ export function About() {
           </div>
         </div>
       </div>
+
+      {/* Cherries sticker */}
+      <img src={`${ASSET}/Stickers/sticker-cherries.png`} alt="" className="sticker-deco" style={{
+        position: 'absolute', left: '-20px', bottom: '12%', width: 150,
+        transform: 'rotate(14deg)', zIndex: 6, pointerEvents: 'none',
+        filter: 'drop-shadow(2px 4px 8px rgba(0,0,0,0.22))',
+      }} />
     </section>
   );
 }
