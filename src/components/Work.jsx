@@ -1,5 +1,26 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { ASSET, Lab } from './ui';
+
+function ScrollArrow({ dir, onClick }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      aria-label={dir > 0 ? 'Next projects' : 'Previous projects'}
+      style={{
+        width: 44, height: 44, borderRadius: 999, flex: 'none',
+        border: '1.5px solid #B2010C', cursor: 'pointer',
+        background: hovered ? '#B2010C' : 'transparent',
+        color: hovered ? '#F7F3EF' : '#B2010C',
+        fontFamily: 'var(--font-mono)', fontSize: 17, lineHeight: 1,
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+        transition: 'background 180ms ease, color 180ms ease',
+      }}
+    >{dir > 0 ? '→' : '←'}</button>
+  );
+}
 
 function getCatColor(cat) {
   if (/spatial|experiential/i.test(cat)) return '#F8BB0B';
@@ -146,27 +167,65 @@ function WorkCard({ p, onOpen }) {
 }
 
 export function Work({ onOpen }) {
+  const scrollRef = useRef(null);
+  const drag = useRef(null);
+
+  const scrollByCards = (dir) => scrollRef.current?.scrollBy({ left: dir * 324, behavior: 'smooth' });
+
+  const onPointerDown = (e) => {
+    if (e.pointerType !== 'mouse') return; // touch already scrolls natively
+    const el = scrollRef.current;
+    drag.current = { startX: e.clientX, startLeft: el.scrollLeft, moved: false };
+  };
+  const onPointerMove = (e) => {
+    const d = drag.current;
+    if (!d) return;
+    const dx = e.clientX - d.startX;
+    if (Math.abs(dx) > 5) d.moved = true;
+    scrollRef.current.scrollLeft = d.startLeft - dx;
+  };
+  const endDrag = () => {
+    // let the click-capture check run before clearing the moved flag
+    setTimeout(() => { drag.current = null; }, 0);
+  };
+  const onClickCapture = (e) => {
+    if (drag.current?.moved) { e.preventDefault(); e.stopPropagation(); }
+  };
+
   return (
     <section id="work" className="cv-auto" style={{ background: '#F7F3EF', scrollMarginTop: 64 }}>
       <div style={{ padding: '60px 28px 0', maxWidth: 1040, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, flexWrap: 'wrap' }}>
-          <h2 style={{
-            fontFamily: 'var(--font-serif-display)', fontWeight: 500,
-            fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0, color: '#1A1A2E',
-          }}>Selected Work</h2>
-          <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17, color: '#55556b' }}>
-            — real projects, spec dreams, &amp; everything I've talked my way into
-          </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, flexWrap: 'wrap', flex: 1, minWidth: 260 }}>
+            <h2 className="headline-reveal" style={{
+              fontFamily: 'var(--font-serif-display)', fontWeight: 500,
+              fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0, color: '#1A1A2E',
+            }}>Selected Work</h2>
+            <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17, color: '#55556b' }}>
+              — real projects, spec dreams, &amp; everything I've talked my way into
+            </span>
+          </div>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <ScrollArrow dir={-1} onClick={() => scrollByCards(-1)} />
+            <ScrollArrow dir={1} onClick={() => scrollByCards(1)} />
+          </div>
         </div>
       </div>
 
-      <div style={{
-        display: 'flex', overflowX: 'auto', gap: 24,
-        padding: '30px 28px 48px',
-        scrollSnapType: 'x proximity',
-        WebkitOverflowScrolling: 'touch',
-        alignItems: 'flex-start',
-      }} className="work-scroll">
+      <div
+        ref={scrollRef}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerLeave={endDrag}
+        onClickCapture={onClickCapture}
+        style={{
+          display: 'flex', overflowX: 'auto', gap: 24,
+          padding: '30px 28px 48px',
+          scrollSnapType: 'x proximity',
+          WebkitOverflowScrolling: 'touch',
+          alignItems: 'flex-start',
+        }} className="work-scroll">
         {WORK.map((p, i) => (
           <div key={p.id} style={{ flex: 'none', width: 300 }}>
             <WorkCard p={p} onOpen={onOpen} />

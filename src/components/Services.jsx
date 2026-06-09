@@ -57,7 +57,7 @@ export function Services() {
     <section id="services" className="cv-auto" style={{ background: 'var(--cream)', padding: '70px 28px', scrollMarginTop: 64, position: 'relative' }}>
       <div style={{ maxWidth: 1040, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 32, flexWrap: 'wrap' }}>
-          <h2 style={{
+          <h2 className="headline-reveal" style={{
             fontFamily: 'var(--font-serif-display)', fontWeight: 500,
             fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0,
           }}>What I do</h2>

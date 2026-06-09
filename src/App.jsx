@@ -37,6 +37,18 @@ function scrollTop(immediate = false) {
 export default function App() {
   const [route, setRoute] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [wiping, setWiping] = useState(false);
+
+  // Bordeaux panel sweeps up, the route swaps underneath, panel lifts away
+  const wipeTo = (swap) => {
+    if (wiping) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { swap(); return; }
+    setWiping(true);
+    setTimeout(() => {
+      swap();
+      setTimeout(() => setWiping(false), 80);
+    }, 390);
+  };
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -65,20 +77,28 @@ export default function App() {
     }
   }, []);
 
-  const goHome      = () => { setRoute('home'); setSelectedProject(null); scrollTop(false); };
-  const goCharacter = () => { setRoute('character'); setSelectedProject(null); scrollTop(true); };
-  const goResume    = () => { setRoute('resume'); setSelectedProject(null); scrollTop(true); };
-  const goProject   = (p) => { setSelectedProject(p); setRoute('project'); scrollTop(true); };
-  const backFromProject = () => { setSelectedProject(null); setRoute('home'); setTimeout(() => scrollToId('work'), 60); };
+  const goHome      = () => {
+    if (route === 'home') { scrollTop(false); return; }
+    wipeTo(() => { setRoute('home'); setSelectedProject(null); scrollTop(true); });
+  };
+  const goCharacter = () => wipeTo(() => { setRoute('character'); setSelectedProject(null); scrollTop(true); });
+  const goResume    = () => wipeTo(() => { setRoute('resume'); setSelectedProject(null); scrollTop(true); });
+  const goProject   = (p) => wipeTo(() => { setSelectedProject(p); setRoute('project'); scrollTop(true); });
+  const backFromProject = () => wipeTo(() => {
+    setSelectedProject(null); setRoute('home');
+    setTimeout(() => scrollToId('work'), 60);
+  });
   const onLink      = (id) => {
-    if (route !== 'home') { setRoute('home'); setSelectedProject(null); setTimeout(() => scrollToId(id), 60); }
-    else scrollToId(id);
+    if (route !== 'home') {
+      wipeTo(() => { setRoute('home'); setSelectedProject(null); setTimeout(() => scrollToId(id), 60); });
+    } else scrollToId(id);
   };
 
   return (
     <div>
       <LoadingScreen />
       <LabelRevealManager />
+      <div className={`route-wipe${wiping ? ' active' : ''}`} aria-hidden="true" />
       <CustomCursor />
       <FilmGrain />
       <Nav onHome={goHome} onLink={onLink} onCharacter={goCharacter} onResume={goResume} route={route} />

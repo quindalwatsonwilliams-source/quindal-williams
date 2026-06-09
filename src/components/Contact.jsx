@@ -27,7 +27,7 @@ export function Contact() {
         <Note size={30} rot={-4} color="var(--amber-900)" style={{ display: 'inline-block' }}>
           got a world that needs building?
         </Note>
-        <h2 style={{
+        <h2 className="headline-reveal" style={{
           fontFamily: 'var(--font-serif-display)', fontWeight: 500,
           fontSize: 'clamp(36px,6vw,76px)', lineHeight: 1, letterSpacing: '-.02em', margin: '12px 0 28px',
         }}>

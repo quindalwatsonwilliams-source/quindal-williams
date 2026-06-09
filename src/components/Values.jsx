@@ -42,7 +42,7 @@ export function Values() {
       {/* Section header */}
       <div style={{ padding: '60px 28px 0', maxWidth: 1040, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, flexWrap: 'wrap' }}>
-          <h2 style={{
+          <h2 className="headline-reveal" style={{
             fontFamily: 'var(--font-serif-display)', fontWeight: 500,
             fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0,
           }}>My Values</h2>

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 export function LabelRevealManager() {
   useEffect(() => {
     function setup(immediate) {
-      const els = Array.from(document.querySelectorAll('[data-label-reveal]'));
+      const els = Array.from(document.querySelectorAll('[data-label-reveal], .headline-reveal'));
 
       if (immediate || els.length === 0) return;
 

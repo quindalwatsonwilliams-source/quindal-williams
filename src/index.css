@@ -297,6 +297,52 @@ a { text-decoration: none; }
   .ed-navlinks    { display: none !important; }
 }
 
+/* ============================================================
+   HEADLINE REVEAL — Domaine Display headlines rise into place
+   ============================================================ */
+.headline-reveal.needs-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+}
+.headline-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .headline-reveal.needs-reveal { transform: none; }
+  .headline-reveal.is-revealed { transform: none; transition: opacity 300ms ease; }
+}
+
+/* ============================================================
+   ROUTE WIPE — bordeaux panel echoing the loading screen
+   ============================================================ */
+.route-wipe {
+  position: fixed; inset: 0;
+  background: #3C0606;
+  z-index: 9000;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 380ms cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+}
+.route-wipe.active {
+  transform: scaleY(1);
+  transform-origin: bottom;
+  pointer-events: auto;
+}
+
+/* ============================================================
+   KEYBOARD FOCUS
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid #B2010C;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* Skip layout/paint for offscreen sections. Not used on sections whose
    stickers overflow the box (About, Values) — paint containment would clip them. */
 .cv-auto { content-visibility: auto; contain-intrinsic-size: auto 700px; }

@@ -53,13 +53,11 @@ export function LoadingScreen() {
       overlay.style.visibility = 'hidden';
       document.body.style.overflow = '';
       sessionStorage.setItem('introPlayed', 'true');
+      // fire as the fade begins so reveal animations play while the overlay lifts
+      fire(false);
     }, Math.round(2500 * s));
 
-    const t4 = setTimeout(() => {
-      fire(false);
-    }, Math.round(3000 * s));
-
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, []);
 
   return (

@@ -7,7 +7,7 @@ export function Hero({ onCharacter, onWork }) {
       <div style={{ maxWidth: 1180, margin: '0 auto', position: 'relative', padding: '0 28px' }}>
 
         {/* Giant crimson headline */}
-        <h1 style={{
+        <h1 className="headline-reveal" style={{
           fontFamily: 'var(--font-serif-display)', fontWeight: 500, textAlign: 'center',
           fontSize: 'clamp(54px, 11.5vw, 148px)', lineHeight: .9, letterSpacing: '-.02em',
           color: 'var(--crimson-500)', margin: 0, position: 'relative', zIndex: 1, whiteSpace: 'nowrap',
