@@ -50,13 +50,17 @@ export function Contact() {
         </div>
 
         <div style={{
-          marginTop: 48, paddingBottom: 20,
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, flexWrap: 'wrap',
+          marginTop: 52, marginBottom: 28,
+          fontFamily: 'var(--font-serif-display)', fontStyle: 'italic',
+          fontSize: 'clamp(22px, 3vw, 32px)', color: 'rgba(247,243,239,.5)',
+          letterSpacing: '-.01em',
+        }}>Still coloring outside the lines.</div>
+
+        <div style={{
+          paddingBottom: 20,
+          display: 'flex', justifyContent: 'center',
         }}>
-          <img src={`${ASSET}/logos/monogram-red.png`} style={{ height: 40 }} alt="QW" />
-          <div style={{
-            fontFamily: 'var(--font-serif-display)', fontStyle: 'italic', fontSize: 18, color: '#F7F3EF',
-          }}>Still coloring outside the lines.</div>
+          <img src={`${ASSET}/logos/monogram-red.png`} style={{ height: 36, opacity: .7 }} alt="QW" />
         </div>
         <div style={{ borderTop: '1px solid #3C0606', paddingTop: 16 }}>
           <div style={{
@@ -65,12 +69,6 @@ export function Contact() {
           }}>© 2026 QUINDAL WILLIAMS  ·  PHASE 1 — CREATIVE DIRECTOR</div>
         </div>
       </div>
-      {/* Pen sticker */}
-      <img src={`${ASSET}/Stickers/sticker-pen.png`} alt="" className="sticker-deco" style={{
-        position: 'absolute', right: '4%', bottom: '14%', width: 110,
-        transform: 'rotate(-20deg)', zIndex: 6, pointerEvents: 'none',
-        filter: 'drop-shadow(2px 3px 8px rgba(0,0,0,0.25))',
-      }} />
     </footer>
   );
 }

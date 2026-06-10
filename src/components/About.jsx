@@ -83,6 +83,13 @@ export function About() {
         transform: 'rotate(14deg)', zIndex: 6, pointerEvents: 'none',
         filter: 'drop-shadow(2px 4px 8px rgba(0,0,0,0.22))',
       }} />
+
+      {/* Pen sticker */}
+      <img src={`${ASSET}/Stickers/sticker-pen.png`} alt="" className="sticker-deco" style={{
+        position: 'absolute', right: '-18px', top: '10%', width: 100,
+        transform: 'rotate(22deg)', zIndex: 6, pointerEvents: 'none',
+        filter: 'drop-shadow(2px 3px 8px rgba(0,0,0,0.28))',
+      }} />
     </section>
   );
 }
