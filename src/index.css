@@ -152,6 +152,9 @@ a { text-decoration: none; }
 @media (max-width: 768px) {
   .proj-body-grid { grid-template-columns: 1fr !important; }
   .proj-sidebar { border-left: none !important; padding-left: 0 !important; border-top: 1px solid rgba(26,26,46,.1); padding-top: 32px; }
+  .resume-body { flex-direction: column !important; }
+  .resume-aside { width: 100% !important; border-left: none !important; border-top: 1px solid rgba(26,26,46,.14) !important; padding: 40px 36px 60px !important; margin: 0 !important; }
+  .resume-year { display: none !important; }
 }
 
 /* Sticker decorations */
