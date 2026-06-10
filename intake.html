@@ -1031,7 +1031,7 @@
         // Send access code to client
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CLIENT_TEMPLATE, {
           to_name:     name,
-          to_email:    email,
+          email:       email,
           access_code: code,
           form_link:   link,
         });
@@ -1097,7 +1097,7 @@
       try {
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CLIENT_TEMPLATE, {
           to_name:     name,
-          to_email:    email,
+          email:       email,
           access_code: code,
           form_link:   window.location.href.split('?')[0],
         });
