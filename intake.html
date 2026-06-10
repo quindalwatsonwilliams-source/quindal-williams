@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start a Project — Quindal Williams Studio</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Google Fonts (Space Grotesk + Space Mono) -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet" />
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  SETUP CHECKLIST                                             ║
+  ║                                                              ║
+  ║  1. EmailJS — https://emailjs.com                           ║
+  ║     a. Create an Email Service (Gmail, etc.)                 ║
+  ║     b. Create TWO Email Templates:                          ║
+  ║                                                              ║
+  ║     CLIENT TEMPLATE (sends access code to client):          ║
+  ║       Subject: Your access code for Quindal Williams Studio  ║
+  ║       Variables: {{to_name}}, {{to_email}}, {{access_code}}, ║
+  ║                  {{form_link}}                               ║
+  ║                                                              ║
+  ║     ADMIN TEMPLATE (notifies you when someone starts):      ║
+  ║       Subject: New intake inquiry from {{client_name}}       ║
+  ║       Variables: {{client_name}}, {{client_email}},          ║
+  ║                  {{access_code}}                             ║
+  ║                                                              ║
+  ║     c. Replace the three EMAILJS_ constants below           ║
+  ║                                                              ║
+  ║  2. Formspree — https://formspree.io                        ║
+  ║     a. Create a new form → copy the endpoint URL             ║
+  ║     b. Replace FORMSPREE_ENDPOINT below                      ║
+  ╚══════════════════════════════════════════════════════════════╝
+  -->
+
+  <style>
+    /* ── BRAND FONTS ──────────────────────────────────────── */
+    @font-face {
+      font-family: "Domaine Display";
+      src: url("fonts/DomaineDisplay-Regular.woff2") format("woff2");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Domaine Display";
+      src: url("fonts/DomaineDisplay-RegularItalic.woff2") format("woff2");
+      font-weight: 400; font-style: italic; font-display: swap;
+    }
+    @font-face {
+      font-family: "Domaine Display";
+      src: url("fonts/DomaineDisplay-Medium.woff2") format("woff2");
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Domaine Display";
+      src: url("fonts/DomaineDisplay-Semibold.woff2") format("woff2");
+      font-weight: 600; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Domaine Text";
+      src: url("fonts/DomaineText-Regular.woff2") format("woff2");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Domaine Text";
+      src: url("fonts/DomaineText-RegularItalic.woff2") format("woff2");
+      font-weight: 400; font-style: italic; font-display: swap;
+    }
+    @font-face {
+      font-family: "Domaine Text";
+      src: url("fonts/DomaineText-Medium.woff2") format("woff2");
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+
+    /* ── RESET ────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+
+    /* ── TOKENS ───────────────────────────────────────────── */
+    :root {
+      --ivory:     #F7F3EF;
+      --ink:       #1A1A2E;
+      --ink-60:    rgba(26,26,46,.6);
+      --ink-40:    rgba(26,26,46,.4);
+      --ink-20:    rgba(26,26,46,.2);
+      --line:      rgba(26,26,46,.12);
+      --cherry:    #B2010C;
+      --bordeaux:  #3C0606;
+      --error:     #B2010C;
+      --serif-d:   "Domaine Display", Georgia, serif;
+      --serif:     "Domaine Text", Georgia, serif;
+      --mono:      "Space Mono", "Courier New", monospace;
+      --sans:      "Space Grotesk", system-ui, sans-serif;
+    }
+
+    /* ── BASE ─────────────────────────────────────────────── */
+    body {
+      font-family: var(--sans);
+      background: var(--ivory);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ───────────────────────────────────────────── */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 40px;
+      border-bottom: 1px solid var(--line);
+      background: var(--ivory);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .wordmark {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .back-link {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-40);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .back-link:hover { color: var(--cherry); }
+
+    /* ── LAYOUT ───────────────────────────────────────────── */
+    .page-wrap { max-width: 660px; margin: 0 auto; padding: 72px 32px 120px; }
+
+    /* ── STAGES ───────────────────────────────────────────── */
+    .stage { display: none; }
+    .stage.active { display: block; }
+
+    /* ── EYEBROW ──────────────────────────────────────────── */
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--cherry);
+      margin-bottom: 18px;
+    }
+
+    /* ── SECTION HEADING ──────────────────────────────────── */
+    .stage-heading {
+      font-family: var(--serif-d);
+      font-weight: 500;
+      font-size: clamp(38px, 6vw, 60px);
+      line-height: .95;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .stage-heading em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--cherry);
+    }
+    .stage-sub {
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink-60);
+      max-width: 520px;
+      margin-bottom: 0;
+    }
+    .stage-sub + .stage-sub { margin-top: 10px; }
+
+    /* ── DIVIDER ──────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--line);
+      margin: 48px 0;
+    }
+
+    /* ── PROGRESS PILLS ───────────────────────────────────── */
+    .progress {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 52px;
+    }
+    .progress-step {
+      height: 3px;
+      border-radius: 99px;
+      background: var(--ink-20);
+      flex: 1;
+      transition: background .4s ease;
+    }
+    .progress-step.done { background: var(--cherry); }
+    .progress-step.active { background: var(--cherry); opacity: .45; }
+
+    /* ── SECTION LABEL ────────────────────────────────────── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .section-label span {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--cherry);
+      white-space: nowrap;
+    }
+    .section-label-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--cherry);
+      opacity: .18;
+    }
+
+    /* ── FIELD GROUPS ─────────────────────────────────────── */
+    .form-section { margin-bottom: 52px; }
+    .field-group { margin-bottom: 28px; }
+    .field-group:last-child { margin-bottom: 0; }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+
+    /* ── LABELS ───────────────────────────────────────────── */
+    label.field-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .field-hint {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--ink-60);
+      margin-top: -4px;
+      margin-bottom: 12px;
+      line-height: 1.55;
+    }
+    .required-mark { color: var(--cherry); }
+
+    /* ── INPUTS ───────────────────────────────────────────── */
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="password"],
+    select,
+    textarea {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--ink-20);
+      border-radius: 2px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color .15s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="url"]:focus,
+    input[type="password"]:focus,
+    select:focus,
+    textarea:focus { border-color: var(--cherry); }
+
+    input::placeholder,
+    textarea::placeholder { color: var(--ink-20); }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%231A1A2E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    /* ── CHECKBOXES ───────────────────────────────────────── */
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    @media (max-width: 420px) { .checkbox-grid { grid-template-columns: 1fr; } }
+
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 11px 13px;
+      border: 1px solid var(--ink-20);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+      user-select: none;
+    }
+    .checkbox-item:hover { border-color: var(--cherry); }
+    .checkbox-item.checked { border-color: var(--cherry); background: rgba(178,1,12,.04); }
+
+    .checkbox-item input[type="checkbox"] {
+      width: 16px; height: 16px;
+      border: 1.5px solid var(--ink-20);
+      border-radius: 2px;
+      background: #fff;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: background .12s, border-color .12s;
+      position: relative;
+    }
+    .checkbox-item input[type="checkbox"]:checked {
+      background: var(--cherry);
+      border-color: var(--cherry);
+    }
+    .checkbox-item input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+      left: 3px; top: 0px;
+      width: 5px; height: 10px;
+      border: 1.5px solid #fff;
+      border-top: none; border-left: none;
+      transform: rotate(45deg);
+    }
+    .checkbox-label { font-size: 13.5px; color: var(--ink); line-height: 1.3; }
+    .checkbox-label small {
+      display: block;
+      font-family: var(--serif);
+      font-size: 11.5px;
+      color: var(--ink-60);
+      margin-top: 2px;
+    }
+
+    /* ── RADIOS ───────────────────────────────────────────── */
+    .radio-stack { display: flex; flex-direction: column; gap: 7px; }
+
+    .radio-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 15px;
+      border: 1px solid var(--ink-20);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+      user-select: none;
+    }
+    .radio-item:hover { border-color: var(--cherry); }
+    .radio-item.checked { border-color: var(--cherry); background: rgba(178,1,12,.04); }
+
+    .radio-item input[type="radio"] {
+      width: 16px; height: 16px;
+      border: 1.5px solid var(--ink-20);
+      border-radius: 50%;
+      background: #fff;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: background .12s, border-color .12s;
+      position: relative;
+    }
+    .radio-item input[type="radio"]:checked {
+      background: var(--cherry);
+      border-color: var(--cherry);
+    }
+    .radio-item input[type="radio"]:checked::after {
+      content: "";
+      position: absolute;
+      left: 4px; top: 4px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    .radio-label { font-size: 14px; color: var(--ink); line-height: 1.4; }
+    .radio-label .range { font-weight: 600; display: block; }
+    .radio-label .context { font-family: var(--serif); font-size: 12px; color: var(--ink-60); margin-top: 2px; display: block; }
+
+    /* ── CHAR COUNTER ─────────────────────────────────────── */
+    .char-count {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--ink-20);
+      text-align: right;
+      margin-top: 6px;
+    }
+
+    /* ── FIELD ERROR ──────────────────────────────────────── */
+    .field-error {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .06em;
+      color: var(--error);
+      margin-top: 6px;
+      display: none;
+    }
+    .field-group.has-error input,
+    .field-group.has-error textarea,
+    .field-group.has-error select { border-color: var(--error); }
+    .field-group.has-error .field-error { display: block; }
+
+    /* ── BUTTONS ──────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bordeaux);
+      color: var(--ivory);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      padding: 16px 38px;
+      cursor: pointer;
+      transition: background .15s, transform .1s;
+    }
+    .btn-primary:hover { background: var(--cherry); }
+    .btn-primary:active { transform: scale(.98); }
+    .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-primary .arrow { transition: transform .15s; }
+    .btn-primary:hover:not(:disabled) .arrow { transform: translateX(4px); }
+
+    /* ── SUBMIT WRAP ──────────────────────────────────────── */
+    .submit-wrap {
+      padding-top: 48px;
+      border-top: 1px solid var(--line);
+    }
+    .submit-note {
+      font-family: var(--serif);
+      font-size: 14px;
+      color: var(--ink-60);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    /* ── PASSWORD GATE ────────────────────────────────────── */
+    .lock-icon {
+      width: 48px; height: 48px;
+      border: 1.5px solid var(--cherry);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 32px;
+      color: var(--cherry);
+    }
+    .pw-sent-to {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: var(--ink-60);
+      margin-bottom: 32px;
+    }
+    .pw-sent-to strong { color: var(--ink); }
+    .pw-error {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .06em;
+      color: var(--error);
+      margin-top: 8px;
+      display: none;
+    }
+    .pw-error.visible { display: block; }
+
+    .resend-link {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-40);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      margin-top: 14px;
+      display: inline-block;
+      transition: color .15s;
+    }
+    .resend-link:hover { color: var(--cherry); }
+
+    /* ── SUCCESS STATE ────────────────────────────────────── */
+    #successState {
+      display: none;
+      text-align: center;
+      padding: 100px 32px;
+    }
+    .success-mark {
+      font-family: var(--serif-d);
+      font-size: 48px;
+      color: var(--cherry);
+      display: block;
+      margin-bottom: 28px;
+    }
+    .success-heading {
+      font-family: var(--serif-d);
+      font-weight: 500;
+      font-size: 40px;
+      letter-spacing: -.02em;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .success-body {
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--ink-60);
+      line-height: 1.7;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    .page-footer {
+      margin-top: 80px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .page-footer p { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--ink-40); }
+    .page-footer a { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; color: var(--ink-40); text-decoration: none; transition: color .15s; }
+    .page-footer a:hover { color: var(--cherry); }
+
+    @media (max-width: 480px) {
+      .site-header { padding: 18px 20px; }
+      .page-wrap { padding: 52px 20px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="https://quindal.art" class="wordmark">Quindal Williams Studio</a>
+    <a href="https://quindal.art" class="back-link">← quindal.art</a>
+  </header>
+
+  <main>
+    <div class="page-wrap">
+
+      <!-- SUCCESS STATE -->
+      <div id="successState">
+        <span class="success-mark">✦</span>
+        <h2 class="success-heading">Got it. Thank you.</h2>
+        <p class="success-body">I'll review everything personally and follow up within 2 business days. If we're a good fit, I'll reach out to schedule a quick discovery call.</p>
+      </div>
+
+      <!-- ───────────────────────────────────────────────── -->
+      <!-- STAGE 1 — INQUIRY GATE                           -->
+      <!-- ───────────────────────────────────────────────── -->
+      <div id="stage1" class="stage active">
+
+        <div class="progress" aria-label="Step 1 of 3">
+          <div class="progress-step active"></div>
+          <div class="progress-step"></div>
+          <div class="progress-step"></div>
+        </div>
+
+        <p class="eyebrow">Start a Project</p>
+        <h1 class="stage-heading">Let's see if we're a<br><em>good fit.</em></h1>
+
+        <div class="divider" style="margin-top: 36px;"></div>
+
+        <p class="stage-sub">This form helps me understand your project before we connect. To keep it private, I'll send an access code to your email — then you'll fill out the rest.</p>
+        <p class="stage-sub" style="margin-top: 10px;">I respond to all submissions within 2 business days.</p>
+
+        <div class="divider"></div>
+
+        <form id="form1" novalidate>
+          <!-- Honeypot -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <div class="field-row">
+            <div class="field-group" id="group1-name">
+              <label class="field-label" for="s1-name">Full Name <span class="required-mark">*</span></label>
+              <input type="text" id="s1-name" name="name" placeholder="Your name" required autocomplete="name" />
+              <p class="field-error">Please enter your name.</p>
+            </div>
+            <div class="field-group" id="group1-email">
+              <label class="field-label" for="s1-email">Email Address <span class="required-mark">*</span></label>
+              <input type="email" id="s1-email" name="email" placeholder="you@example.com" required autocomplete="email" />
+              <p class="field-error">Please enter a valid email address.</p>
+            </div>
+          </div>
+
+          <div id="s1-send-error" style="font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--error);margin-bottom:16px;display:none;">
+            Couldn't send your access code — please try again or email <a href="mailto:q@quindal.art" style="color:var(--cherry);">q@quindal.art</a>.
+          </div>
+
+          <div class="submit-wrap" style="border-top:none; padding-top: 8px;">
+            <button type="submit" class="btn-primary" id="s1-btn">
+              Send Access Code <span class="arrow">→</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="page-footer">
+          <p>© 2026 Quindal Williams Studio</p>
+          <a href="mailto:q@quindal.art">q@quindal.art</a>
+        </div>
+      </div>
+
+      <!-- ───────────────────────────────────────────────── -->
+      <!-- STAGE 2 — PASSWORD GATE                          -->
+      <!-- ───────────────────────────────────────────────── -->
+      <div id="stage2" class="stage">
+
+        <div class="progress" aria-label="Step 2 of 3">
+          <div class="progress-step done"></div>
+          <div class="progress-step active"></div>
+          <div class="progress-step"></div>
+        </div>
+
+        <div class="lock-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </div>
+
+        <p class="eyebrow">Check your inbox</p>
+        <h2 class="stage-heading" style="font-size:clamp(32px,5vw,50px);">Enter your<br><em>access code.</em></h2>
+
+        <div class="divider" style="margin-top:28px;"></div>
+
+        <p id="s2-sent-msg" class="pw-sent-to">
+          We sent a code to <strong id="s2-email-display"></strong>
+        </p>
+
+        <form id="form2" novalidate>
+          <div class="field-group" style="max-width: 300px;">
+            <label class="field-label" for="s2-code">Access Code <span class="required-mark">*</span></label>
+            <input type="text" id="s2-code" name="code"
+              placeholder="XXXXXXXX"
+              autocomplete="one-time-code"
+              spellcheck="false"
+              style="font-family:var(--mono);font-size:18px;letter-spacing:.2em;text-transform:uppercase;"
+            />
+            <p id="s2-pw-error" class="pw-error">Incorrect code — check your email and try again.</p>
+          </div>
+
+          <button type="submit" class="btn-primary" id="s2-btn">
+            Continue <span class="arrow">→</span>
+          </button>
+
+          <br />
+          <button type="button" class="resend-link" id="s2-resend" onclick="resendCode()">
+            Resend code
+          </button>
+          <span id="s2-resend-msg" style="font-family:var(--mono);font-size:10px;color:var(--cherry);margin-left:8px;display:none;">Sent!</span>
+        </form>
+
+        <div class="page-footer">
+          <p>© 2026 Quindal Williams Studio</p>
+          <a href="mailto:q@quindal.art">q@quindal.art</a>
+        </div>
+      </div>
+
+      <!-- ───────────────────────────────────────────────── -->
+      <!-- STAGE 3 — FULL INTAKE FORM                       -->
+      <!-- ───────────────────────────────────────────────── -->
+      <div id="stage3" class="stage">
+
+        <div class="progress" aria-label="Step 3 of 3">
+          <div class="progress-step done"></div>
+          <div class="progress-step done"></div>
+          <div class="progress-step active"></div>
+        </div>
+
+        <p class="eyebrow">Project Intake</p>
+        <h2 class="stage-heading">Tell me about<br><em>the project.</em></h2>
+        <p class="stage-sub">The more specific you are, the better I can tell you whether I'm the right person for it.</p>
+
+        <div class="divider"></div>
+
+        <form id="form3" novalidate>
+          <!-- Honeypot -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <!-- Pre-filled from Stage 1 (set by JS) -->
+          <input type="hidden" id="f3-name" name="name" />
+          <input type="hidden" id="f3-email" name="email" />
+
+          <!-- 01 — ABOUT YOU ──────────────────────────── -->
+          <section class="form-section">
+            <div class="section-label">
+              <span>01 — About You</span>
+              <div class="section-label-rule"></div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <label class="field-label">Full Name</label>
+                <div id="f3-name-display" style="font-family:var(--sans);font-size:15px;padding:13px 16px;background:rgba(26,26,46,.04);border:1px solid var(--line);border-radius:2px;color:var(--ink-60);"></div>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="f3-company">Company / Brand</label>
+                <input type="text" id="f3-company" name="company" placeholder="If applicable" autocomplete="organization" />
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <label class="field-label">Email Address</label>
+                <div id="f3-email-display" style="font-family:var(--sans);font-size:15px;padding:13px 16px;background:rgba(26,26,46,.04);border:1px solid var(--line);border-radius:2px;color:var(--ink-60);"></div>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="f3-website">Website or Instagram</label>
+                <input type="url" id="f3-website" name="website" placeholder="https://" autocomplete="url" />
+              </div>
+            </div>
+          </section>
+
+          <!-- 02 — THE PROJECT ────────────────────────── -->
+          <section class="form-section">
+            <div class="section-label">
+              <span>02 — The Project</span>
+              <div class="section-label-rule"></div>
+            </div>
+
+            <div class="field-group" id="group3-services">
+              <label class="field-label">What type of work do you need? <span class="required-mark">*</span></label>
+              <p class="field-hint">Select all that apply.</p>
+              <div class="checkbox-grid">
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="services[]" value="Brand Identity" />
+                  <span class="checkbox-label">Brand Identity<small>Logo, visual system, guidelines</small></span>
+                </label>
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="services[]" value="Campaign Development" />
+                  <span class="checkbox-label">Campaign Development<small>Concept, art direction, assets</small></span>
+                </label>
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="services[]" value="Experiential Design" />
+                  <span class="checkbox-label">Experiential Design<small>Activations, installations, spatial</small></span>
+                </label>
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="services[]" value="Packaging Design" />
+                  <span class="checkbox-label">Packaging Design<small>Structural + surface, print-ready</small></span>
+                </label>
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="services[]" value="Brand Strategy" />
+                  <span class="checkbox-label">Brand Strategy<small>Positioning, naming, messaging</small></span>
+                </label>
+                <label class="checkbox-item" onclick="toggleCheck(this)">
+                  <input type="checkbox" name="services[]" value="Not Sure Yet" />
+                  <span class="checkbox-label">Not Sure Yet<small>I'll explain below</small></span>
+                </label>
+              </div>
+              <p class="field-error">Please select at least one service type.</p>
+            </div>
+
+            <div class="field-group" id="group3-description">
+              <label class="field-label" for="f3-description">What are you trying to solve or create? <span class="required-mark">*</span></label>
+              <p class="field-hint">Tell me about the project — what it is, what problem it's addressing, and what you're hoping to walk away with. The more specific, the better.</p>
+              <textarea id="f3-description" name="description" placeholder="e.g. We're launching a new skincare line aimed at Gen Z and need a full brand identity before our product launch in October. We have a name and a rough sense of the aesthetic but nothing designed yet..." required maxlength="1000"></textarea>
+              <p class="char-count"><span id="descCount">0</span> / 1000</p>
+              <p class="field-error">Please describe your project.</p>
+            </div>
+
+            <div class="field-group" id="group3-stage">
+              <label class="field-label" for="f3-stage">Where are you right now? <span class="required-mark">*</span></label>
+              <p class="field-hint">What stage is this project at?</p>
+              <select id="f3-stage" name="stage" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="Brand new — starting from scratch">Brand new — starting from scratch</option>
+                <option value="Rebrand — existing brand needs a refresh or overhaul">Rebrand — existing brand needs a refresh or overhaul</option>
+                <option value="Established brand — adding a new project or campaign">Established brand — adding a new project or campaign</option>
+                <option value="Pre-launch — building ahead of a product or company launch">Pre-launch — building ahead of a product or company launch</option>
+                <option value="Ongoing — looking for a creative partner on a retainer basis">Ongoing — looking for a creative partner on a retainer basis</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+              <p class="field-error">Please select a project stage.</p>
+            </div>
+          </section>
+
+          <!-- 03 — SCOPE + TIMING ─────────────────────── -->
+          <section class="form-section">
+            <div class="section-label">
+              <span>03 — Scope + Timing</span>
+              <div class="section-label-rule"></div>
+            </div>
+
+            <div class="field-group" id="group3-budget">
+              <label class="field-label">What's your budget range? <span class="required-mark">*</span></label>
+              <p class="field-hint">Being upfront here helps us both. If your budget doesn't align with project scope, I'll tell you directly.</p>
+              <div class="radio-stack">
+                <label class="radio-item" onclick="toggleRadio(this)">
+                  <input type="radio" name="budget" value="Under $1,500" required />
+                  <span class="radio-label">
+                    <span class="range">Under $1,500</span>
+                    <span class="context">Best suited for small, tightly scoped add-ons or hourly work</span>
+                  </span>
+                </label>
+                <label class="radio-item" onclick="toggleRadio(this)">
+                  <input type="radio" name="budget" value="$1,500 – $3,500" />
+                  <span class="radio-label">
+                    <span class="range">$1,500 – $3,500</span>
+                    <span class="context">Campaign assets, brand strategy, social creative, or a focused identity starter</span>
+                  </span>
+                </label>
+                <label class="radio-item" onclick="toggleRadio(this)">
+                  <input type="radio" name="budget" value="$3,500 – $7,500" />
+                  <span class="radio-label">
+                    <span class="range">$3,500 – $7,500</span>
+                    <span class="context">Brand identity, packaging design, or a mid-scale campaign</span>
+                  </span>
+                </label>
+                <label class="radio-item" onclick="toggleRadio(this)">
+                  <input type="radio" name="budget" value="$7,500 – $15,000" />
+                  <span class="radio-label">
+                    <span class="range">$7,500 – $15,000</span>
+                    <span class="context">Full brand system, experiential concept, or multi-phase projects</span>
+                  </span>
+                </label>
+                <label class="radio-item" onclick="toggleRadio(this)">
+                  <input type="radio" name="budget" value="$15,000+" />
+                  <span class="radio-label">
+                    <span class="range">$15,000+</span>
+                    <span class="context">Large-scale brand builds, ongoing retainers, or multi-deliverable engagements</span>
+                  </span>
+                </label>
+                <label class="radio-item" onclick="toggleRadio(this)">
+                  <input type="radio" name="budget" value="Not sure yet — open to discussion" />
+                  <span class="radio-label">
+                    <span class="range">Not sure yet</span>
+                    <span class="context">I'm open to discussing what makes sense for the scope</span>
+                  </span>
+                </label>
+              </div>
+              <p class="field-error">Please select a budget range.</p>
+            </div>
+
+            <div class="field-row">
+              <div class="field-group" id="group3-timeline">
+                <label class="field-label" for="f3-timeline">Ideal start date <span class="required-mark">*</span></label>
+                <select id="f3-timeline" name="timeline" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option value="ASAP — I'm ready to move">ASAP — I'm ready to move</option>
+                  <option value="Within the next 2–4 weeks">Within the next 2–4 weeks</option>
+                  <option value="1–2 months from now">1–2 months from now</option>
+                  <option value="3–6 months from now">3–6 months from now</option>
+                  <option value="Just exploring for now">Just exploring for now</option>
+                </select>
+                <p class="field-error">Please select a start timeframe.</p>
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="f3-deadline">Hard deadline (if any)</label>
+                <input type="text" id="f3-deadline" name="deadline" placeholder="e.g. Launch on Oct 15" />
+              </div>
+            </div>
+          </section>
+
+          <!-- 04 — A LITTLE MORE ──────────────────────── -->
+          <section class="form-section">
+            <div class="section-label">
+              <span>04 — A Little More</span>
+              <div class="section-label-rule"></div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="f3-previous">Have you worked with a creative director or branding studio before?</label>
+              <select id="f3-previous" name="previous_experience">
+                <option value="" disabled selected>Select one</option>
+                <option value="Yes — I've worked with studios or CDs before">Yes — I've worked with studios or CDs before</option>
+                <option value="Yes — but it wasn't a great experience">Yes — but it wasn't a great experience</option>
+                <option value="No — this would be my first time">No — this would be my first time</option>
+                <option value="I've worked with freelancers but not a full studio">I've worked with freelancers but not a full studio</option>
+              </select>
+            </div>
+
+            <div class="field-group" id="group3-success">
+              <label class="field-label" for="f3-success">What does success look like for this project? <span class="required-mark">*</span></label>
+              <p class="field-hint">Don't overthink it. What would make you feel like this project did exactly what it needed to?</p>
+              <textarea id="f3-success" name="success_vision" placeholder="e.g. A brand identity we're genuinely proud of, that we can build the whole company around and not outgrow in two years..." required maxlength="600"></textarea>
+              <p class="char-count"><span id="successCount">0</span> / 600</p>
+              <p class="field-error">Please share your vision of success.</p>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="f3-referral">How did you hear about me?</label>
+              <select id="f3-referral" name="referral_source">
+                <option value="" disabled selected>Select one</option>
+                <option value="Instagram / Social Media">Instagram / Social Media</option>
+                <option value="Referral from someone I know">Referral from someone I know</option>
+                <option value="Google or web search">Google or web search</option>
+                <option value="Behance or portfolio site">Behance or portfolio site</option>
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="SCAD / academic connection">SCAD / academic connection</option>
+                <option value="Worked together before">Worked together before</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="f3-notes">Anything else?</label>
+              <p class="field-hint">Anything that didn't fit the questions above — references, context, constraints, or just something you want me to know going in.</p>
+              <textarea id="f3-notes" name="additional_notes" placeholder="Optional — but I read everything." maxlength="800"></textarea>
+            </div>
+          </section>
+
+          <!-- SUBMIT -->
+          <div class="submit-wrap">
+            <p class="submit-note">I review every submission personally and follow up within 2 business days. If we're a good fit, I'll reach out to schedule a 20-minute discovery call. No hard sell — just a conversation.</p>
+
+            <div id="f3-submit-error" style="font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--error);margin-bottom:16px;display:none;">
+              Something went wrong — please try again or email <a href="mailto:q@quindal.art" style="color:var(--cherry);">q@quindal.art</a> directly.
+            </div>
+
+            <button type="submit" class="btn-primary" id="f3-btn">
+              Submit Intake Form <span class="arrow">→</span>
+            </button>
+          </div>
+
+          <div class="page-footer">
+            <p>© 2026 Quindal Williams Studio</p>
+            <a href="mailto:q@quindal.art">q@quindal.art</a>
+          </div>
+        </form>
+      </div>
+
+    </div><!-- /.page-wrap -->
+  </main>
+
+  <script>
+    // ── REPLACE THESE BEFORE GOING LIVE ─────────────────────────────
+    const EMAILJS_PUBLIC_KEY      = 'YOUR_EMAILJS_PUBLIC_KEY';
+    const EMAILJS_SERVICE_ID      = 'YOUR_EMAILJS_SERVICE_ID';
+    const EMAILJS_CLIENT_TEMPLATE = 'YOUR_CLIENT_TEMPLATE_ID';
+    const EMAILJS_ADMIN_TEMPLATE  = 'YOUR_ADMIN_TEMPLATE_ID';
+    const FORMSPREE_ENDPOINT      = 'YOUR_FORMSPREE_ENDPOINT';
+    // ────────────────────────────────────────────────────────────────
+
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    const SS = sessionStorage;
+
+    // ── UTILS ────────────────────────────────────────────────────────
+    function genCode(len = 8) {
+      // Unambiguous chars — no O/0, I/1/l
+      const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+      return Array.from({ length: len }, () => chars[Math.random() * chars.length | 0]).join('');
+    }
+
+    function showStage(n) {
+      document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+      document.getElementById('stage' + n).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── RESTORE SESSION ──────────────────────────────────────────────
+    (function restoreSession() {
+      if (SS.getItem('qw_iq_done')) {
+        document.getElementById('successState').style.display = 'block';
+        return;
+      }
+      if (SS.getItem('qw_iq_unlocked') === 'true') {
+        prefillStage3();
+        showStage(3);
+        return;
+      }
+      if (SS.getItem('qw_iq_pwd')) {
+        const email = SS.getItem('qw_iq_email') || '';
+        document.getElementById('s2-email-display').textContent = email;
+        showStage(2);
+      }
+    })();
+
+    // ── STAGE 1: INQUIRY ─────────────────────────────────────────────
+    document.getElementById('form1').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      let valid = true;
+      document.querySelectorAll('#stage1 .field-group.has-error')
+        .forEach(g => g.classList.remove('has-error'));
+
+      const nameEl  = document.getElementById('s1-name');
+      const emailEl = document.getElementById('s1-email');
+
+      if (!nameEl.value.trim()) {
+        document.getElementById('group1-name').classList.add('has-error');
+        valid = false;
+      }
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(emailEl.value.trim())) {
+        document.getElementById('group1-email').classList.add('has-error');
+        valid = false;
+      }
+      if (!valid) return;
+
+      const btn = document.getElementById('s1-btn');
+      const errEl = document.getElementById('s1-send-error');
+      btn.disabled = true;
+      btn.innerHTML = 'Sending… <span class="arrow">→</span>';
+      errEl.style.display = 'none';
+
+      const name  = nameEl.value.trim();
+      const email = emailEl.value.trim();
+      const code  = genCode();
+      const link  = window.location.href.split('?')[0];
+
+      try {
+        // Send access code to client
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CLIENT_TEMPLATE, {
+          to_name:     name,
+          to_email:    email,
+          access_code: code,
+          form_link:   link,
+        });
+
+        // Notify admin
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_ADMIN_TEMPLATE, {
+          client_name:  name,
+          client_email: email,
+          access_code:  code,
+        }).catch(() => {}); // Non-blocking — don't fail if admin email errors
+
+        SS.setItem('qw_iq_pwd',   code);
+        SS.setItem('qw_iq_name',  name);
+        SS.setItem('qw_iq_email', email);
+
+        document.getElementById('s2-email-display').textContent = email;
+        showStage(2);
+
+      } catch (err) {
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = 'Send Access Code <span class="arrow">→</span>';
+      }
+    });
+
+    // ── STAGE 2: PASSWORD GATE ───────────────────────────────────────
+    document.getElementById('form2').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const entered = document.getElementById('s2-code').value.trim().toUpperCase();
+      const stored  = (SS.getItem('qw_iq_pwd') || '').toUpperCase();
+      const errEl   = document.getElementById('s2-pw-error');
+
+      if (!entered) {
+        errEl.textContent = 'Please enter your access code.';
+        errEl.classList.add('visible');
+        return;
+      }
+      if (entered !== stored) {
+        errEl.textContent = 'Incorrect code — check your email and try again.';
+        errEl.classList.add('visible');
+        document.getElementById('s2-code').value = '';
+        return;
+      }
+
+      errEl.classList.remove('visible');
+      SS.setItem('qw_iq_unlocked', 'true');
+      prefillStage3();
+      showStage(3);
+    });
+
+    async function resendCode() {
+      const name  = SS.getItem('qw_iq_name')  || '';
+      const email = SS.getItem('qw_iq_email') || '';
+      const code  = SS.getItem('qw_iq_pwd')   || '';
+      if (!email || !code) return;
+
+      const btn = document.getElementById('s2-resend');
+      const msg = document.getElementById('s2-resend-msg');
+      btn.disabled = true;
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CLIENT_TEMPLATE, {
+          to_name:     name,
+          to_email:    email,
+          access_code: code,
+          form_link:   window.location.href.split('?')[0],
+        });
+        msg.style.display = 'inline';
+        setTimeout(() => { msg.style.display = 'none'; }, 3000);
+      } catch (_) {}
+      btn.disabled = false;
+    }
+
+    // ── STAGE 3: PRE-FILL ────────────────────────────────────────────
+    function prefillStage3() {
+      const name  = SS.getItem('qw_iq_name')  || '';
+      const email = SS.getItem('qw_iq_email') || '';
+      document.getElementById('f3-name').value           = name;
+      document.getElementById('f3-email').value          = email;
+      document.getElementById('f3-name-display').textContent  = name;
+      document.getElementById('f3-email-display').textContent = email;
+    }
+
+    // ── STAGE 3: SUBMIT ──────────────────────────────────────────────
+    document.getElementById('form3').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      let valid = true;
+      document.querySelectorAll('#stage3 .field-group.has-error')
+        .forEach(g => g.classList.remove('has-error'));
+
+      const servicesChecked = document.querySelectorAll('input[name="services[]"]:checked').length;
+      if (servicesChecked === 0) {
+        document.getElementById('group3-services').classList.add('has-error');
+        valid = false;
+      }
+      const desc = document.getElementById('f3-description');
+      if (!desc.value.trim()) {
+        document.getElementById('group3-description').classList.add('has-error');
+        valid = false;
+      }
+      const stage = document.getElementById('f3-stage');
+      if (!stage.value) {
+        document.getElementById('group3-stage').classList.add('has-error');
+        valid = false;
+      }
+      if (!document.querySelector('input[name="budget"]:checked')) {
+        document.getElementById('group3-budget').classList.add('has-error');
+        valid = false;
+      }
+      const timeline = document.getElementById('f3-timeline');
+      if (!timeline.value) {
+        document.getElementById('group3-timeline').classList.add('has-error');
+        valid = false;
+      }
+      const success = document.getElementById('f3-success');
+      if (!success.value.trim()) {
+        document.getElementById('group3-success').classList.add('has-error');
+        valid = false;
+      }
+
+      if (!valid) {
+        document.querySelector('#stage3 .field-group.has-error')
+          ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const btn    = document.getElementById('f3-btn');
+      const errEl  = document.getElementById('f3-submit-error');
+      btn.disabled = true;
+      btn.innerHTML = 'Submitting… <span class="arrow">→</span>';
+      errEl.style.display = 'none';
+
+      try {
+        const data = new FormData(this);
+        // Collect multi-select checkboxes as a readable string
+        const selected = [...document.querySelectorAll('input[name="services[]"]:checked')]
+          .map(cb => cb.value).join(', ');
+        data.delete('services[]');
+        data.append('services', selected);
+
+        if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT === 'YOUR_FORMSPREE_ENDPOINT') {
+          // Dev / placeholder mode — just show success
+          onSubmitSuccess();
+          return;
+        }
+
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+
+        if (res.ok) {
+          onSubmitSuccess();
+        } else {
+          throw new Error('Non-ok response');
+        }
+      } catch (_) {
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = 'Submit Intake Form <span class="arrow">→</span>';
+      }
+    });
+
+    function onSubmitSuccess() {
+      SS.setItem('qw_iq_done', 'true');
+      document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+      document.getElementById('successState').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── CHECKBOX / RADIO TOGGLE ──────────────────────────────────────
+    function toggleCheck(label) {
+      setTimeout(() => {
+        label.classList.toggle('checked', label.querySelector('input[type="checkbox"]').checked);
+      }, 0);
+    }
+
+    function toggleRadio(label) {
+      const stack = label.closest('.radio-stack');
+      setTimeout(() => {
+        stack.querySelectorAll('.radio-item').forEach(item => {
+          item.classList.toggle('checked', item.querySelector('input[type="radio"]').checked);
+        });
+      }, 0);
+    }
+
+    // ── CHAR COUNTERS ────────────────────────────────────────────────
+    function bindCounter(taId, countId) {
+      const ta = document.getElementById(taId);
+      const ct = document.getElementById(countId);
+      if (!ta || !ct) return;
+      ta.addEventListener('input', () => { ct.textContent = ta.value.length; });
+    }
+    bindCounter('f3-description', 'descCount');
+    bindCounter('f3-success', 'successCount');
+  </script>
+
+</body>
+</html>
