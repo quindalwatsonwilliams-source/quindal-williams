@@ -959,7 +959,7 @@
     const FORMSPREE_ENDPOINT      = 'https://formspree.io/f/mrevlwzr';
     // ────────────────────────────────────────────────────────────────
 
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
     const SS = sessionStorage;
 
@@ -1051,6 +1051,8 @@
         showStage(2);
 
       } catch (err) {
+        const detail = err?.text || err?.message || JSON.stringify(err);
+        errEl.innerHTML = `Couldn't send your access code (${detail}) — please try again or email <a href="mailto:q@quindal.art" style="color:var(--cherry);">q@quindal.art</a>.`;
         errEl.style.display = 'block';
         btn.disabled = false;
         btn.innerHTML = 'Send Access Code <span class="arrow">→</span>';
