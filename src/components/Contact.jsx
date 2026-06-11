@@ -1,4 +1,4 @@
-import { ASSET, Note, Pill, Arrow } from './ui';
+import { ASSET, Note, Pill } from './ui';
 
 export function Contact() {
   return (
@@ -47,13 +47,17 @@ export function Contact() {
           </div>
 
           {/* Right — note + button + tagline + monogram */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 28 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 24 }}>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
               <Note size={28} rot={-3} color="var(--amber-900)">
                 got a world that needs building?
               </Note>
-              <Arrow w={52} h={36} color="var(--amber-900)" style={{ marginLeft: 8 }} />
+              {/* Downward curved arrow */}
+              <svg width="36" height="48" viewBox="0 0 36 48" fill="none" style={{ display: 'block' }}>
+                <path d="M18 4 C 28 14, 28 28, 16 42" stroke="var(--amber-900)" strokeWidth="2.4" strokeLinecap="round" fill="none" />
+                <path d="M8 36 L16 43 L22 35" stroke="var(--amber-900)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              </svg>
             </div>
 
             <Pill
@@ -64,7 +68,7 @@ export function Contact() {
             </Pill>
 
             <div style={{
-              display: 'flex', gap: 14, flexWrap: 'wrap',
+              display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center',
               fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.14em',
               textTransform: 'uppercase', color: 'rgba(247,243,239,.5)',
             }}>
