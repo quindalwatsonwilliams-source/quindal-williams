@@ -1,4 +1,4 @@
-import { MascotSlot, Lab, Note, Arrow, Pill } from './ui';
+import { ASSET, Lab, Note, Arrow, Pill } from './ui';
 import { MagneticWrapper } from './MagneticWrapper';
 
 export function Hero({ onCharacter, onWork }) {
@@ -17,13 +17,16 @@ export function Hero({ onCharacter, onWork }) {
 
         {/* Photo stage */}
         <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', marginTop: '-2.2vw' }}>
-          <MascotSlot
-            label="Hero portrait"
+          <img
+            src={`${ASSET}/photos/portrait.jpg`}
+            alt="Quindal Williams"
             style={{
               width: 'min(400px, 42vw)', height: 'min(520px, 56vw)',
+              minWidth: 240, minHeight: 320,
+              objectFit: 'cover', objectPosition: 'center top',
               zIndex: 2, position: 'relative',
               boxShadow: '0 30px 60px rgba(26,26,46,.16)',
-              borderRadius: 8, minWidth: 240, minHeight: 320,
+              borderRadius: 8, display: 'block',
             }}
           />
 
