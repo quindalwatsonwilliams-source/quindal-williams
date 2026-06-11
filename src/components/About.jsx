@@ -1,4 +1,4 @@
-import { MascotSlot, Lab, Note, Pill, ASSET } from './ui';
+import { Lab, Note, Pill, ASSET } from './ui';
 
 export function About() {
   return (
@@ -20,9 +20,10 @@ export function About() {
           {/* Left: portrait + body */}
           <div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
-              <MascotSlot
-                label="Portrait"
-                style={{ width: '100%', height: 300, borderRadius: 4, flex: 'none' }}
+              <img
+                src={`${ASSET}/photos/portrait.jpg`}
+                alt="Quindal Williams"
+                style={{ width: '100%', height: 300, objectFit: 'cover', objectPosition: 'center top', borderRadius: 4, display: 'block' }}
               />
               <div style={{ alignSelf: 'center' }}>
                 <p style={{
@@ -66,9 +67,10 @@ export function About() {
                 background: 'rgba(231,35,136,.28)', border: '1px solid rgba(231,35,136,.4)',
               }} />
               <div style={{ background: '#fff', padding: '10px 10px 34px', boxShadow: '0 12px 26px rgba(26,26,46,.16)' }}>
-                <MascotSlot
-                  label="Polaroid"
-                  style={{ width: '100%', height: 160, borderRadius: 2, flex: 'none' }}
+                <img
+                  src={`${ASSET}/photos/cherries.jpg`}
+                  alt=""
+                  style={{ width: '100%', height: 160, objectFit: 'cover', objectPosition: 'center', borderRadius: 2, display: 'block' }}
                 />
                 <Note size={18} rot={-3} style={{ textAlign: 'center', marginTop: 8 }}>at play, always</Note>
               </div>

@@ -4,6 +4,7 @@ import { Nav } from './components/Nav';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Values } from './components/Values';
+import { PhotoStrip } from './components/PhotoStrip';
 import { Work } from './components/Work';
 import { Services } from './components/Services';
 import { Socials } from './components/Socials';
@@ -108,6 +109,7 @@ export default function App() {
           <Hero onCharacter={goCharacter} onWork={() => onLink('work')} />
           <About />
           <Values />
+          <PhotoStrip />
           <Work onOpen={goProject} />
           <Services />
           <Socials />

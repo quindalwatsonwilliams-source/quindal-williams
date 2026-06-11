@@ -1,4 +1,4 @@
-import { ASSET, Note, Pill, Lab } from './ui';
+import { ASSET, Note, Pill } from './ui';
 
 
 export function Contact() {
@@ -29,8 +29,19 @@ export function Contact() {
           Let's make the <span style={{ fontStyle: 'italic', color: 'var(--crimson-300)' }}>loud</span> version.
         </h2>
 
-        {/* CTA */}
-        <div style={{ margin: '0 auto 36px' }}>
+        {/* CTA + Telephone */}
+        <div style={{ margin: '0 auto 36px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 32 }}>
+          <img
+            src={`${ASSET}/photos/telephone.jpg`}
+            alt=""
+            style={{
+              width: 'min(220px, 52vw)',
+              borderRadius: 6,
+              boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              transform: 'rotate(-4deg)',
+              display: 'block',
+            }}
+          />
           <Pill onClick={() => window.open('/intake.html', '_blank')}>
             Start a Project →
           </Pill>
