@@ -110,25 +110,20 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 24px 40px;
-      border-bottom: 1px solid var(--line);
-      background: var(--ivory);
-      position: sticky; top: 0; z-index: 10;
+      padding: 11px 28px;
+      border-bottom: 1px solid rgba(26,26,46,.08);
+      background: rgba(247,243,239,.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 60;
     }
-    .wordmark {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--ink);
-      text-decoration: none;
-    }
+    .site-header img.logo { height: 36px; display: block; }
     .back-link {
       font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .12em;
+      font-size: 11px;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--ink-40);
+      color: var(--ink);
       text-decoration: none;
       transition: color .15s;
     }
@@ -560,8 +555,10 @@
 
   <!-- HEADER -->
   <header class="site-header">
-    <a href="https://quindal.art" class="wordmark">Quindal Williams Studio</a>
-    <a href="https://quindal.art" class="back-link">← quindal.art</a>
+    <a href="https://quindal.art">
+      <img src="assets/logos/logo-horizontal.png" class="logo" alt="Quindal Williams" />
+    </a>
+    <a href="https://quindal.art" class="back-link">← Back to site</a>
   </header>
 
   <main>
