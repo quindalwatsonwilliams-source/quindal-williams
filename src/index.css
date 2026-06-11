@@ -298,6 +298,7 @@ a { text-decoration: none; }
   .ed-work-grid   { grid-template-columns: 1fr !important; }
   .ed-cap         { display: none !important; }
   .ed-navlinks    { display: none !important; }
+  .contact-grid   { grid-template-columns: 1fr !important; }
 }
 
 /* ============================================================
