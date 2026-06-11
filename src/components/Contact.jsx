@@ -54,9 +54,9 @@ export function Contact() {
                 got a world that needs building?
               </Note>
               {/* Downward curved arrow */}
-              <svg width="36" height="48" viewBox="0 0 36 48" fill="none" style={{ display: 'block' }}>
-                <path d="M18 4 C 28 14, 28 28, 16 42" stroke="var(--amber-900)" strokeWidth="2.4" strokeLinecap="round" fill="none" />
-                <path d="M8 36 L16 43 L22 35" stroke="var(--amber-900)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              <svg width="44" height="58" viewBox="0 0 44 72" fill="none" style={{ display: 'block' }}>
+                <path d="M10 4 C 42 4, 42 52, 14 68" stroke="var(--amber-900)" strokeWidth="2.4" strokeLinecap="round" fill="none" />
+                <path d="M6 58 L14 69 L22 59" stroke="var(--amber-900)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
               </svg>
             </div>
 
