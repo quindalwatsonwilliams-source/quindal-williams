@@ -21,7 +21,7 @@ export function About() {
           <div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
               <img
-                src={`${ASSET}/photos/portrait.jpg`}
+                src={`${ASSET}/photos/portrait2.jpg`}
                 alt="Quindal Williams"
                 style={{ width: '100%', height: 300, objectFit: 'cover', objectPosition: 'center top', borderRadius: 4, display: 'block' }}
               />
