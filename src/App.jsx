@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import { ASSET } from './components/ui';
 import { Nav } from './components/Nav';
@@ -38,8 +38,6 @@ export default function App() {
   const [route, setRoute] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null);
   const [wiping, setWiping] = useState(false);
-  const heelsRef = useRef(null);
-  const heelsZoneRef = useRef(null);
 
   // Bordeaux panel sweeps up, the route swaps underneath, panel lifts away
   const wipeTo = (swap) => {
@@ -64,30 +62,6 @@ export default function App() {
     rafId = requestAnimationFrame(raf);
     return () => { cancelAnimationFrame(rafId); lenis.destroy(); window.__lenis = null; };
   }, []);
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const heelsEl = heelsRef.current;
-    const zoneEl = heelsZoneRef.current;
-    if (!heelsEl || !zoneEl) return;
-
-    const update = () => {
-      const zone = zoneEl.getBoundingClientRect();
-      const vh = window.innerHeight;
-      // Reveal: zone top crosses viewport bottom → full opacity by the time heels image is fully visible
-      const revealStart = vh;           // zone top at bottom of screen
-      const revealEnd   = vh * 0.25;   // zone top 25% from top = image well visible
-      // Hide: handled naturally — About div sits above heels (z-index 2) with solid bg
-      // We just drive opacity 0→1 on the way in
-      let t = (revealStart - zone.top) / (revealStart - revealEnd);
-      t = Math.max(0, Math.min(1, t));
-      heelsEl.style.opacity = t;
-    };
-
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-    return () => window.removeEventListener('scroll', update);
-  }, [route]);
 
   useEffect(() => {
     const h = (window.location.hash || '').replace('#', '');
@@ -133,10 +107,9 @@ export default function App() {
       {route === 'home' && (
         <main>
           <Hero onCharacter={goCharacter} />
-          <Work onOpen={goProject} />
-          {/* Heels + About zone — heels is sticky/hidden, reveals on scroll, About covers it */}
-          <div ref={heelsZoneRef} className="heels-about-zone">
-            <div ref={heelsRef} className="heels-sticky-wrap" style={{ opacity: 0 }}>
+          {/* Zone: heels is sticky under Work; Work scrolls away to reveal it; About scrolls in to cover it */}
+          <div className="heels-zone">
+            <div className="heels-sticky-wrap">
               <img
                 src={`${ASSET}/photos/heels-break.jpg`}
                 alt=""
@@ -144,7 +117,10 @@ export default function App() {
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 80%', display: 'block' }}
               />
             </div>
-            <div className="heels-about-content">
+            <div className="heels-work-layer">
+              <Work onOpen={goProject} />
+            </div>
+            <div className="heels-about-layer">
               <About />
             </div>
           </div>
