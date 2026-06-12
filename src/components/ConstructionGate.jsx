@@ -18,7 +18,6 @@ export function ConstructionGate({ children }) {
   useEffect(() => {
     if (unlocked) return;
     sessionStorage.setItem('introPlayed', 'true'); // suppress LoadingScreen animation
-    document.body.style.overflow = 'hidden';
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setPhase('prompt');
@@ -48,7 +47,7 @@ export function ConstructionGate({ children }) {
   const submit = () => {
     if (input === PASSWORD) {
       localStorage.setItem(STORAGE_KEY, '1');
-      document.body.style.overflow = '';
+      window.scrollTo(0, 0);
       setExiting(true);
       setTimeout(() => setGone(true), 520);
     } else {

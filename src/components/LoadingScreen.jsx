@@ -20,6 +20,7 @@ export function LoadingScreen() {
       overlay.style.transition = 'none';
       overlay.style.opacity = '0';
       overlay.style.visibility = 'hidden';
+      window.scrollTo(0, 0);
       document.body.style.overflow = '';
       fire(true);
       return;
@@ -51,9 +52,9 @@ export function LoadingScreen() {
     const t3 = setTimeout(() => {
       overlay.style.opacity = '0';
       overlay.style.visibility = 'hidden';
+      window.scrollTo(0, 0);
       document.body.style.overflow = '';
       sessionStorage.setItem('introPlayed', 'true');
-      // fire as the fade begins so reveal animations play while the overlay lifts
       fire(false);
     }, Math.round(2500 * s));
 
