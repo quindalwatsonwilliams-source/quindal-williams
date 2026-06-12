@@ -43,7 +43,7 @@ export function Hero({ onCharacter }) {
           </div>
           <div style={{ overflow: 'hidden', display: 'block' }}>
             <div className={`hero-line-inner${entered ? ' hero-line-inner--visible' : ''}`} style={{ '--delay': '180ms' }}>
-              <span style={{ fontStyle: 'italic', color: 'var(--crimson-500)' }}>help it get dressed.</span>
+              <span style={{ fontStyle: 'italic', color: 'var(--crimson-500)' }}>help them express themselves.</span>
             </div>
           </div>
         </h1>

@@ -50,6 +50,8 @@ export default function App() {
     }, 390);
   };
 
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const lenis = new Lenis({
