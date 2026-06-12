@@ -89,10 +89,10 @@ export function Hero({ onCharacter }) {
             </div>
           </div>
 
-          {/* iPod + Apple Music — right of portrait, bottom-anchored */}
+          {/* iPod + Apple Music + CTA — right of portrait, bottom-anchored; hidden on mobile */}
           <div className="ed-cap" style={{
             position: 'absolute', right: '2%', bottom: '3%', zIndex: 4,
-            width: 'clamp(140px, 16vw, 200px)',
+            width: 'clamp(190px, 21vw, 240px)',
             display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
           }}>
             <IpodPlayer />
@@ -111,25 +111,29 @@ export function Hero({ onCharacter }) {
                 View the full mixtape
               </span>
             </a>
+            <MagneticWrapper>
+              <Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: '#1A1A2E', whiteSpace: 'nowrap' }}>
+                ✦ Build your character
+              </Pill>
+            </MagneticWrapper>
           </div>
         </div>
 
-        {/* Below-photo: tagline + button */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap',
-          padding: '14px 4px 36px',
-        }}>
+        {/* Below-photo: tagline (always) + CTA fallback on mobile */}
+        <div style={{ padding: '14px 4px 36px' }}>
           <div style={{
             fontFamily: 'var(--font-serif)', fontStyle: 'italic',
-            fontSize: 19, color: 'rgba(26,26,46,.5)', maxWidth: 400, lineHeight: 1.45, flex: '1 1 240px',
+            fontSize: 19, color: 'rgba(26,26,46,.5)', maxWidth: 400, lineHeight: 1.45,
           }}>
             Maximalist taste, editorial warmth, and a little bit of whimsy.
           </div>
-          <MagneticWrapper>
-            <Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: '#1A1A2E' }}>
-              ✦ Build your character
-            </Pill>
-          </MagneticWrapper>
+          <div className="hero-cta-mobile" style={{ marginTop: 20 }}>
+            <MagneticWrapper>
+              <Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: '#1A1A2E' }}>
+                ✦ Build your character
+              </Pill>
+            </MagneticWrapper>
+          </div>
         </div>
 
       </div>
