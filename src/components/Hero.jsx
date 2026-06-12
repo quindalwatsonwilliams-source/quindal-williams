@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ASSET, Lab, Note, Arrow, Pill } from './ui';
 import { MagneticWrapper } from './MagneticWrapper';
 
-export function Hero({ onWork }) {
+export function Hero({ onCharacter }) {
   const [entered, setEntered] = useState(false);
 
   useEffect(() => {
@@ -87,14 +87,9 @@ export function Hero({ onWork }) {
               </div>
             </div>
           </div>
-
-          {/* CTA bottom-right — desktop only (ed-cap hides on mobile) */}
-          <div style={{ position: 'absolute', right: '3%', bottom: '9%', zIndex: 4 }} className="ed-cap">
-            <MagneticWrapper><Pill big onClick={onWork}>See the work</Pill></MagneticWrapper>
-          </div>
         </div>
 
-        {/* Below-hero row: tagline always, CTA mobile-only (desktop has floating CTA above) */}
+        {/* Below-hero row: tagline + character builder */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '20px 4px 36px', gap: 16, flexWrap: 'wrap',
@@ -105,9 +100,11 @@ export function Hero({ onWork }) {
           }}>
             Maximalist taste, editorial warmth, and a little bit of whimsy.
           </div>
-          <div className="hero-mobile-cta">
-            <MagneticWrapper><Pill big onClick={onWork}>See the work →</Pill></MagneticWrapper>
-          </div>
+          <MagneticWrapper>
+            <Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: '#1A1A2E' }}>
+              ✦ Build your character
+            </Pill>
+          </MagneticWrapper>
         </div>
       </div>
     </header>

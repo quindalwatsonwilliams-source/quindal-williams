@@ -106,14 +106,15 @@ export default function App() {
 
       {route === 'home' && (
         <main>
-          <Hero onWork={() => onLink('work')} />
+          <Hero onCharacter={goCharacter} />
           <Work onOpen={goProject} />
-          {/* Editorial break — heels on burgundy carpet */}
-          <div style={{ height: 'clamp(260px, 30vw, 420px)', overflow: 'hidden' }}>
+          {/* Editorial break — heels on burgundy carpet, scroll-driven reveal */}
+          <div className="heels-editorial-break" style={{ height: 'clamp(300px, 40vw, 500px)', overflow: 'hidden' }}>
             <img
               src={`${ASSET}/photos/heels-break.jpg`}
               alt=""
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 25%', display: 'block' }}
+              className="heels-editorial-img"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 80%', display: 'block' }}
             />
           </div>
           <About />
