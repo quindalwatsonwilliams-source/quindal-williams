@@ -466,23 +466,31 @@ a { text-decoration: none; }
 }
 
 /* ============================================================
-   EDITORIAL BREAK — heels image reveal/hide on scroll
+   HEELS + ABOUT ZONE — sticky reveal/hide
    ============================================================ */
-.heels-editorial-break { overflow: hidden; }
 
-@supports (animation-timeline: scroll()) {
-  .heels-editorial-img {
-    animation: heels-view-lifecycle linear both;
-    animation-timeline: view(block);
-    animation-range: entry 0% exit 100%;
-  }
-  @keyframes heels-view-lifecycle {
-    0%   { opacity: 0; transform: scale(1.06) translateY(3%); }
-    22%  { opacity: 1; transform: scale(1) translateY(0); }
-    78%  { opacity: 1; transform: scale(1) translateY(0); }
-    100% { opacity: 0; transform: scale(1.06) translateY(-3%); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .heels-editorial-img { animation: none; }
-  }
+/* Zone establishes stacking context; height = sticky heels + About */
+.heels-about-zone {
+  position: relative;
+}
+
+/* Sticky heels frame — stays fixed in viewport while About scrolls over it */
+.heels-sticky-wrap {
+  position: sticky;
+  top: 0;
+  height: clamp(300px, 40vw, 500px);
+  overflow: hidden;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+}
+
+/* About sits above the sticky heels, covers it as it scrolls in */
+.heels-about-content {
+  position: relative;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heels-sticky-wrap { opacity: 1 !important; position: static; }
 }
