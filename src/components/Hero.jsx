@@ -90,22 +90,22 @@ export function Hero({ onCharacter }) {
           </div>
         </div>
 
-        {/* Below-photo: tagline left, iPod + Apple Music + button stacked right */}
+        {/* Below-photo: tagline left bottom-aligned with button; iPod + links + button right */}
         <div style={{
-          display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
+          display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
           padding: 'clamp(24px, 3vw, 40px) 4px 36px', gap: 24, flexWrap: 'wrap',
         }}>
-          {/* Left: tagline */}
+          {/* Left: tagline — bottom-aligns with the button */}
           <div style={{
             fontFamily: 'var(--font-serif)', fontStyle: 'italic',
             fontSize: 19, color: 'rgba(26,26,46,.5)', maxWidth: 400, lineHeight: 1.45,
-            flex: '1 1 240px', paddingTop: 8,
+            flex: '1 1 240px',
           }}>
             Maximalist taste, editorial warmth, and a little bit of whimsy.
           </div>
 
-          {/* Right: iPod → Apple Music → button */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 16, flex: '0 0 auto' }}>
+          {/* Right: iPod → Apple Music → button, all centered in the column */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, flex: '0 0 auto' }}>
             <div style={{ width: 'clamp(190px, 24vw, 270px)', fontSize: 14 }}>
               <IpodPlayer />
             </div>
