@@ -126,6 +126,26 @@ export default function App() {
             </div>
           </div>
           <Values />
+          {/* Apple Music — The Q Tape Vol. I */}
+          <section style={{ background: '#000', padding: '56px 28px' }}>
+            <div style={{ maxWidth: 660, margin: '0 auto' }}>
+              <div style={{
+                fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.18em',
+                textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 20,
+              }}>
+                ▶ The Q Tape Vol. I — currently spinning
+              </div>
+              <iframe
+                allow="autoplay *; encrypted-media *;"
+                frameBorder="0"
+                height="450"
+                style={{ width: '100%', maxWidth: 660, overflow: 'hidden', background: 'transparent', display: 'block' }}
+                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                src="https://embed.music.apple.com/us/playlist/the-q-tape-vol-i/pl.u-JPAZrAPFDY5Y28l"
+                title="The Q Tape Vol. I"
+              />
+            </div>
+          </section>
           <Services />
           <Contact />
         </main>
