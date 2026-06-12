@@ -2,11 +2,11 @@ import { useState, useRef, useEffect } from 'react';
 import { ASSET } from './ui';
 
 export const QTAPE = [
-  { title: 'Busy Woman',                      artist: 'Sabrina Carpenter', src: `${ASSET}/music/sabrina-carpenter-busy-woman.mp3` },
-  { title: 'She Way Out',                     artist: 'The 1975',          src: `${ASSET}/music/the-1975-she-way-out.mp3` },
-  { title: 'Ok Love You Bye',                 artist: 'Olivia Dean',       src: `${ASSET}/music/olivia-dean-ok-love-you-bye.mp3` },
   { title: 'So Easy (To Fall In Love)',        artist: 'Olivia Dean',       src: `${ASSET}/music/olivia-dean-so-easy.mp3` },
+  { title: 'Ok Love You Bye',                  artist: 'Olivia Dean',       src: `${ASSET}/music/olivia-dean-ok-love-you-bye.mp3` },
   { title: "It Isn't Perfect But It Might Be", artist: 'Olivia Dean',       src: `${ASSET}/music/olivia-dean-not-perfect.mp3` },
+  { title: 'She Way Out',                      artist: 'The 1975',          src: `${ASSET}/music/the-1975-she-way-out.mp3` },
+  { title: 'Busy Woman',                       artist: 'Sabrina Carpenter', src: `${ASSET}/music/sabrina-carpenter-busy-woman.mp3` },
 ];
 
 function fmt(s) {
@@ -15,14 +15,24 @@ function fmt(s) {
 }
 
 export function IpodPlayer() {
-  const [idx, setIdx]         = useState(0);
-  const [playing, setPlaying] = useState(false);
-  const [elapsed, setElapsed] = useState(0);
+  const [idx, setIdx]           = useState(0);
+  const [playing, setPlaying]   = useState(true);
+  const [elapsed, setElapsed]   = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef(null);
   const prevIdx  = useRef(-1);
   const track    = QTAPE[idx];
   const progress = duration > 0 ? elapsed / duration : 0;
+
+  // Load first track immediately on mount and attempt autoplay
+  useEffect(() => {
+    const a = audioRef.current;
+    if (!a) return;
+    a.src = QTAPE[0].src;
+    a.load();
+    a.play().catch(() => setPlaying(false));
+    prevIdx.current = 0;
+  }, []);
 
   useEffect(() => {
     const a = audioRef.current;
