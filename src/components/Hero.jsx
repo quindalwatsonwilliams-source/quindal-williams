@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ASSET, Lab, Note, Arrow, Pill } from './ui';
 import { MagneticWrapper } from './MagneticWrapper';
+import { IpodPlayer } from './IpodPlayer';
 
 export function Hero({ onCharacter }) {
   const [entered, setEntered] = useState(false);
@@ -89,23 +90,60 @@ export function Hero({ onCharacter }) {
           </div>
         </div>
 
-        {/* Below-hero row: tagline + character builder */}
+        {/* iPod player + tagline row */}
         <div style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '20px 4px 36px', gap: 16, flexWrap: 'wrap',
+          display: 'flex', alignItems: 'flex-start', gap: 'clamp(20px, 3vw, 44px)',
+          padding: 'clamp(24px, 3vw, 40px) 4px 0', flexWrap: 'wrap',
         }}>
-          <div style={{
-            fontFamily: 'var(--font-serif)', fontStyle: 'italic',
-            fontSize: 19, color: 'rgba(26,26,46,.5)', maxWidth: 420,
-          }}>
-            Maximalist taste, editorial warmth, and a little bit of whimsy.
+          {/* iPod widget */}
+          <div style={{ flex: '0 0 auto', width: 'clamp(190px, 24vw, 270px)', fontSize: 14 }}>
+            <IpodPlayer />
           </div>
+
+          {/* Tagline + Apple Music link */}
+          <div style={{ flex: '1 1 220px', display: 'flex', flexDirection: 'column', gap: 20, paddingTop: 8 }}>
+            <div style={{
+              fontFamily: 'var(--font-serif)', fontStyle: 'italic',
+              fontSize: 19, color: 'rgba(26,26,46,.5)', maxWidth: 400, lineHeight: 1.45,
+            }}>
+              Maximalist taste, editorial warmth, and a little bit of whimsy.
+            </div>
+
+            {/* Apple Music link */}
+            <a
+              href="https://music.apple.com/us/playlist/the-q-tape-vol-i/pl.u-JPAZrAPFDY5Y28l"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}
+            >
+              <img
+                src={`${ASSET}/photos/apple-music-btn.png`}
+                alt="Apple Music"
+                style={{ width: 44, height: 44, borderRadius: 10, display: 'block', flexShrink: 0 }}
+              />
+              <span style={{
+                fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.18em',
+                textTransform: 'uppercase', color: 'rgba(26,26,46,.5)',
+                transition: 'color .15s ease',
+              }}
+                onMouseEnter={e => e.currentTarget.style.color = '#B2010C'}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,46,.5)'}
+              >
+                View the full mixtape
+              </span>
+            </a>
+          </div>
+        </div>
+
+        {/* Build your character CTA */}
+        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '20px 4px 36px' }}>
           <MagneticWrapper>
             <Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: '#1A1A2E' }}>
               ✦ Build your character
             </Pill>
           </MagneticWrapper>
         </div>
+
       </div>
     </header>
   );

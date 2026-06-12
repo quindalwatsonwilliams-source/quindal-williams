@@ -7,7 +7,6 @@ import { About } from './components/About';
 import { Values } from './components/Values';
 import { Work } from './components/Work';
 import { Services } from './components/Services';
-import { IpodPlayer } from './components/IpodPlayer';
 import { CharacterCreator } from './components/CharacterCreator';
 import { Contact } from './components/Contact';
 import { Resume } from './components/Resume';
@@ -127,27 +126,6 @@ export default function App() {
             </div>
           </div>
           <Values />
-          {/* The Q Tape — custom iPod player */}
-          <section style={{ background: '#000', padding: '60px 28px' }}>
-            <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 'clamp(32px, 6vw, 80px)', flexWrap: 'wrap', justifyContent: 'center' }}>
-              {/* iPod widget */}
-              <div style={{ flex: '0 0 auto', width: 'clamp(200px, 30vw, 280px)' }}>
-                <IpodPlayer />
-              </div>
-              {/* Copy */}
-              <div style={{ flex: '1 1 260px', maxWidth: 380 }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(251,214,109,.5)', marginBottom: 14 }}>
-                  ▶ The Q Tape Vol. I
-                </div>
-                <h3 style={{ fontFamily: 'var(--font-serif-display)', fontStyle: 'italic', fontWeight: 500, fontSize: 'clamp(26px,3.5vw,40px)', color: '#F7F3EF', margin: '0 0 16px', lineHeight: 1.05, letterSpacing: '-.015em' }}>
-                  The soundtrack<br />to the work.
-                </h3>
-                <p style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, lineHeight: 1.8, letterSpacing: '.03em', textTransform: 'uppercase', color: 'rgba(247,243,239,.45)', margin: 0 }}>
-                  The songs playing in the room when the best ideas happen. Hit play.
-                </p>
-              </div>
-            </div>
-          </section>
           <Services />
           <Contact />
         </main>

@@ -1,34 +1,29 @@
 import { useState, useRef, useEffect } from 'react';
 import { ASSET } from './ui';
 
-// ─── Add your tracks here ────────────────────────────────────────────────────
-// Upload MP3s to public/assets/music/ and list them below.
-// File names must match exactly (case-sensitive).
 export const QTAPE = [
-  { title: 'Track Title',   artist: 'Artist Name', src: `${ASSET}/music/track-01.mp3` },
-  { title: 'Track Title',   artist: 'Artist Name', src: `${ASSET}/music/track-02.mp3` },
-  { title: 'Track Title',   artist: 'Artist Name', src: `${ASSET}/music/track-03.mp3` },
+  { title: 'Busy Woman',                      artist: 'Sabrina Carpenter', src: `${ASSET}/music/sabrina-carpenter-busy-woman.mp3` },
+  { title: 'She Way Out',                     artist: 'The 1975',          src: `${ASSET}/music/the-1975-she-way-out.mp3` },
+  { title: 'Ok Love You Bye',                 artist: 'Olivia Dean',       src: `${ASSET}/music/olivia-dean-ok-love-you-bye.mp3` },
+  { title: 'So Easy (To Fall In Love)',        artist: 'Olivia Dean',       src: `${ASSET}/music/olivia-dean-so-easy.mp3` },
+  { title: "It Isn't Perfect But It Might Be", artist: 'Olivia Dean',       src: `${ASSET}/music/olivia-dean-not-perfect.mp3` },
 ];
-// ─────────────────────────────────────────────────────────────────────────────
 
 function fmt(s) {
   if (!isFinite(s) || s < 0) return '0:00';
-  const m = Math.floor(s / 60);
-  const sec = Math.floor(s % 60);
-  return `${m}:${sec.toString().padStart(2, '0')}`;
+  return `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 }
 
 export function IpodPlayer() {
-  const [idx, setIdx]       = useState(0);
+  const [idx, setIdx]         = useState(0);
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [duration, setDuration] = useState(0);
-  const audioRef  = useRef(null);
-  const prevIdx   = useRef(-1);
-  const track     = QTAPE[idx];
-  const progress  = duration > 0 ? elapsed / duration : 0;
+  const audioRef = useRef(null);
+  const prevIdx  = useRef(-1);
+  const track    = QTAPE[idx];
+  const progress = duration > 0 ? elapsed / duration : 0;
 
-  // Load new track or toggle play/pause
   useEffect(() => {
     const a = audioRef.current;
     if (!a) return;
@@ -42,113 +37,111 @@ export function IpodPlayer() {
     }
   }, [idx, playing]);
 
-  const prev = () => { setElapsed(0); setDuration(0); setIdx(i => (i - 1 + QTAPE.length) % QTAPE.length); setPlaying(true); };
-  const next = () => { setElapsed(0); setDuration(0); setIdx(i => (i + 1) % QTAPE.length); setPlaying(true); };
+  const skip = (dir) => {
+    setElapsed(0); setDuration(0);
+    setIdx(i => (i + dir + QTAPE.length) % QTAPE.length);
+    setPlaying(true);
+  };
 
   const seek = (e) => {
     const a = audioRef.current;
-    if (!a || !a.duration) return;
+    if (!a?.duration) return;
     const r = e.currentTarget.getBoundingClientRect();
     a.currentTime = ((e.clientX - r.left) / r.width) * a.duration;
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 280, margin: '0 auto', userSelect: 'none' }}>
+    <div style={{ position: 'relative', width: '100%', userSelect: 'none' }}>
       <audio
         ref={audioRef}
         onTimeUpdate={() => { const a = audioRef.current; if (a) setElapsed(a.currentTime); }}
         onLoadedMetadata={() => { const a = audioRef.current; if (a) setDuration(a.duration); }}
-        onEnded={next}
+        onEnded={() => skip(1)}
       />
 
-      {/* ── iPod screen content (sits under the frame image) ────────────── */}
+      {/* ── LCD screen behind the frame ─────────────────────────────── */}
+      {/* Screen cutout: top=9.8%, left=32.5%, width=33.7%, height=26% */}
       <div style={{
         position: 'absolute',
-        top: '6%', left: '13.5%', width: '73%', height: '34%',
-        background: '#0d1a0d',
-        borderRadius: '3px 3px 2px 2px',
+        top: '9.8%', left: '32.5%', width: '33.7%', height: '26%',
+        background: '#0b170b',
         overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '7px 9px 6px',
+        display: 'flex', flexDirection: 'column',
+        padding: '5% 6%',
         boxSizing: 'border-box',
       }}>
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 3 }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 7, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(251,214,109,.45)' }}>
-            Now Playing
-          </div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 7, color: 'rgba(251,214,109,.35)' }}>
-            {idx + 1} / {QTAPE.length}
-          </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5%' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55em', letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(251,214,109,.4)' }}>
+            ♫ now playing
+          </span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.55em', color: 'rgba(251,214,109,.35)' }}>
+            {idx + 1}/{QTAPE.length}
+          </span>
         </div>
-
-        {/* Divider */}
-        <div style={{ height: 1, background: 'rgba(251,214,109,.15)', marginBottom: 6 }} />
 
         {/* Track info */}
         <div style={{ flex: 1, overflow: 'hidden' }}>
           <div style={{
             fontFamily: 'var(--font-serif-display)', fontStyle: 'italic',
-            fontSize: 12.5, color: '#FBD66D', lineHeight: 1.15,
+            fontSize: '0.72em', color: '#FBD66D', lineHeight: 1.1,
             whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
           }}>
             {track.title}
           </div>
           <div style={{
-            fontFamily: 'var(--font-mono)', fontSize: 8.5, letterSpacing: '.04em',
-            color: 'rgba(251,214,109,.55)', marginTop: 3,
+            fontFamily: 'var(--font-mono)', fontSize: '0.52em', letterSpacing: '.03em',
+            color: 'rgba(251,214,109,.55)', marginTop: '4%',
             whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
           }}>
             {track.artist}
           </div>
         </div>
 
-        {/* Progress bar */}
-        <div style={{ marginTop: 'auto', paddingTop: 4 }}>
-          <div
-            onClick={seek}
-            style={{ height: 3, background: 'rgba(251,214,109,.18)', borderRadius: 2, cursor: 'pointer', position: 'relative' }}
-          >
-            <div style={{ position: 'absolute', inset: '0 auto 0 0', width: `${progress * 100}%`, background: '#FBD66D', borderRadius: 2, transition: 'width .25s linear' }} />
+        {/* Progress */}
+        <div>
+          <div onClick={seek} style={{ height: 2, background: 'rgba(251,214,109,.18)', borderRadius: 2, cursor: 'pointer', position: 'relative' }}>
+            <div style={{ position: 'absolute', inset: '0 auto 0 0', width: `${progress * 100}%`, background: '#FBD66D', borderRadius: 2 }} />
           </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 3 }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 7, color: 'rgba(251,214,109,.4)' }}>{fmt(elapsed)}</span>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 7, color: 'rgba(251,214,109,.4)' }}>{fmt(duration)}</span>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '3%' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48em', color: 'rgba(251,214,109,.35)' }}>{fmt(elapsed)}</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.48em', color: 'rgba(251,214,109,.35)' }}>{fmt(duration)}</span>
           </div>
         </div>
       </div>
 
-      {/* ── iPod frame image (on top, transparent screen cutout) ─────────── */}
+      {/* ── iPod frame (on top — screen is a transparent cutout) ─────── */}
       <img
         src={`${ASSET}/photos/ipod-frame.png`}
         alt="iPod Mini"
         style={{ width: '100%', display: 'block', position: 'relative', zIndex: 1, pointerEvents: 'none' }}
       />
 
-      {/* ── Invisible hit targets over click wheel ───────────────────────── */}
+      {/* ── Clickwheel hit targets ───────────────────────────────────── */}
+      {/* Based on: wheel center ~50%, 66% of the 5000×5000 source image */}
+
       {/* |<< Prev */}
-      <button onClick={prev} aria-label="Previous track" style={{
+      <button onClick={() => skip(-1)} aria-label="Previous" style={{
         position: 'absolute', zIndex: 2,
-        top: '60%', left: '18%', width: '16%', height: '10%',
+        top: '60%', left: '22%', width: '14%', height: '12%',
         background: 'transparent', border: 'none', cursor: 'pointer', padding: 0,
       }} />
       {/* >>| Next */}
-      <button onClick={next} aria-label="Next track" style={{
+      <button onClick={() => skip(1)} aria-label="Next" style={{
         position: 'absolute', zIndex: 2,
-        top: '60%', right: '18%', width: '16%', height: '10%',
+        top: '60%', right: '22%', width: '14%', height: '12%',
         background: 'transparent', border: 'none', cursor: 'pointer', padding: 0,
       }} />
-      {/* ►║ Play/Pause (bottom of wheel) */}
+      {/* ►║ Play/Pause */}
       <button onClick={() => setPlaying(p => !p)} aria-label={playing ? 'Pause' : 'Play'} style={{
         position: 'absolute', zIndex: 2,
-        top: '75%', left: '40%', width: '20%', height: '9%',
+        top: '76%', left: '39%', width: '22%', height: '9%',
         background: 'transparent', border: 'none', cursor: 'pointer', padding: 0,
       }} />
-      {/* Center select button */}
+      {/* Center select */}
       <button onClick={() => setPlaying(p => !p)} aria-label="Select" style={{
         position: 'absolute', zIndex: 2,
-        top: '57.5%', left: '36.5%', width: '27%', height: '16%',
+        top: '57%', left: '37%', width: '26%', height: '18%',
         borderRadius: '50%',
         background: 'transparent', border: 'none', cursor: 'pointer', padding: 0,
       }} />
