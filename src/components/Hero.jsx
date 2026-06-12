@@ -88,50 +88,48 @@ export function Hero({ onCharacter }) {
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Below-photo: tagline left bottom-aligned with button; iPod + links + button right */}
-        <div style={{
-          display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
-          padding: 'clamp(24px, 3vw, 40px) 4px 36px', gap: 24, flexWrap: 'wrap',
-        }}>
-          {/* Left: tagline — bottom-aligns with the button */}
-          <div style={{
-            fontFamily: 'var(--font-serif)', fontStyle: 'italic',
-            fontSize: 19, color: 'rgba(26,26,46,.5)', maxWidth: 400, lineHeight: 1.45,
-            flex: '1 1 240px',
+          {/* iPod + Apple Music — right of portrait, bottom-anchored */}
+          <div className="ed-cap" style={{
+            position: 'absolute', right: '2%', bottom: '3%', zIndex: 4,
+            width: 'clamp(140px, 16vw, 200px)',
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10,
           }}>
-            Maximalist taste, editorial warmth, and a little bit of whimsy.
-          </div>
-
-          {/* Right: iPod → Apple Music → button, all centered in the column */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, flex: '0 0 auto' }}>
-            <div style={{ width: 'clamp(190px, 24vw, 270px)', fontSize: 14 }}>
-              <IpodPlayer />
-            </div>
-
+            <IpodPlayer />
             <a
               href="https://music.apple.com/us/playlist/the-q-tape-vol-i/pl.u-JPAZrAPFDY5Y28l"
               target="_blank" rel="noopener noreferrer"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}
             >
               <img src={`${ASSET}/photos/apple-music-btn.png`} alt="Apple Music"
-                style={{ width: 44, height: 44, borderRadius: 10, display: 'block', flexShrink: 0 }} />
+                style={{ width: 34, height: 34, borderRadius: 8, display: 'block', flexShrink: 0 }} />
               <span
-                style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(26,26,46,.5)', transition: 'color .15s ease' }}
+                style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(26,26,46,.5)', transition: 'color .15s ease' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#B2010C'}
                 onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,46,.5)'}
               >
                 View the full mixtape
               </span>
             </a>
-
-            <MagneticWrapper>
-              <Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: '#1A1A2E' }}>
-                ✦ Build your character
-              </Pill>
-            </MagneticWrapper>
           </div>
+        </div>
+
+        {/* Below-photo: tagline + button */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap',
+          padding: '14px 4px 36px',
+        }}>
+          <div style={{
+            fontFamily: 'var(--font-serif)', fontStyle: 'italic',
+            fontSize: 19, color: 'rgba(26,26,46,.5)', maxWidth: 400, lineHeight: 1.45, flex: '1 1 240px',
+          }}>
+            Maximalist taste, editorial warmth, and a little bit of whimsy.
+          </div>
+          <MagneticWrapper>
+            <Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: '#1A1A2E' }}>
+              ✦ Build your character
+            </Pill>
+          </MagneticWrapper>
         </div>
 
       </div>
