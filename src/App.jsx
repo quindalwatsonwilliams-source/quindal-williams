@@ -120,6 +120,7 @@ export default function App() {
             <div className="heels-work-layer">
               <Work onOpen={goProject} />
             </div>
+            <div className="heels-pause" />
             <div className="heels-about-layer">
               <About />
             </div>

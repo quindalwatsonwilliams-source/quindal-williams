@@ -471,6 +471,7 @@ a { text-decoration: none; }
 
 .heels-zone {
   position: relative;
+  background: #F7F3EF; /* fills viewport below heels image during the reveal window */
 }
 
 /* Sticky heels frame: z-index 0, full opacity, revealed by Work sliding away */
@@ -492,6 +493,12 @@ a { text-decoration: none; }
   background: #F7F3EF;
 }
 
+/* Transparent spacer — sticky heels shows through, creates scroll window where heels is visible.
+   Without this, Work and About are exactly adjacent so heels is never revealed. */
+.heels-pause {
+  height: clamp(300px, 40vw, 500px);
+}
+
 /* About covers heels as it scrolls in (Bordeaux solid bg does the work) */
 .heels-about-layer {
   position: relative;
@@ -501,4 +508,5 @@ a { text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   .heels-sticky-wrap { position: static; }
   .heels-work-layer  { margin-top: 0; }
+  .heels-pause       { display: none; }
 }
