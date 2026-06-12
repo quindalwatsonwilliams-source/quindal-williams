@@ -4,10 +4,8 @@ import { Nav } from './components/Nav';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Values } from './components/Values';
-import { PhotoStrip } from './components/PhotoStrip';
 import { Work } from './components/Work';
 import { Services } from './components/Services';
-import { Socials } from './components/Socials';
 import { CharacterCreator } from './components/CharacterCreator';
 import { Contact } from './components/Contact';
 import { Resume } from './components/Resume';
@@ -68,7 +66,7 @@ export default function App() {
     const h = (window.location.hash || '').replace('#', '');
     if (h === 'character') { setRoute('character'); return; }
     if (h === 'resume') { setRoute('resume'); return; }
-    if (['work', 'about', 'services', 'socials', 'contact'].includes(h)) {
+    if (['work', 'about', 'services', 'contact'].includes(h)) {
       setRoute('home');
       const t = setTimeout(() => {
         const el = document.getElementById(h);
@@ -106,13 +104,11 @@ export default function App() {
 
       {route === 'home' && (
         <main>
-          <Hero onCharacter={goCharacter} onWork={() => onLink('work')} />
+          <Hero onWork={() => onLink('work')} />
+          <Work onOpen={goProject} />
           <About />
           <Values />
-          <PhotoStrip />
-          <Work onOpen={goProject} />
           <Services />
-          <Socials />
           <Contact />
         </main>
       )}

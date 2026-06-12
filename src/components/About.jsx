@@ -12,7 +12,7 @@ export function About() {
           letterSpacing: '-.01em', color: 'var(--ink)', margin: '10px 0 0', maxWidth: 760,
         }}>
           Creative director, experiential designer,<br />
-          and your <span style={{ fontStyle: 'italic', color: 'var(--magenta-500)' }}>creative partner.</span>
+          and your <span style={{ fontStyle: 'italic', color: 'var(--crimson-300)' }}>creative partner.</span>
         </h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1.1fr .9fr', gap: 44, marginTop: 38, alignItems: 'start' }} className="ed-intro-grid">
@@ -34,7 +34,6 @@ export function About() {
                 </p>
                 <div style={{ marginTop: 20 }}>
                   <Pill
-                    style={{ background: 'var(--teal-700)' }}
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                   >
                     Work with me
@@ -64,7 +63,7 @@ export function About() {
               <div style={{
                 position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%) rotate(-4deg)',
                 width: 70, height: 24,
-                background: 'rgba(231,35,136,.28)', border: '1px solid rgba(231,35,136,.4)',
+                background: 'rgba(178,1,12,.22)', border: '1px solid rgba(178,1,12,.38)',
               }} />
               <div style={{ background: '#fff', padding: '10px 10px 34px', boxShadow: '0 12px 26px rgba(26,26,46,.16)' }}>
                 <img

@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { ASSET } from './ui';
 
 const SERVICES = [
-  { n: '01', t: 'Branding', nc: '#F8BB0B', d: 'Identity systems, logotypes, and the rules that keep a brand feeling like itself everywhere.' },
-  { n: '02', t: 'Creative Direction', nc: '#E72388', d: 'The vision and the taste-keeping — concept, art direction, and making sure the whole thing sings.' },
-  { n: '03', t: 'Campaigns', nc: '#F8BB0B', d: 'Launch ideas with legs — concepts, key art, and rollout across the channels that matter.' },
-  { n: '04', t: 'Packaging', nc: '#0E6771', d: 'Objects you want to keep. Structure, illustration, and the unboxing moment.' },
-  { n: '05', t: 'Spatial / Experiential', nc: '#F8BB0B', d: 'Brand worlds you can walk through — booths, activations, and environments built to be felt.' },
+  { n: '01', t: 'Branding', nc: '#B2010C', d: 'Identity systems, logotypes, and the rules that keep a brand feeling like itself everywhere.' },
+  { n: '02', t: 'Creative Direction', nc: '#B2010C', d: 'The vision and the taste-keeping — concept, art direction, and making sure the whole thing sings.' },
+  { n: '03', t: 'Campaigns', nc: '#B2010C', d: 'Launch ideas with legs — concepts, key art, and rollout across the channels that matter.' },
+  { n: '04', t: 'Packaging', nc: '#B2010C', d: 'Objects you want to keep. Structure, illustration, and the unboxing moment.' },
+  { n: '05', t: 'Spatial / Experiential', nc: '#B2010C', d: 'Brand worlds you can walk through — booths, activations, and environments built to be felt.' },
 ];
 
 function ServiceRow({ s }) {

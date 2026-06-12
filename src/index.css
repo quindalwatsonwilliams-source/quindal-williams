@@ -182,7 +182,7 @@ a { text-decoration: none; }
   --font-serif-display: "Domaine Display", "Canela", Georgia, serif;
   --font-serif:         "Domaine Text", Georgia, "Times New Roman", serif;
   --font-serif-alt:     "Canela", "Domaine Display", Georgia, serif;
-  --font-sans:          "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-sans:          "Domaine Text", "Georgia", serif;
   --font-mono:          "Space Mono", "SFMono-Regular", ui-monospace, monospace;
 
   /* ============ CORE BRAND COLORS ============ */

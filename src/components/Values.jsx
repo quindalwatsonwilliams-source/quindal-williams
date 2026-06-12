@@ -4,34 +4,34 @@ import { ASSET, Lab } from './ui';
 const ED_VALUES = [
   {
     t: 'Play',
-    bg: '#E72388',
-    topBar: '#F6DBEA',
+    bg: '#3C0606',
+    topBar: '#B2010C',
     textColor: '#F7F3EF',
-    numColor: '#F6DBEA',
+    numColor: 'rgba(247,243,239,.45)',
     d: "The best work happens when it doesn't feel like work. I protect the part of the process where we're still allowed to be ridiculous — that's where the good ideas live.",
   },
   {
     t: 'Craft',
-    bg: '#0E6771',
-    topBar: '#B7D1D4',
+    bg: '#B2010C',
+    topBar: '#F7F3EF',
     textColor: '#F7F3EF',
-    numColor: '#B7D1D4',
+    numColor: 'rgba(247,243,239,.45)',
     d: 'Taste is the strategy. Kerning, color, the weight of a word — the small decisions are the brand. I sweat them so the whole thing feels inevitable.',
   },
   {
     t: 'Warmth',
-    bg: '#F8BB0B',
+    bg: '#F7F3EF',
     topBar: '#3C0606',
-    textColor: '#000000',
-    numColor: '#000000',
+    textColor: '#1A1A2E',
+    numColor: 'rgba(26,26,46,.35)',
     d: "Editorial doesn't have to mean cold. Everything I make should feel like it was made by a person who actually likes you — rich, generous, a little bit human.",
   },
   {
     t: 'Intention',
-    bg: '#0D1F30',
-    topBar: '#8EB8E1',
+    bg: '#000000',
+    topBar: '#B2010C',
     textColor: '#F7F3EF',
-    numColor: '#8EB8E1',
+    numColor: 'rgba(247,243,239,.35)',
     d: 'Maximalism, but on purpose. Every color block, every sticker, every loud choice earns its place. Nothing here is decoration for its own sake.',
   },
 ];
@@ -77,7 +77,7 @@ export function Values() {
               </div>
               <p style={{
                 fontFamily: 'var(--font-mono)', fontSize: 12, lineHeight: 1.75,
-                color: v.textColor === '#000000' ? 'rgba(0,0,0,0.70)' : 'rgba(247,243,239,.78)',
+                color: v.textColor === '#1A1A2E' ? 'rgba(26,26,46,.68)' : 'rgba(247,243,239,.78)',
                 margin: 0, textTransform: 'uppercase', letterSpacing: '.01em',
               }}>{v.d}</p>
             </div>

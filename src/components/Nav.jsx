@@ -2,10 +2,9 @@ import { ASSET, Pill } from './ui';
 import { MagneticWrapper } from './MagneticWrapper';
 
 const NAV_LINKS = [
-  { id: 'about',    label: 'About' },
   { id: 'work',     label: 'Work' },
+  { id: 'about',    label: 'About' },
   { id: 'services', label: 'Services' },
-  { id: 'socials',  label: 'Socials' },
   { id: 'contact',  label: 'Contact' },
 ];
 
@@ -37,7 +36,7 @@ export function Nav({ onHome, onLink, onCharacter, onResume }) {
           <a onClick={onResume} style={{
             cursor: 'pointer', fontFamily: 'var(--font-mono)',
             fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase',
-            color: 'var(--teal-700)',
+            color: 'var(--crimson-500)',
           }}>Résumé</a>
         </div>
         <MagneticWrapper><Pill onClick={onCharacter}>Work with me</Pill></MagneticWrapper>

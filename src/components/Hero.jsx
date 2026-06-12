@@ -1,22 +1,24 @@
 import { ASSET, Lab, Note, Arrow, Pill } from './ui';
 import { MagneticWrapper } from './MagneticWrapper';
 
-export function Hero({ onCharacter, onWork }) {
+export function Hero({ onWork }) {
   return (
-    <header style={{ position: 'relative', background: '#F7F3EF', overflow: 'hidden', paddingTop: 30 }}>
+    <header style={{ position: 'relative', background: '#F7F3EF', overflow: 'hidden', paddingTop: 40 }}>
       <div style={{ maxWidth: 1180, margin: '0 auto', position: 'relative', padding: '0 28px' }}>
 
-        {/* Giant crimson headline */}
+        {/* Positioning line — the brand statement */}
         <h1 className="headline-reveal" style={{
-          fontFamily: 'var(--font-serif-display)', fontWeight: 500, textAlign: 'center',
-          fontSize: 'clamp(54px, 11.5vw, 148px)', lineHeight: .9, letterSpacing: '-.02em',
-          color: 'var(--crimson-500)', margin: 0, position: 'relative', zIndex: 1, whiteSpace: 'nowrap',
+          fontFamily: 'var(--font-serif-display)', fontWeight: 500,
+          fontSize: 'clamp(36px, 6vw, 88px)', lineHeight: 0.9, letterSpacing: '-.025em',
+          color: '#1A1A2E', margin: 0, position: 'relative', zIndex: 1,
         }}>
-          HI, <span style={{ fontStyle: 'italic', fontWeight: 400 }}>I'm</span> QUINDAL
+          Every brand has<br />
+          a personality.{' '}
+          <span style={{ fontStyle: 'italic', color: 'var(--crimson-500)' }}>We just<br />help it get dressed.</span>
         </h1>
 
         {/* Photo stage */}
-        <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', marginTop: '-2.2vw' }}>
+        <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', marginTop: 'clamp(28px, 3.5vw, 52px)' }}>
           <img
             src={`${ASSET}/photos/portrait.jpg`}
             alt="Quindal Williams"
@@ -68,7 +70,6 @@ export function Hero({ onCharacter, onWork }) {
           <div style={{ position: 'absolute', right: '3%', bottom: '9%', zIndex: 4 }} className="ed-cap">
             <MagneticWrapper><Pill big onClick={onWork}>See the work</Pill></MagneticWrapper>
           </div>
-
         </div>
 
         {/* Below-hero row */}
@@ -76,12 +77,13 @@ export function Hero({ onCharacter, onWork }) {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '20px 4px 36px', gap: 16, flexWrap: 'wrap',
         }}>
-          <div style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 19, color: '#55556b', maxWidth: 420 }}>
-            Maximalist taste,{' '}
-            <span style={{ color: 'var(--teal-700)' }}>editorial warmth,</span>
-            {' '}and a little bit of whimsy.
+          <div style={{
+            fontFamily: 'var(--font-serif)', fontStyle: 'italic',
+            fontSize: 19, color: '#55556b', maxWidth: 420,
+          }}>
+            Maximalist taste, editorial warmth, and a little bit of whimsy.
           </div>
-          <MagneticWrapper><Pill big onClick={onCharacter} style={{ background: 'var(--amber-900)', color: '#1A1A2E' }}>✦ Build your character</Pill></MagneticWrapper>
+          <MagneticWrapper><Pill big onClick={onWork}>See the work →</Pill></MagneticWrapper>
         </div>
       </div>
     </header>
