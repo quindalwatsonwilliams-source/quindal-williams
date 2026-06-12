@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Lenis from 'lenis';
+import { ASSET } from './components/ui';
 import { Nav } from './components/Nav';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -100,12 +101,21 @@ export default function App() {
       <div className={`route-wipe${wiping ? ' active' : ''}`} aria-hidden="true" />
       <CustomCursor />
       <FilmGrain />
-      <Nav onHome={goHome} onLink={onLink} onCharacter={goCharacter} onResume={goResume} route={route} />
+      <div className="scroll-indicator" aria-hidden="true" />
+      <Nav onHome={goHome} onLink={onLink} onResume={goResume} route={route} />
 
       {route === 'home' && (
         <main>
           <Hero onWork={() => onLink('work')} />
           <Work onOpen={goProject} />
+          {/* Editorial break — heels on burgundy carpet */}
+          <div style={{ height: 'clamp(260px, 30vw, 420px)', overflow: 'hidden' }}>
+            <img
+              src={`${ASSET}/photos/heels-break.jpg`}
+              alt=""
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 25%', display: 'block' }}
+            />
+          </div>
           <About />
           <Values />
           <Services />

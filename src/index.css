@@ -413,3 +413,59 @@ a { text-decoration: none; }
   [data-label-reveal]::after { transition: none; }
   [data-label-reveal].is-revealed::after { width: 100%; }
 }
+
+/* ============================================================
+   HERO — kinetic line-by-line entrance
+   ============================================================ */
+.hero-line-inner {
+  transform: translateY(110%);
+  transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms);
+}
+.hero-line-inner--visible {
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-line-inner { transform: none; transition: none; }
+}
+
+/* Hide duplicate CTA on desktop — floating one handles it */
+@media (min-width: 820px) {
+  .hero-mobile-cta { display: none; }
+}
+
+/* Scroll-driven parallax — positioning line fades as you scroll past */
+@supports (animation-timeline: scroll()) {
+  .hero-positioning-line {
+    animation: hero-scroll-fade linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 180px 520px;
+  }
+  @keyframes hero-scroll-fade {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-28px); }
+  }
+}
+
+/* ============================================================
+   SCROLL PROGRESS INDICATOR — Cherry line, CSS scroll-driven
+   ============================================================ */
+.scroll-indicator {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: #B2010C;
+  transform-origin: 0 0;
+  transform: scaleX(0);
+  z-index: 9999;
+  pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-indicator {
+    animation: scroll-progress-grow linear;
+    animation-timeline: scroll(root block);
+  }
+  @keyframes scroll-progress-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+}

@@ -19,7 +19,7 @@ function ServiceRow({ s }) {
         display: 'grid', gridTemplateColumns: '56px 1fr 1.4fr',
         gap: 24, alignItems: 'center', padding: '22px 6px',
         borderBottom: '1px solid var(--line)',
-        background: hovered ? 'rgba(248,187,11,0.06)' : 'transparent',
+        background: hovered ? 'rgba(178,1,12,.05)' : 'transparent',
         transition: 'background 200ms ease',
         position: 'relative',
       }}

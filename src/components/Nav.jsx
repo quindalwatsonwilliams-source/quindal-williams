@@ -14,7 +14,7 @@ function Logo() {
   );
 }
 
-export function Nav({ onHome, onLink, onCharacter, onResume }) {
+export function Nav({ onHome, onLink, onResume }) {
   return (
     <nav style={{
       position: 'sticky', top: 0, zIndex: 60,
@@ -39,7 +39,7 @@ export function Nav({ onHome, onLink, onCharacter, onResume }) {
             color: 'var(--crimson-500)',
           }}>Résumé</a>
         </div>
-        <MagneticWrapper><Pill onClick={onCharacter}>Work with me</Pill></MagneticWrapper>
+        <MagneticWrapper><Pill onClick={() => window.open('/intake.html', '_blank')}>Work with me</Pill></MagneticWrapper>
       </div>
     </nav>
   );

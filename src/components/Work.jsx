@@ -22,11 +22,19 @@ function ScrollArrow({ dir, onClick }) {
   );
 }
 
+function getPhotoBg(photo) {
+  if (photo === 'editorial-cherries') return `url(${ASSET}/photos/editorial-cherries.jpg)`;
+  if (photo === 'heels')              return `url(${ASSET}/photos/heels.jpg)`;
+  if (photo === 'matchbox')           return `url(${ASSET}/photos/matchbox.jpg)`;
+  if (photo === 'editorial-phone')    return `url(${ASSET}/photos/editorial-phone.jpg)`;
+  return 'none';
+}
+
 function getCatColor(cat) {
-  if (/spatial|experiential/i.test(cat)) return '#F8BB0B';
-  if (/brand identity|branding/i.test(cat)) return '#E72388';
-  if (/campaign/i.test(cat)) return '#0E6771';
-  return '#A82967';
+  if (/spatial|experiential/i.test(cat)) return '#0E6771';    // Teal — spatial/activation (brief-sanctioned)
+  if (/brand identity|branding/i.test(cat)) return '#B2010C'; // Cherry
+  if (/campaign/i.test(cat)) return '#BFC20A';                // Chartreuse — editorial/campaign
+  return '#B2010C';
 }
 
 export const WORK = [
@@ -34,57 +42,57 @@ export const WORK = [
     id: 'teton-ridge',
     cat: 'Spatial · Circle', year: '2026',
     title: 'Teton Ridge', sub: 'Cowboy Christmas 2026',
-    tex: 'leopard', seicon: false, accent: 'var(--amber-900)',
-    desc: 'Full-scale event branding for Teton Ridge\'s annual Cowboy Christmas activation — signage systems, stage design, and every touchpoint from the parking lot to the arena floor.',
+    tex: 'leopard', photo: null, accent: '#3C0606',
+    desc: "Full-scale event branding for Teton Ridge's annual Cowboy Christmas activation — signage systems, stage design, and every touchpoint from the parking lot to the arena floor.",
   },
   {
     id: 'seicon-iii',
     cat: 'Brand Identity', year: '2026',
     title: 'SEICon III', sub: 'Conference branding system',
-    tex: null, seicon: true, accent: '#0D1F30',
+    tex: null, photo: null, seicon: true, accent: '#000000',
     desc: 'Complete conference identity for SEICon III — visual language, motion graphics, wayfinding, and all print collateral for the three-day event.',
   },
   {
     id: 'sanmina',
     cat: 'Spatial · Circle', year: '2025',
     title: 'Sanmina', sub: 'Trade-show booth',
-    tex: 'zebra', seicon: false, accent: 'var(--azure-700)',
-    desc: 'Trade-show booth design for Sanmina at the industry\'s largest annual conference — from concept through final install.',
+    tex: 'zebra', photo: null, accent: '#3C0606',
+    desc: "Trade-show booth design for Sanmina at the industry's largest annual conference — from concept through final install.",
   },
   {
     id: 'circle-campaign',
     cat: 'Campaign · Circle', year: '2026',
     title: 'Circle 2026', sub: 'Annual brand campaign',
-    tex: null, seicon: false, accent: '#5D0909',
-    desc: 'Campaign concepting and art direction for Circle\'s 2026 brand push — key visuals, messaging hierarchy, and rollout across digital and print channels.',
+    tex: null, photo: 'editorial-cherries', accent: '#3C0606',
+    desc: "Campaign concepting and art direction for Circle's 2026 brand push — key visuals, messaging hierarchy, and rollout across digital and print channels.",
   },
   {
     id: 'blvd-editorial',
     cat: 'Brand Identity', year: '2025',
     title: 'BLVD Editorial', sub: 'Magazine brand identity',
-    tex: null, seicon: false, accent: '#A82967',
+    tex: null, photo: 'heels', accent: '#000000',
     desc: 'Identity system for a new editorial property — logotype, masthead, grid system, and the visual language that carries across print and digital editions.',
   },
   {
     id: 'neon-atelier',
     cat: 'Packaging', year: '2025',
     title: 'Neon Atelier', sub: 'Product packaging suite',
-    tex: null, seicon: false, accent: '#4E4F06',
+    tex: null, photo: 'matchbox', accent: '#3C0606',
     desc: 'Packaging design for a luxury skincare launch — structure exploration, illustration direction, and the unboxing moment.',
   },
   {
     id: 'summit-festival',
     cat: 'Spatial / Experiential', year: '2024',
     title: 'Summit Festival', sub: 'Experiential environment',
-    tex: 'leopard', seicon: false, accent: '#0E6771',
+    tex: null, photo: 'editorial-phone', accent: '#0E6771',
     desc: 'Spatial branding for a multi-day music and culture festival — entrance activations, stage environments, and the branded moments people photographed.',
   },
 ];
 
-const STAGGER = [0, 28, 14, 42, 21, 7, 35];
-
 function WorkCard({ p, onOpen }) {
   const [hovered, setHovered] = useState(false);
+  const hasPhoto = !!p.photo;
+  const hasTex = !!p.tex;
 
   return (
     <div>
@@ -95,22 +103,22 @@ function WorkCard({ p, onOpen }) {
         style={{
           width: '100%', height: 280, borderRadius: 4, overflow: 'hidden',
           position: 'relative', cursor: 'pointer',
-          boxShadow: hovered
-            ? '0 24px 48px rgba(26,26,46,.22)'
-            : '0 16px 34px rgba(26,26,46,.12)',
+          boxShadow: hovered ? '0 24px 48px rgba(26,26,46,.22)' : '0 16px 34px rgba(26,26,46,.12)',
           transform: hovered ? 'translateY(-4px) translateZ(0)' : 'translateY(0) translateZ(0)',
           transition: 'box-shadow .2s ease, transform .2s ease',
           willChange: 'transform',
           ...(p.seicon ? {
-            background: '#0D1F30',
+            background: '#000000',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           } : {
             background: p.accent,
-            backgroundImage: p.tex === 'leopard'
-              ? `url(${ASSET}/textures/leopard-sm.jpg)`
-              : p.tex === 'zebra'
-                ? `url(${ASSET}/textures/zebra-sm.jpg)`
-                : 'none',
+            backgroundImage: hasPhoto
+              ? getPhotoBg(p.photo)
+              : p.tex === 'leopard'
+                ? `url(${ASSET}/textures/leopard-sm.jpg)`
+                : p.tex === 'zebra'
+                  ? `url(${ASSET}/textures/zebra-sm.jpg)`
+                  : 'none',
             backgroundSize: 'cover', backgroundPosition: 'center',
           }),
         }}
@@ -119,17 +127,17 @@ function WorkCard({ p, onOpen }) {
           <>
             <div style={{
               position: 'absolute', inset: 0,
-              background: 'radial-gradient(ellipse at center, rgba(177,32,12,0.15) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse at center, rgba(178,1,12,0.15) 0%, transparent 70%)',
             }} />
             <div style={{ position: 'relative', textAlign: 'center', padding: '0 24px' }}>
               <div style={{ fontFamily: 'var(--font-serif-display)', fontSize: 52, fontWeight: 700, color: '#fff', lineHeight: 1.1, marginBottom: 8 }}>SEICon III</div>
-              <div style={{ fontFamily: 'var(--font-sans)', fontSize: 14, letterSpacing: '.15em', textTransform: 'uppercase', color: '#fff', marginBottom: 16 }}>2026</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, letterSpacing: '.15em', textTransform: 'uppercase', color: '#fff', marginBottom: 16 }}>2026</div>
               <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.30)', width: '60%', margin: '0 auto 16px' }} />
-              <div style={{ fontFamily: 'var(--font-sans)', fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: '#fff' }}>Conference Branding System</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: '#fff' }}>Conference Branding System</div>
             </div>
           </>
         )}
-        {p.tex && !p.seicon && (
+        {(hasTex || hasPhoto) && !p.seicon && (
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,26,46,0.22)' }} />
         )}
 
@@ -157,7 +165,7 @@ function WorkCard({ p, onOpen }) {
           }}>{p.title}</h3>
           <div style={{
             fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 14,
-            color: '#55556b', marginTop: 3,
+            color: 'rgba(26,26,46,.5)', marginTop: 3,
           }}>{p.sub}</div>
         </div>
         <Lab color={getCatColor(p.cat)} style={{ whiteSpace: 'nowrap', textAlign: 'right', fontSize: 10 }}>{p.cat}</Lab>
@@ -173,8 +181,9 @@ export function Work({ onOpen }) {
   const scrollByCards = (dir) => scrollRef.current?.scrollBy({ left: dir * 324, behavior: 'smooth' });
 
   const onPointerDown = (e) => {
-    if (e.pointerType !== 'mouse') return; // touch already scrolls natively
+    if (e.pointerType !== 'mouse') return;
     const el = scrollRef.current;
+    el.setPointerCapture(e.pointerId);
     drag.current = { startX: e.clientX, startLeft: el.scrollLeft, moved: false };
   };
   const onPointerMove = (e) => {
@@ -184,10 +193,7 @@ export function Work({ onOpen }) {
     if (Math.abs(dx) > 5) d.moved = true;
     scrollRef.current.scrollLeft = d.startLeft - dx;
   };
-  const endDrag = () => {
-    // let the click-capture check run before clearing the moved flag
-    setTimeout(() => { drag.current = null; }, 0);
-  };
+  const endDrag = () => { setTimeout(() => { drag.current = null; }, 0); };
   const onClickCapture = (e) => {
     if (drag.current?.moved) { e.preventDefault(); e.stopPropagation(); }
   };
@@ -201,7 +207,7 @@ export function Work({ onOpen }) {
               fontFamily: 'var(--font-serif-display)', fontWeight: 500,
               fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0, color: '#1A1A2E',
             }}>Selected Work</h2>
-            <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17, color: '#55556b' }}>
+            <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17, color: 'rgba(26,26,46,.5)' }}>
               — real projects, spec dreams, &amp; everything I've talked my way into
             </span>
           </div>
@@ -217,7 +223,7 @@ export function Work({ onOpen }) {
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
-        onPointerLeave={endDrag}
+        onPointerCancel={endDrag}
         onClickCapture={onClickCapture}
         style={{
           display: 'flex', overflowX: 'auto', gap: 24,
@@ -226,8 +232,8 @@ export function Work({ onOpen }) {
           WebkitOverflowScrolling: 'touch',
           alignItems: 'flex-start',
         }} className="work-scroll">
-        {WORK.map((p, i) => (
-          <div key={p.id} style={{ flex: 'none', width: 300 }}>
+        {WORK.map((p) => (
+          <div key={p.id} style={{ flex: 'none', width: 300, scrollSnapAlign: 'start' }}>
             <WorkCard p={p} onOpen={onOpen} />
           </div>
         ))}

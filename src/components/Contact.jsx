@@ -50,13 +50,13 @@ export function Contact() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 24 }}>
 
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-              <Note size={28} rot={-3} color="var(--amber-900)">
+              <Note size={28} rot={-3} color="#FBD66D">
                 got a world that needs building?
               </Note>
               {/* Downward curved arrow */}
               <svg width="44" height="58" viewBox="0 0 44 72" fill="none" style={{ display: 'block' }}>
-                <path d="M10 4 C 42 4, 42 52, 14 68" stroke="var(--amber-900)" strokeWidth="2.4" strokeLinecap="round" fill="none" />
-                <path d="M6 58 L14 69 L22 59" stroke="var(--amber-900)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                <path d="M10 4 C 42 4, 42 52, 14 68" stroke="#FBD66D" strokeWidth="2.4" strokeLinecap="round" fill="none" />
+                <path d="M6 58 L14 69 L22 59" stroke="#FBD66D" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
               </svg>
             </div>
 

@@ -5,7 +5,7 @@ export function About() {
     <section id="about" style={{ background: '#3C0606', padding: '78px 28px', scrollMarginTop: 64, position: 'relative', overflow: 'visible' }}>
       <div style={{ maxWidth: 1040, margin: '0 auto' }}>
 
-        <Note size={30} rot={-4} color="var(--amber-700)" style={{ marginLeft: 4 }}>Hey, I'm Quindal —</Note>
+        <Note size={30} rot={-4} color="#FBD66D" style={{ marginLeft: 4 }}>Hey, I'm Quindal —</Note>
         <h2 className="headline-reveal" style={{
           fontFamily: 'var(--font-serif-display)', fontWeight: 500,
           fontSize: 'clamp(28px,4vw,50px)', lineHeight: 1.04,

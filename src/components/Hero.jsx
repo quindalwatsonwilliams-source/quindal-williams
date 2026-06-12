@@ -1,20 +1,50 @@
+import { useState, useEffect } from 'react';
 import { ASSET, Lab, Note, Arrow, Pill } from './ui';
 import { MagneticWrapper } from './MagneticWrapper';
 
 export function Hero({ onWork }) {
+  const [entered, setEntered] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setEntered(true);
+      return;
+    }
+    if (sessionStorage.getItem('introPlayed')) {
+      const t = setTimeout(() => setEntered(true), 60);
+      return () => clearTimeout(t);
+    }
+    const handler = () => setTimeout(() => setEntered(true), 80);
+    document.addEventListener('loadingComplete', handler, { once: true });
+    return () => document.removeEventListener('loadingComplete', handler);
+  }, []);
+
   return (
     <header style={{ position: 'relative', background: '#F7F3EF', overflow: 'hidden', paddingTop: 40 }}>
       <div style={{ maxWidth: 1180, margin: '0 auto', position: 'relative', padding: '0 28px' }}>
 
-        {/* Positioning line — the brand statement */}
-        <h1 className="headline-reveal" style={{
+        {/* Positioning line — kinetic line-by-line entrance */}
+        <h1 className="hero-positioning-line" style={{
           fontFamily: 'var(--font-serif-display)', fontWeight: 500,
           fontSize: 'clamp(36px, 6vw, 88px)', lineHeight: 0.9, letterSpacing: '-.025em',
           color: '#1A1A2E', margin: 0, position: 'relative', zIndex: 1,
         }}>
-          Every brand has<br />
-          a personality.{' '}
-          <span style={{ fontStyle: 'italic', color: 'var(--crimson-500)' }}>We just<br />help it get dressed.</span>
+          <div style={{ overflow: 'hidden', display: 'block' }}>
+            <div className={`hero-line-inner${entered ? ' hero-line-inner--visible' : ''}`} style={{ '--delay': '0ms' }}>
+              Every brand has
+            </div>
+          </div>
+          <div style={{ overflow: 'hidden', display: 'block' }}>
+            <div className={`hero-line-inner${entered ? ' hero-line-inner--visible' : ''}`} style={{ '--delay': '90ms' }}>
+              a personality.{' '}
+              <span style={{ fontStyle: 'italic', color: 'var(--crimson-500)' }}>We just</span>
+            </div>
+          </div>
+          <div style={{ overflow: 'hidden', display: 'block' }}>
+            <div className={`hero-line-inner${entered ? ' hero-line-inner--visible' : ''}`} style={{ '--delay': '180ms' }}>
+              <span style={{ fontStyle: 'italic', color: 'var(--crimson-500)' }}>help it get dressed.</span>
+            </div>
+          </div>
         </h1>
 
         {/* Photo stage */}
@@ -48,42 +78,36 @@ export function Hero({ onWork }) {
 
           {/* Stat bottom-left */}
           <div style={{ position: 'absolute', left: '3%', bottom: '7%', zIndex: 4 }} className="ed-cap">
-            <div style={{
-              background: '#000000',
-              borderRadius: 100,
-              padding: '8px 16px',
-              display: 'inline-block',
-            }}>
+            <div style={{ background: '#000000', borderRadius: 100, padding: '8px 16px', display: 'inline-block' }}>
               <div style={{ fontFamily: 'var(--font-serif-display)', fontSize: 40, fontWeight: 500, color: '#ffffff', lineHeight: 1 }}>
                 30+
               </div>
-              <div style={{
-                fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '.14em',
-                textTransform: 'uppercase', color: '#ffffff', marginTop: 2,
-              }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '.14em', textTransform: 'uppercase', color: '#ffffff', marginTop: 2 }}>
                 brands shaped
               </div>
             </div>
           </div>
 
-          {/* CTA bottom-right */}
+          {/* CTA bottom-right — desktop only (ed-cap hides on mobile) */}
           <div style={{ position: 'absolute', right: '3%', bottom: '9%', zIndex: 4 }} className="ed-cap">
             <MagneticWrapper><Pill big onClick={onWork}>See the work</Pill></MagneticWrapper>
           </div>
         </div>
 
-        {/* Below-hero row */}
+        {/* Below-hero row: tagline always, CTA mobile-only (desktop has floating CTA above) */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '20px 4px 36px', gap: 16, flexWrap: 'wrap',
         }}>
           <div style={{
             fontFamily: 'var(--font-serif)', fontStyle: 'italic',
-            fontSize: 19, color: '#55556b', maxWidth: 420,
+            fontSize: 19, color: 'rgba(26,26,46,.5)', maxWidth: 420,
           }}>
             Maximalist taste, editorial warmth, and a little bit of whimsy.
           </div>
-          <MagneticWrapper><Pill big onClick={onWork}>See the work →</Pill></MagneticWrapper>
+          <div className="hero-mobile-cta">
+            <MagneticWrapper><Pill big onClick={onWork}>See the work →</Pill></MagneticWrapper>
+          </div>
         </div>
       </div>
     </header>

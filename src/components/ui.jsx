@@ -140,19 +140,3 @@ export function Marquee({ text, color = 'var(--ink)' }) {
   );
 }
 
-export function MascotSlot({ w = 280, h = 360, label = "Quindal's cartoon character", style }) {
-  return (
-    <div style={{
-      width: w, height: h, flex: 'none', position: 'relative',
-      borderRadius: 8, border: '1.5px dashed rgba(26,26,46,.22)',
-      background: '#3C0606',
-      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-      textAlign: 'center', padding: 22, ...style,
-    }}>
-      <img src={`${ASSET}/logos/monogram-red.png`} style={{ width: '38%', opacity: .7, marginBottom: 14 }} alt="" />
-      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--fg3)', lineHeight: 1.6, maxWidth: 180 }}>
-        {label}
-      </div>
-    </div>
-  );
-}
