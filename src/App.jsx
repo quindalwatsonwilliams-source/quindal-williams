@@ -59,6 +59,7 @@ export default function App() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
     window.__lenis = lenis;
+    lenis.scrollTo(0, { immediate: true }); // override any browser scroll restoration
     let rafId;
     function raf(time) { lenis.raf(time); rafId = requestAnimationFrame(raf); }
     rafId = requestAnimationFrame(raf);
