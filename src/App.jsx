@@ -15,6 +15,8 @@ import { CustomCursor } from './components/CustomCursor';
 import { FilmGrain } from './components/FilmGrain';
 import { LoadingScreen } from './components/LoadingScreen';
 import { LabelRevealManager } from './components/LabelRevealManager';
+import { MarqueeStrip } from './components/MarqueeStrip';
+import { Testimonial } from './components/Testimonial';
 
 function scrollToId(id) {
   const el = document.getElementById(id);
@@ -110,6 +112,7 @@ export default function App() {
       {route === 'home' && (
         <main>
           <Hero onCharacter={goCharacter} />
+          <MarqueeStrip />
           {/* Zone: heels is sticky under Work; Work scrolls away to reveal it; About scrolls in to cover it */}
           <div className="heels-zone">
             <div className="heels-sticky-wrap">
@@ -128,6 +131,7 @@ export default function App() {
               <About />
             </div>
           </div>
+          <Testimonial />
           <Values />
           <Services />
           <Contact />

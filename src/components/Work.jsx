@@ -203,6 +203,12 @@ export function Work({ onOpen }) {
       <div style={{ padding: '60px 28px 0', maxWidth: 1040, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, flexWrap: 'wrap', flex: 1, minWidth: 260 }}>
+            <div style={{ width: '100%', marginBottom: 8 }}>
+              <span style={{
+                fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.2em',
+                textTransform: 'uppercase', color: 'rgba(26,26,46,.38)',
+              }}>Case Studies / Work</span>
+            </div>
             <h2 className="headline-reveal" style={{
               fontFamily: 'var(--font-serif-display)', fontWeight: 500,
               fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0, color: '#1A1A2E',

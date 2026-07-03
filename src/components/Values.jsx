@@ -39,26 +39,30 @@ const ED_VALUES = [
 export function Values() {
   return (
     <section style={{ background: 'var(--cream)', position: 'relative' }}>
-      {/* Section header */}
-      <div style={{ padding: '60px 28px 0', maxWidth: 1040, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, flexWrap: 'wrap' }}>
-          <h2 className="headline-reveal" style={{
-            fontFamily: 'var(--font-serif-display)', fontWeight: 500,
-            fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0,
-          }}>My Values</h2>
-          <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17, color: 'var(--fg2)' }}>
-            — what I believe about good work
-          </span>
-        </div>
-      </div>
-
-      {/* Cards on dark zebra */}
+      {/* Cards on dark zebra — header lives inside the dark block */}
       <div style={{
-        marginTop: 28, padding: '52px 28px 62px',
+        padding: '52px 28px 62px',
         background: '#1A1A2E',
         backgroundImage: `linear-gradient(rgba(26,26,46,.22), rgba(26,26,46,.28)), url(${ASSET}/textures/zebra-sm.jpg)`,
         backgroundSize: 'cover', backgroundPosition: 'center',
       }}>
+        {/* Section header inside dark block */}
+        <div style={{ maxWidth: 920, margin: '0 auto 36px' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.2em', textTransform: 'uppercase', color: 'rgba(247,243,239,.40)', marginBottom: 10 }}>
+              What I believe
+            </div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, flexWrap: 'wrap' }}>
+            <h2 className="headline-reveal" style={{
+              fontFamily: 'var(--font-serif-display)', fontWeight: 500,
+              fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0, color: '#F7F3EF',
+            }}>My Values</h2>
+            <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17, color: 'rgba(247,243,239,.45)' }}>
+              — what I believe about good work
+            </span>
+          </div>
+        </div>
         <div style={{ maxWidth: 920, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }} className="ed-values-grid">
           {ED_VALUES.map((v, i) => (
             <div key={v.t} style={{
