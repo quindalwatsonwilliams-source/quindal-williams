@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Lenis from 'lenis';
-import { ASSET } from './components/ui';
 import { Nav } from './components/Nav';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -111,26 +110,10 @@ export default function App() {
 
       {route === 'home' && (
         <main>
-          <Hero onCharacter={goCharacter} />
+          <Hero />
           <MarqueeStrip />
-          {/* Zone: heels is sticky under Work; Work scrolls away to reveal it; About scrolls in to cover it */}
-          <div className="heels-zone">
-            <div className="heels-sticky-wrap">
-              <img
-                src={`${ASSET}/photos/heels-break.jpg`}
-                alt=""
-                className="heels-editorial-img"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 80%', display: 'block' }}
-              />
-            </div>
-            <div className="heels-work-layer">
-              <Work onOpen={goProject} />
-            </div>
-            <div className="heels-pause" />
-            <div className="heels-about-layer">
-              <About />
-            </div>
-          </div>
+          <About />
+          <Work onOpen={goProject} />
           <Testimonial />
           <Values />
           <Services />

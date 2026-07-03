@@ -1,41 +1,5 @@
-import { useState, useRef } from 'react';
-import { ASSET, Lab } from './ui';
-
-function ScrollArrow({ dir, onClick }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <button
-      onClick={onClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      aria-label={dir > 0 ? 'Next projects' : 'Previous projects'}
-      style={{
-        width: 44, height: 44, borderRadius: 999, flex: 'none',
-        border: '1.5px solid #B2010C', cursor: 'pointer',
-        background: hovered ? '#B2010C' : 'transparent',
-        color: hovered ? '#F7F3EF' : '#B2010C',
-        fontFamily: 'var(--font-mono)', fontSize: 17, lineHeight: 1,
-        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-        transition: 'background 180ms ease, color 180ms ease',
-      }}
-    >{dir > 0 ? '→' : '←'}</button>
-  );
-}
-
-function getPhotoBg(photo) {
-  if (photo === 'editorial-cherries') return `url(${ASSET}/photos/editorial-cherries.jpg)`;
-  if (photo === 'heels')              return `url(${ASSET}/photos/heels.jpg)`;
-  if (photo === 'matchbox')           return `url(${ASSET}/photos/matchbox.jpg)`;
-  if (photo === 'editorial-phone')    return `url(${ASSET}/photos/editorial-phone.jpg)`;
-  return 'none';
-}
-
-function getCatColor(cat) {
-  if (/spatial|experiential/i.test(cat)) return '#0E6771';    // Teal — spatial/activation (brief-sanctioned)
-  if (/brand identity|branding/i.test(cat)) return '#B2010C'; // Cherry
-  if (/campaign/i.test(cat)) return '#BFC20A';                // Chartreuse — editorial/campaign
-  return '#B2010C';
-}
+import { useState } from 'react';
+import { ASSET } from './ui';
 
 export const WORK = [
   {
@@ -89,160 +53,143 @@ export const WORK = [
   },
 ];
 
-function WorkCard({ p, onOpen }) {
-  const [hovered, setHovered] = useState(false);
-  const hasPhoto = !!p.photo;
-  const hasTex = !!p.tex;
+function photoBg(photo, tex) {
+  if (photo) return `url(${ASSET}/photos/${photo}.jpg)`;
+  if (tex === 'leopard') return `url(${ASSET}/textures/Patterns_Leopard.jpg)`;
+  if (tex === 'zebra') return `url(${ASSET}/textures/Patterns_Zebra.jpg)`;
+  return null;
+}
 
+// Four projects that have photos — used in the right-side collage
+const COLLAGE = [
+  { id: 'circle-campaign',  src: `${ASSET}/photos/editorial-cherries.jpg`, area: 'a' },
+  { id: 'blvd-editorial',   src: `${ASSET}/photos/heels.jpg`,              area: 'b' },
+  { id: 'summit-festival',  src: `${ASSET}/photos/editorial-phone.jpg`,    area: 'c' },
+  { id: 'neon-atelier',     src: `${ASSET}/photos/matchbox.jpg`,           area: 'd' },
+];
+
+function CollagePhoto({ src, area, label, year, onClick }) {
+  const [hov, setHov] = useState(false);
   return (
-    <div>
-      <div
-        onClick={() => onOpen(p)}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{
-          width: '100%', height: 280, borderRadius: 4, overflow: 'hidden',
-          position: 'relative', cursor: 'pointer',
-          boxShadow: hovered ? '0 24px 48px rgba(26,26,46,.22)' : '0 16px 34px rgba(26,26,46,.12)',
-          transform: hovered ? 'translateY(-4px) translateZ(0)' : 'translateY(0) translateZ(0)',
-          transition: 'box-shadow .2s ease, transform .2s ease',
-          willChange: 'transform',
-          ...(p.seicon ? {
-            background: '#000000',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          } : {
-            background: p.accent,
-            backgroundImage: hasPhoto
-              ? getPhotoBg(p.photo)
-              : p.tex === 'leopard'
-                ? `url(${ASSET}/textures/Patterns_Leopard.jpg)`
-                : p.tex === 'zebra'
-                  ? `url(${ASSET}/textures/Patterns_Zebra.jpg)`
-                  : 'none',
-            backgroundSize: 'cover', backgroundPosition: 'center',
-          }),
-        }}
-      >
-        {p.seicon && (
-          <>
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'radial-gradient(ellipse at center, rgba(178,1,12,0.15) 0%, transparent 70%)',
-            }} />
-            <div style={{ position: 'relative', textAlign: 'center', padding: '0 24px' }}>
-              <div style={{ fontFamily: 'var(--font-serif-display)', fontSize: 52, fontWeight: 700, color: '#fff', lineHeight: 1.1, marginBottom: 8 }}>SEICon III</div>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, letterSpacing: '.15em', textTransform: 'uppercase', color: '#fff', marginBottom: 16 }}>2026</div>
-              <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.30)', width: '60%', margin: '0 auto 16px' }} />
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: '#fff' }}>Conference Branding System</div>
-            </div>
-          </>
-        )}
-        {(hasTex || hasPhoto) && !p.seicon && (
-          <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,26,46,0.22)' }} />
-        )}
-
-        {/* View overlay on hover */}
+    <div
+      onClick={onClick}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        gridArea: area,
+        backgroundImage: `url(${src})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        cursor: 'pointer',
+        position: 'relative',
+        overflow: 'hidden',
+        borderRadius: 2,
+      }}
+    >
+      {/* Hover overlay */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'rgba(26,26,46,0.42)',
+        opacity: hov ? 1 : 0,
+        transition: 'opacity .2s ease',
+        display: 'flex', flexDirection: 'column',
+        justifyContent: 'flex-end', padding: 14,
+      }}>
         <div style={{
-          position: 'absolute', inset: 0,
-          background: 'rgba(0,0,0,0.28)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          opacity: hovered ? 1 : 0,
-          transition: 'opacity .2s ease',
-        }}>
-          <div style={{
-            fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.18em',
-            textTransform: 'uppercase', color: '#fff',
-            border: '1px solid rgba(255,255,255,0.7)', padding: '10px 20px', borderRadius: 2,
-          }}>View project</div>
-        </div>
-      </div>
-
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 14, gap: 10 }}>
-        <div>
-          <h3 style={{
-            fontFamily: 'var(--font-serif-display)', fontWeight: 500, fontSize: 22,
-            color: '#1A1A2E', margin: 0, lineHeight: 1,
-          }}>{p.title}</h3>
-          <div style={{
-            fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 14,
-            color: 'rgba(26,26,46,.5)', marginTop: 3,
-          }}>{p.sub}</div>
-        </div>
-        <Lab color={getCatColor(p.cat)} style={{ whiteSpace: 'nowrap', textAlign: 'right', fontSize: 10 }}>{p.cat}</Lab>
+          fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '.18em',
+          textTransform: 'uppercase', color: 'rgba(247,243,239,.7)', marginBottom: 4,
+        }}>{year}</div>
+        <div style={{
+          fontFamily: 'var(--font-serif-display)', fontSize: 16, fontWeight: 500,
+          color: '#F7F3EF', lineHeight: 1.1,
+        }}>{label}</div>
       </div>
     </div>
   );
 }
 
 export function Work({ onOpen }) {
-  const scrollRef = useRef(null);
-  const drag = useRef(null);
+  const [hovIdx, setHovIdx] = useState(null);
 
-  const scrollByCards = (dir) => scrollRef.current?.scrollBy({ left: dir * 324, behavior: 'smooth' });
-
-  const onPointerDown = (e) => {
-    if (e.pointerType !== 'mouse') return;
-    const el = scrollRef.current;
-    el.setPointerCapture(e.pointerId);
-    drag.current = { startX: e.clientX, startLeft: el.scrollLeft, moved: false };
-  };
-  const onPointerMove = (e) => {
-    const d = drag.current;
-    if (!d) return;
-    const dx = e.clientX - d.startX;
-    if (Math.abs(dx) > 5) d.moved = true;
-    scrollRef.current.scrollLeft = d.startLeft - dx;
-  };
-  const endDrag = () => { setTimeout(() => { drag.current = null; }, 0); };
-  const onClickCapture = (e) => {
-    if (drag.current?.moved) { e.preventDefault(); e.stopPropagation(); }
-  };
+  const byId = Object.fromEntries(WORK.map(p => [p.id, p]));
 
   return (
-    <section id="work" className="cv-auto" style={{ background: '#F7F3EF', scrollMarginTop: 64 }}>
-      <div style={{ padding: '60px 28px 0', maxWidth: 1040, margin: '0 auto' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, flexWrap: 'wrap', flex: 1, minWidth: 260 }}>
-            <div style={{ width: '100%', marginBottom: 8 }}>
-              <span style={{
-                fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.2em',
-                textTransform: 'uppercase', color: 'rgba(26,26,46,.38)',
-              }}>Case Studies / Work</span>
-            </div>
-            <h2 className="headline-reveal" style={{
-              fontFamily: 'var(--font-serif-display)', fontWeight: 500,
-              fontSize: 'clamp(34px,5vw,58px)', letterSpacing: '-.015em', margin: 0, color: '#1A1A2E',
-            }}>Selected Work</h2>
-            <span style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: 17, color: 'rgba(26,26,46,.5)' }}>
-              — real projects, spec dreams, &amp; everything I've talked my way into
-            </span>
+    <section id="work" style={{ background: '#F7F3EF', scrollMarginTop: 64, padding: '72px 28px 80px' }}>
+      <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 64, alignItems: 'start' }} className="work-split-grid">
+
+        {/* ── Left: label + heading + project list ── */}
+        <div>
+          <div style={{
+            fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.2em',
+            textTransform: 'uppercase', color: 'rgba(26,26,46,.38)', marginBottom: 14,
+          }}>
+            Case Studies / Since 2024
           </div>
-          <div style={{ display: 'flex', gap: 10 }}>
-            <ScrollArrow dir={-1} onClick={() => scrollByCards(-1)} />
-            <ScrollArrow dir={1} onClick={() => scrollByCards(1)} />
+
+          <h2 style={{
+            fontFamily: 'var(--font-serif-display)', fontWeight: 500,
+            fontSize: 'clamp(34px, 4.5vw, 56px)', letterSpacing: '-.015em',
+            margin: '0 0 40px', color: '#1A1A2E', lineHeight: 1,
+          }}>
+            Selected<br />
+            <span style={{ fontStyle: 'italic' }}>Work</span>
+          </h2>
+
+          {/* Project list */}
+          <div style={{ borderTop: '1px solid rgba(26,26,46,.1)' }}>
+            {WORK.map((p, i) => (
+              <button
+                key={p.id}
+                onClick={() => onOpen(p)}
+                onMouseEnter={() => setHovIdx(i)}
+                onMouseLeave={() => setHovIdx(null)}
+                style={{
+                  display: 'flex', alignItems: 'baseline', justifyContent: 'space-between',
+                  width: '100%', background: 'none', border: 'none', borderBottom: '1px solid rgba(26,26,46,.1)',
+                  padding: '16px 0', cursor: 'pointer', textAlign: 'left',
+                  gap: 12,
+                }}
+              >
+                <span style={{
+                  fontFamily: 'var(--font-serif-display)', fontWeight: 400,
+                  fontSize: 'clamp(19px, 2.2vw, 26px)', color: '#1A1A2E',
+                  letterSpacing: '-.01em', lineHeight: 1,
+                  borderBottom: hovIdx === i ? '1px solid #1A1A2E' : '1px solid transparent',
+                  transition: 'border-color .15s ease',
+                }}>
+                  {p.title}
+                </span>
+                <span style={{
+                  fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.14em',
+                  textTransform: 'uppercase', color: 'rgba(26,26,46,.4)',
+                  flexShrink: 0, alignSelf: 'center',
+                }}>
+                  {p.year}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
-      </div>
 
-      <div
-        ref={scrollRef}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
-        onClickCapture={onClickCapture}
-        style={{
-          display: 'flex', overflowX: 'auto', gap: 24,
-          padding: '30px 28px 48px',
-          scrollSnapType: 'x proximity',
-          WebkitOverflowScrolling: 'touch',
-          alignItems: 'flex-start',
-        }} className="work-scroll">
-        {WORK.map((p) => (
-          <div key={p.id} style={{ flex: 'none', width: 300, scrollSnapAlign: 'start' }}>
-            <WorkCard p={p} onOpen={onOpen} />
-          </div>
-        ))}
+        {/* ── Right: editorial photo collage ── */}
+        <div style={{
+          display: 'grid',
+          gridTemplateAreas: '"a b" "a c" "d c"',
+          gridTemplateColumns: '1.15fr 1fr',
+          gridTemplateRows: '200px 160px 160px',
+          gap: 8,
+        }} className="work-collage">
+          {COLLAGE.map(col => (
+            <CollagePhoto
+              key={col.id}
+              src={col.src}
+              area={col.area}
+              label={byId[col.id]?.title}
+              year={byId[col.id]?.year}
+              onClick={() => onOpen(byId[col.id])}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
