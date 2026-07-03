@@ -115,9 +115,9 @@ function WorkCard({ p, onOpen }) {
             backgroundImage: hasPhoto
               ? getPhotoBg(p.photo)
               : p.tex === 'leopard'
-                ? `url(${ASSET}/textures/leopard-sm.jpg)`
+                ? `url(${ASSET}/textures/Patterns_Leopard.jpg)`
                 : p.tex === 'zebra'
-                  ? `url(${ASSET}/textures/zebra-sm.jpg)`
+                  ? `url(${ASSET}/textures/Patterns_Zebra.jpg)`
                   : 'none',
             backgroundSize: 'cover', backgroundPosition: 'center',
           }),

@@ -43,7 +43,7 @@ export function Values() {
       <div style={{
         padding: '52px 28px 62px',
         background: '#1A1A2E',
-        backgroundImage: `linear-gradient(rgba(26,26,46,.22), rgba(26,26,46,.28)), url(${ASSET}/textures/zebra-sm.jpg)`,
+        backgroundImage: `linear-gradient(rgba(26,26,46,.22), rgba(26,26,46,.28)), url(${ASSET}/textures/Patterns_Zebra.jpg)`,
         backgroundSize: 'cover', backgroundPosition: 'center',
       }}>
         {/* Section header inside dark block */}

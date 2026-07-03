@@ -324,7 +324,7 @@ export function CharacterCreator({ onExit }) {
         borderBottom: '1px solid var(--line)',
         padding: '48px 28px 40px',
         background: '#1A1A2E',
-        backgroundImage: `linear-gradient(rgba(26,26,46,.93),rgba(26,26,46,.93)), url(${ASSET}/textures/leopard-sm.jpg)`,
+        backgroundImage: `linear-gradient(rgba(26,26,46,.93),rgba(26,26,46,.93)), url(${ASSET}/textures/Patterns_Leopard.jpg)`,
         backgroundSize: 'cover',
       }}>
         <div style={{ maxWidth: 660, margin: '0 auto' }}>

@@ -5,7 +5,7 @@ export function Contact() {
     <footer id="contact" className="cv-auto" style={{
       background: '#1A1A2E', color: '#F7F3EF',
       scrollMarginTop: 54, position: 'relative', overflow: 'hidden',
-      backgroundImage: `linear-gradient(rgba(26,26,46,.88),rgba(26,26,46,.92)), url(${ASSET}/textures/leopard-sm.jpg)`,
+      backgroundImage: `linear-gradient(rgba(26,26,46,.88),rgba(26,26,46,.92)), url(${ASSET}/textures/Patterns_Leopard.jpg)`,
       backgroundSize: 'cover',
     }}>
       {/* Typography watermark */}

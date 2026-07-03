@@ -6,9 +6,9 @@ export function ProjectPage({ project: p, onBack }) {
       width: '100%', height: 480, position: 'relative', overflow: 'hidden',
       background: p.accent,
       backgroundImage: p.tex === 'leopard'
-        ? `url(${ASSET}/textures/leopard-sm.jpg)`
+        ? `url(${ASSET}/textures/Patterns_Leopard.jpg)`
         : p.tex === 'zebra'
-          ? `url(${ASSET}/textures/zebra-sm.jpg)`
+          ? `url(${ASSET}/textures/Patterns_Zebra.jpg)`
           : 'none',
       backgroundSize: 'cover', backgroundPosition: 'center',
     }}>
@@ -39,7 +39,7 @@ export function ProjectPage({ project: p, onBack }) {
       {/* Project header */}
       <div style={{
         background: '#3C0606', padding: '40px 28px 44px',
-        backgroundImage: `linear-gradient(rgba(60,6,6,.92),rgba(60,6,6,.92)), url(${ASSET}/textures/leopard-sm.jpg)`,
+        backgroundImage: `linear-gradient(rgba(60,6,6,.92),rgba(60,6,6,.92)), url(${ASSET}/textures/Patterns_Leopard.jpg)`,
         backgroundSize: 'cover',
       }}>
         <div style={{ maxWidth: 1040, margin: '0 auto' }}>
